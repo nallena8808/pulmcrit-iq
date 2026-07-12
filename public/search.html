@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulmCrit IQ Search</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="PulmCrit IQ search header">
+      <div class="left-tools">
+        <a class="login-button admin-link" href="./index.html">Home</a>
+      </div>
+      <a class="brand" href="./index.html" aria-label="PulmCrit IQ home">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="lung left-lung"></span>
+          <span class="lung right-lung"></span>
+          <span class="spark"></span>
+        </span>
+        <span class="brand-text">PulmCrit IQ Search</span>
+      </a>
+      <form class="search" id="search-page-form" role="search">
+        <label class="visually-hidden" for="search-page-input">Search PulmCrit IQ</label>
+        <span aria-hidden="true">⌕</span>
+        <input id="search-page-input" type="search" placeholder="Search ARDS, airway, sepsis..." />
+      </form>
+    </header>
+
+    <main class="search-main">
+      <section class="search-results-panel">
+        <h1 id="search-heading">Search results</h1>
+        <div id="search-results" class="search-results">Searching...</div>
+      </section>
+    </main>
+
+    <script src="./search.js"></script>
+  </body>
+</html>

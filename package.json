@@ -2,7 +2,12 @@
   "name": "pulmcrit-iq",
   "version": "1.0.0",
   "private": true,
+  "description": "PulmCrit IQ teaching website packaged for Vercel.",
   "scripts": {
-    "start": "python3 -m http.server 3000"
+    "start": "node server.js",
+    "vercel-build": "node -e \"console.log('PulmCrit IQ static assets ready')\""
+  },
+  "engines": {
+    "node": "20.x"
   }
 }

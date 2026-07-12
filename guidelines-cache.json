@@ -1,0 +1,3584 @@
+{
+  "guidelines": [
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "US Air Quality Index and respiratory health outcomes: background, knowledge gaps, and research prioritization: an Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42206610/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "J Physiother",
+      "title": "Appraisal of Clinical Practice Guideline: Society of Critical Care Medicine Guidelines on Caring for Older Adults in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42336747/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Zhonghua Yi Xue Za Zhi",
+      "title": "[The 2026 Surviving Sepsis Campaign guidelines: from evidence updates to practice implementation].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42373461/",
+      "date": "Jun 30, 2026",
+      "timestamp": 1782795600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Noninvasive Respiratory Support for Adult Patients with Acute Respiratory Failure. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42371750/",
+      "date": "Jun 29, 2026",
+      "timestamp": 1782709200000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Indian Pediatr",
+      "title": "Management of Sepsis and Septic Shock in Children: Surviving Sepsis Campaign International Guidelines 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42329352/",
+      "date": "Jun 22, 2026",
+      "timestamp": 1782104400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Vasc Interv Radiol",
+      "title": "The 2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults: Pertinent Points for the Interventional Radiologist.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42269820/",
+      "date": "Jun 10, 2026",
+      "timestamp": 1781067600000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Comparison of Intensive Versus Conventional Glycemic Control Targets: An Updated Systematic Review and Meta-Analysis of the 2024 Society of Critical Care Medicine Guidelines on Glycemic Control for Critically Ill Adults.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42262517/",
+      "date": "Jun 9, 2026",
+      "timestamp": 1780981200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "NPJ Prim Care Respir Med",
+      "title": "The European respiratory society guideline for adult bronchiectasis 2025: summary and implementation guide for primary care.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42259823/",
+      "date": "Jun 8, 2026",
+      "timestamp": 1780894800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "BMC Anesthesiol",
+      "title": "A cross-sectional survey of Chinese anesthesiologists' understanding of fluid resuscitation recommendations in the 2021 surviving sepsis campaign guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42249323/",
+      "date": "Jun 5, 2026",
+      "timestamp": 1780635600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Intensive Care Med",
+      "title": "Publisher Correction: Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42084789/",
+      "date": "Jun 1, 2026",
+      "timestamp": 1780290000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Eur J Emerg Med",
+      "title": "The 2026 Surviving Sepsis Campaign guidelines: a turning point for emergency medicine.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42053080/",
+      "date": "Jun 1, 2026",
+      "timestamp": 1780290000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Med Klin Intensivmed Notfmed",
+      "title": "[Comparison of the 2026 surviving sepsis campaign guideline and the 2025 German S3 sepsis guideline].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42043514/",
+      "date": "Jun 1, 2026",
+      "timestamp": 1780290000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Results of the Pediatric Guideline Adherence and Outcomes (PEGASUS) Program Versus Usual Care Pragmatic Randomized Controlled Trial in Severe Traumatic Brain Injury.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41891786/",
+      "date": "Jun 1, 2026",
+      "timestamp": 1780290000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "The Effective Management of Shock: Moving From Physiology to Guidelines to Personalized Medicine.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41841954/",
+      "date": "Jun 1, 2026",
+      "timestamp": 1780290000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Clin Infect Dis",
+      "title": "Methodology Misrepresented: Correcting the Record on the American Thoracic Society Community-acquired Pneumonia Guideline Process.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41572910/",
+      "date": "May 20, 2026",
+      "timestamp": 1779253200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Mucoactive therapies and the European Respiratory Society guideline for adult bronchiectasis: what now after the CLEAR trial?",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42167772/",
+      "date": "May 1, 2026",
+      "timestamp": 1777611600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Acute Crit Care",
+      "title": "Prioritizing the patient through a continuum of personalized care: insights from the 2026 Surviving Sepsis Campaign guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42272214/",
+      "date": "May 1, 2026",
+      "timestamp": 1777611600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Intensive Care Med",
+      "title": "Surviving Sepsis Campaign: international guidelines for management of sepsis and septic shock 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41870560/",
+      "date": "May 1, 2026",
+      "timestamp": 1777611600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Intensive Care Med",
+      "title": "Surviving Sepsis Campaign International Guidelines for the Management of Sepsis and Septic Shock in Children 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41870559/",
+      "date": "May 1, 2026",
+      "timestamp": 1777611600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Guidelines on Caring for Older Adults in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41860327/",
+      "date": "May 1, 2026",
+      "timestamp": 1777611600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines on Caring for Older Adults in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41860322/",
+      "date": "May 1, 2026",
+      "timestamp": 1777611600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Am Coll Cardiol",
+      "title": "2026 AHA/ACC/ACCP/ACEP/CHEST/SCAI/SHM/SIR/SVM/SVN Guideline for the Evaluation and Management of Acute Pulmonary Embolism in Adults: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41712898/",
+      "date": "Apr 7, 2026",
+      "timestamp": 1775538000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Reply regarding the European Respiratory Society and European Society of Thoracic Surgeons clinical practice guideline on fitness for curative intent treatment of lung cancer.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41991213/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Comment on: European Respiratory Society and European Society of Thoracic Surgeons clinical practice guideline on fitness for curative intent treatment of lung cancer.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41991211/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Breathe (Sheff)",
+      "title": "The European Respiratory Society guideline for management of adult bronchiectasis: clinical summary.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41988091/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "J Physiother",
+      "title": "Appraisal of Clinical Practice Guideline: European Respiratory Society Clinical Practice Guideline for the Management of Adult Bronchiectasis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41904079/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41869847/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41869831/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Pediatr Crit Care Med",
+      "title": "Executive Summary: Surviving Sepsis Campaign International Guidelines for the Management of Sepsis and Septic Shock in Children 2026.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41869826/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Pediatr Crit Care Med",
+      "title": "Society of Critical Care Medicine 2026 Guidelines on the Care and Management of Pediatric and Neonatal Intensive Care Patients at the End of Life.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41860325/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Pediatr Crit Care Med",
+      "title": "Executive Summary of Society of Critical Care Medicine 2026 Guidelines on the Care and Management of Pediatric and Neonatal Intensive Care Patients at the End of Life.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41860282/",
+      "date": "Apr 1, 2026",
+      "timestamp": 1775019600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "The Canadian Thoracic Society/Canadian Sleep Society Guideline on the diagnosis of obstructive sleep apnea in children.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41887281/",
+      "date": "Mar 24, 2026",
+      "timestamp": 1774328400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Clin Infect Dis",
+      "title": "2026 Clinical Practice Guideline Update by the Infectious Diseases Society of America and the Pediatric Infectious Diseases Society on The Management of Community-acquired Pneumonia in Infants and Children Older than 3 Months of Age: The Choice of Chest Tube Size.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41840880/",
+      "date": "Mar 17, 2026",
+      "timestamp": 1773723600000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Clin Infect Dis",
+      "title": "2026 Clinical Practice Guideline Update by the Infectious Diseases Society of America and the Pediatric Infectious Diseases Society on The Management of Community-Acquired Pneumonia in Infants and Children Older than 3 Months of Age: The Use of Chest Ultrasound in Children with Parapneumonic Effusion.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41839537/",
+      "date": "Mar 16, 2026",
+      "timestamp": 1773637200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Respir Investig",
+      "title": "Diverse histopathological patterns in Fleischner-defined interstitial lung abnormalities: Radiologic-Pathologic correlation and reclassification using 2025 American Thoracic Society statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41579529/",
+      "date": "Mar 1, 2026",
+      "timestamp": 1772344800000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Reply on behalf of the European Respiratory Society and European Sleep Research Society task force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41786488/",
+      "date": "Mar 1, 2026",
+      "timestamp": 1772344800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines for the Administration of Neuromuscular Blockade in Adults With Acute Respiratory Distress Syndrome.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41773929/",
+      "date": "Mar 1, 2026",
+      "timestamp": 1772344800000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Guidelines for the Administration of Neuromuscular Blockade in Adults With Acute Respiratory Distress Syndrome.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41773928/",
+      "date": "Mar 1, 2026",
+      "timestamp": 1772344800000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines for the Allocation of Critical Care Resources to Adults During Crisis-Level Shortages.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41773927/",
+      "date": "Mar 1, 2026",
+      "timestamp": 1772344800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Guidelines for the Allocation of Critical Care Resources to Adults During Crisis-Level Shortages.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41773926/",
+      "date": "Mar 1, 2026",
+      "timestamp": 1772344800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Sci Rep",
+      "title": "Elbow flexion enables rescuers with low BMI to deliver chest compressions in compliance with CPR guideline recommendations.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41708689/",
+      "date": "Feb 18, 2026",
+      "timestamp": 1771394400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Zhonghua Jie He He Hu Xi Za Zhi",
+      "title": "[Highlights and interpretation of the 2025 European Respiratory Society clinical practice guideline for the management of adult bronchiectasis].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41629091/",
+      "date": "Feb 12, 2026",
+      "timestamp": 1770876000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Biologic Management in Severe Asthma for Adults: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41005695/",
+      "date": "Feb 1, 2026",
+      "timestamp": 1769925600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Clin Infect Dis",
+      "title": "American Thoracic Society/Centers for Disease Control and Prevention/European Respiratory Society/Infectious Diseases Society of America (ATS/CDC/ERS/IDSA) Updated Guideline on the Treatment of Tuberculosis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39949124/",
+      "date": "Jan 16, 2026",
+      "timestamp": 1768543200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Clin Infect Dis",
+      "title": "American Thoracic Society/Centers for Disease Control and Prevention/European Respiratory Society/Infectious Diseases Society of America (ATS/CDC/ERS/IDSA) Updated Guideline on the Treatment of Tuberculosis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39949124/",
+      "date": "Jan 16, 2026",
+      "timestamp": 1768543200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Diagnosis and Management of Community-acquired Pneumonia: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40679934/",
+      "date": "Jan 1, 2026",
+      "timestamp": 1767247200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Radiol Med",
+      "title": "Optimizing diagnostic outcomes and sustainability in radiological practices: a multicentric study on guideline adherence and incidental findings in elective chest CT scans.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41145897/",
+      "date": "Jan 1, 2026",
+      "timestamp": 1767247200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Lung India",
+      "title": "From evidence to practice: What the 2025 European Respiratory Society Bronchiectasis Guideline means for India.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41474419/",
+      "date": "Jan 1, 2026",
+      "timestamp": 1767247200000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Ann Rheum Dis",
+      "title": "ERS/EULAR clinical practice guidelines for connective tissue disease-associated interstitial lung disease developed by the task force for connective tissue disease-associated interstitial lung disease of the European Respiratory Society (ERS) and the European Alliance of Associations for Rheumatology (EULAR) Endorsed by the European Reference Network on rare respiratory diseases (ERN-LUNG).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40912974/",
+      "date": "Jan 1, 2026",
+      "timestamp": 1767247200000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Multicenter Evaluation of an Interoperable System for Automated Guideline Adherence Monitoring in ICUs.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41363995/",
+      "date": "Jan 1, 2026",
+      "timestamp": 1767247200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Sci",
+      "title": "Using the 2026 Surviving Sepsis Campaign Guidelines in Practice.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42138866/",
+      "date": "Dec 31, 2025",
+      "timestamp": 1767225600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Prague Med Rep",
+      "title": "Evaluating Adherence to the 2021 Surviving Sepsis Campaign Guidelines for Sepsis and Septic Shock Management in Intensive Care Units: A Prospective Observational Study.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42319050/",
+      "date": "Dec 31, 2025",
+      "timestamp": 1767225600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "JMIR Form Res",
+      "title": "Evaluating the Accuracy of Medical Information Generated by ChatGPT and Gemini and Its Alignment With International Clinical Guidelines From the Surviving Sepsis Campaign: Comparative Study.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41406470/",
+      "date": "Dec 17, 2025",
+      "timestamp": 1765951200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Evid Based Nurs",
+      "title": "Updated surviving sepsis campaign guidelines enable tailored approach to antibiotic timing as validated in real-world settings.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39137960/",
+      "date": "Dec 15, 2025",
+      "timestamp": 1765778400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Bras Pneumol",
+      "title": "CT characterization of idiopathic inflammatory myopathy-associated interstitial lung disease: frontiers to strengthen diagnostic accuracyAuthors' ReplyA Review of Myositis-Associated Interstitial Lung Disease2023 American College of Rheumatology (ACR)/American College of Chest Physicians (CHEST) Guideline for the Screening and Monitoring of Interstitial Lung Disease in People with Systemic Autoimmune Rheumatic Diseases2022 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41417310/",
+      "date": "Dec 12, 2025",
+      "timestamp": 1765519200000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Racial, Ethnic, Sex, and Gender Equity for Inclusive Interstitial Lung Disease Research: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41324350/",
+      "date": "Dec 1, 2025",
+      "timestamp": 1764568800000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "A Research Agenda to Mitigate Racial and Ethnic Disparities in U.S. Critical Care Medicine: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41324349/",
+      "date": "Dec 1, 2025",
+      "timestamp": 1764568800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Arq Bras Cardiol",
+      "title": "Brazilian Guideline for the Evaluation and Diagnosis of Chest Pain in the Emergency Department - 2025.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41379176/",
+      "date": "Dec 1, 2025",
+      "timestamp": 1764568800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society clinical practice guideline for the management of adult bronchiectasis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41016738/",
+      "date": "Dec 1, 2025",
+      "timestamp": 1764568800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Clinical Practice Guidelines on Adult End-of-Life Care in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41342842/",
+      "date": "Dec 1, 2025",
+      "timestamp": 1764568800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Clinical Practice Guidelines on Adult End-of-Life Care in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41342841/",
+      "date": "Dec 1, 2025",
+      "timestamp": 1764568800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Pol Arch Intern Med",
+      "title": "New fever in adults in the intensive care unit: current insights from the 2024 Society of Critical Care Medicine and Infectious Diseases Society of America guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40955858/",
+      "date": "Nov 27, 2025",
+      "timestamp": 1764223200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Care of Infants and Children with Tracheostomies: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41123183/",
+      "date": "Nov 1, 2025",
+      "timestamp": 1761973200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Effects of Inhaled Tobacco and Cannabis Co-Use on Respiratory Health and Tobacco Cessation: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40845321/",
+      "date": "Nov 1, 2025",
+      "timestamp": 1761973200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on advanced telemedicine for obstructive sleep apnoea (e-Sleep).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40907996/",
+      "date": "Nov 1, 2025",
+      "timestamp": 1761973200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society clinical practice guideline on telemedicine in home mechanical ventilation.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40571319/",
+      "date": "Nov 1, 2025",
+      "timestamp": 1761973200000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society and European Society of Thoracic Surgeons clinical practice guideline on fitness for curative intent treatment of lung cancer.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41232938/",
+      "date": "Nov 1, 2025",
+      "timestamp": 1761973200000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Erratum: Approach to the Evaluation and Management of Interstitial Lung Abnormalities: An Official American Thoracic Society Clinical Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40879359/",
+      "date": "Sep 1, 2025",
+      "timestamp": 1756702800000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Treatment of Nicotine Use in Adolescents Under 18 Years of Age: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40879357/",
+      "date": "Sep 1, 2025",
+      "timestamp": 1756702800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Research Priorities for Translating Endophenotyping of Adult Obstructive Sleep Apnea to the Clinic: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40737283/",
+      "date": "Sep 1, 2025",
+      "timestamp": 1756702800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Management of Patients With Early-Stage Non-Small Cell Lung Cancer: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40562304/",
+      "date": "Sep 1, 2025",
+      "timestamp": 1756702800000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Transfusion of Fresh Frozen Plasma and Platelets in Critically Ill Adults: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40074060/",
+      "date": "Sep 1, 2025",
+      "timestamp": 1756702800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Am J Health Syst Pharm",
+      "title": "Executive Summary-Society of Critical Care Medicine and American Society of Health-System Pharmacists Guideline for the Prevention of Stress-Related Gastrointestinal Bleeding in Critically Ill Adults.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40719551/",
+      "date": "Aug 19, 2025",
+      "timestamp": 1755579600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Addressing Sex as a Biological Variable in Preclinical Models of Lung Disease: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40748009/",
+      "date": "Aug 1, 2025",
+      "timestamp": 1754024400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society and European Sleep Research Society statement on the treatment of central sleep apnoea with adaptive servo-ventilation.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40571320/",
+      "date": "Aug 1, 2025",
+      "timestamp": 1754024400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Approach to the Evaluation and Management of Interstitial Lung Abnormalities: An Official American Thoracic Society Clinical Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40387336/",
+      "date": "Jul 1, 2025",
+      "timestamp": 1751346000000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Arthritis Rheumatol",
+      "title": "2023 American College of Rheumatology/American College of Chest Physicians guideline for the screening and monitoring of interstitial lung disease in people with systemic autoimmune rheumatic diseases: comment on the article by Johnson et al.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39780345/",
+      "date": "Jul 1, 2025",
+      "timestamp": 1751346000000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Am Fam Physician",
+      "title": "Updated Guidelines From the Society of Critical Care Medicine Strongly Recommend Steroids for Hospitalized Adults With Severe CAP.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40736501/",
+      "date": "Jul 1, 2025",
+      "timestamp": 1751346000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Heart J Cardiovasc Imaging",
+      "title": "Optimal approach to performing and reporting computed tomography angiography for suspected acute pulmonary embolism: a clinical consensus statement of the ESC Working Group on Pulmonary Circulation & Right Ventricular Function, the Fleischner Society, the Association for Acute CardioVascular Care (ACVC) and the European Association of Cardiovascular Imaging (EACVI) of the ESC, endorsed by European Respiratory Society (ERS), Asian Society of Thoracic Radiology (ASTR), European Society of Thoracic Imaging (ESTI), and Society of Thoracic Radiology (STR).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40457988/",
+      "date": "Jun 30, 2025",
+      "timestamp": 1751259600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Radiology",
+      "title": "Optimal Approach to Performing and Reporting Computed Tomography Angiography for Suspected Acute Pulmonary Embolism: A Clinical Consensus Statement of the ESC Working Group on Pulmonary Circulation & Right Ventricular Function, the Fleischner Society, the Association for Acute Cardiovascular Care (ACVC) and the European Association of Cardiovascular Imaging (EACVI) of the ESC, Endorsed by European Respiratory Society (ERS), Asian Society of Thoracic Radiology (ASTR), European Society of Thoracic Imaging (ESTI), and Society of Thoracic Radiology (STR).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40459417/",
+      "date": "Jun 1, 2025",
+      "timestamp": 1748754000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary-Society of Critical Care Medicine Guideline and American Society of Health-System Pharmacists for the Prevention of Stress-Related Gastrointestinal Bleeding in Critically Ill Adults: Erratum.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40272225/",
+      "date": "Jun 1, 2025",
+      "timestamp": 1748754000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "COUNTERPOINT: Should the Progressive Pulmonary Fibrosis Clinical Practice Guideline Be Adopted for Clinical Practice? No.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40348510/",
+      "date": "May 1, 2025",
+      "timestamp": 1746075600000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "POINT: Should the Progressive Pulmonary Fibrosis Clinical Practice Guideline Be Adopted for Clinical Practice? Yes.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40348509/",
+      "date": "May 1, 2025",
+      "timestamp": 1746075600000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Alpha-1-Antitrypsin Deficiency Targeted Testing and Augmentation Therapy: A Canadian Thoracic Society Meta-Analysis and Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39880301/",
+      "date": "Apr 1, 2025",
+      "timestamp": 1743483600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Lung Cancer Screening and Incidental Findings: A Research Agenda: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39928329/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Implementation and Effectiveness of Guideline-Recommended Clinical Activities for Children With Asthma: Population-Based Cohort.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39515516/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Acquisition and Handling of Endobronchial Ultrasound Transbronchial Needle Samples: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39343294/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Nuanced Insights on ICU Guideline Implementation.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/40035656/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "The Definition of the Intensivist in the Era of Global Healthcare: 2024 Consensus Statement From the Society of Critical Care Medicine Defining Intensivist Task Force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982148/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "A Focused Update to the Clinical Practice Guidelines for the Prevention and Management of Pain, Anxiety, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982143/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary of a Focused Update to the Clinical Practice Guidelines for the Prevention and Management of Pain, Anxiety, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982138/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine 2024 Guidelines on Adult ICU Design: Executive Summary.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982134/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine 2024 Guidelines on Adult ICU Design.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982130/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Covert Critical Illness Encephalopathy: Impairments That Escape Detection by Guideline Recommended, Protocolized Assessments.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39718434/",
+      "date": "Mar 1, 2025",
+      "timestamp": 1740808800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Assessment of Home-based Monitoring in Adults with Chronic Lung Disease: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39585746/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Interventional Strategies for Children with Progressive Pulmonary Hypertension Despite Optimal Therapy: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39531626/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Red Blood Cell Transfusion in Critically Ill Adults: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39341492/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines for the Treatment of Heat Stroke.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982186/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Guidelines for the Treatment of Heat Stroke.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982185/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines on Family-Centered Care for Adult ICUs: 2024.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982184/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Guidelines on Family-Centered Care for Adult ICUs.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982183/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines on Adult Critical Care Ultrasonography: Focused Update 2024.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982182/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Guidelines on Adult Critical Care Ultrasonography: Focused Update 2024.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39982181/",
+      "date": "Feb 1, 2025",
+      "timestamp": 1738389600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Treatment of Invasive Pulmonary Aspergillosis and Preventive and Empirical Therapy for Invasive Candidiasis in Adult Pulmonary and Critical Care Patients: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39556361/",
+      "date": "Jan 1, 2025",
+      "timestamp": 1735711200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Management of Central Airway Obstruction: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39029785/",
+      "date": "Jan 1, 2025",
+      "timestamp": 1735711200000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Am Fam Physician",
+      "title": "Rapid Sequence Intubation of Critically Ill Patients: Guidelines From the Society of Critical Care Medicine.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39823629/",
+      "date": "Jan 1, 2025",
+      "timestamp": 1735711200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Prehosp Emerg Care",
+      "title": "Proportional Versus Fixed Chest Compression Depth for Guideline-Compliant Resuscitation of Infant Asphyxial Cardiac Arrest.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39374029/",
+      "date": "Dec 31, 2024",
+      "timestamp": 1735689600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Clin Infect Dis",
+      "title": "Society of Critical Care Medicine/Infectious Diseases Society of America (SCCM/IDSA) New Fever Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38441985/",
+      "date": "Dec 17, 2024",
+      "timestamp": 1734415200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Curr Treatm Opt Rheumatol",
+      "title": "Treatment of rheumatoid arthritis-associated interstitial lung disease: An appraisal of the 2023 ACR/CHEST guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39822854/",
+      "date": "Dec 1, 2024",
+      "timestamp": 1733032800000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Zhonghua Jie He He Hu Xi Za Zhi",
+      "title": "[Surviving Sepsis Campaign guideline update:problems and progress].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39406534/",
+      "date": "Oct 12, 2024",
+      "timestamp": 1728709200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Eur J Trauma Emerg Surg",
+      "title": "Surgical management of chest injuries in patients with multiple and/or severe trauma- a systematic review and clinical practice guideline update.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38888790/",
+      "date": "Oct 1, 2024",
+      "timestamp": 1727758800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine and American Society of Health-System Pharmacists Guideline for the Prevention of Stress-Related Gastrointestinal Bleeding in Critically Ill Adults: Erratum.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39283213/",
+      "date": "Oct 1, 2024",
+      "timestamp": 1727758800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Tuberc Respir Dis (Seoul)",
+      "title": "Liberation from Mechanical Ventilation in Critically Ill Patients: Korean Society of Critical Care Medicine Clinical Practice Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38951014/",
+      "date": "Oct 1, 2024",
+      "timestamp": 1727758800000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Optic Nerve Sheath Diameter Point-of-Care Ultrasonography Quality Criteria Checklist: An International Consensus Statement on Optic Nerve Sheath Diameter Imaging and Measurement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38836697/",
+      "date": "Oct 1, 2024",
+      "timestamp": 1727758800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Quality Evaluation of Guidelines for the Diagnosis and Treatment of Liver Failure.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38832833/",
+      "date": "Oct 1, 2024",
+      "timestamp": 1727758800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "A Research Agenda to Improve Outcomes in Patients with Chronic Obstructive Pulmonary Disease and Cardiovascular Disease: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39133888/",
+      "date": "Sep 15, 2024",
+      "timestamp": 1726376400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Premalignant Progression in the Lung: Knowledge Gaps and Novel Opportunities for Interception of Non-Small Cell Lung Cancer. An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39115548/",
+      "date": "Sep 1, 2024",
+      "timestamp": 1725166800000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on preschool wheezing disorders: updated definitions, knowledge gaps and proposed future research directions.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38843917/",
+      "date": "Sep 1, 2024",
+      "timestamp": 1725166800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Arthritis Rheumatol",
+      "title": "2023 American College of Rheumatology (ACR)/American College of Chest Physicians (CHEST) Guideline for the Treatment of Interstitial Lung Disease in People with Systemic Autoimmune Rheumatic Diseases.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38978310/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Arthritis Care Res (Hoboken)",
+      "title": "2023 American College of Rheumatology (ACR)/American College of Chest Physicians (CHEST) Guideline for the Screening and Monitoring of Interstitial Lung Disease in People with Systemic Autoimmune Rheumatic Diseases.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38973729/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Use of Intravenous Albumin: A Guideline From the International Collaboration for Transfusion Medicine Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38447639/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Eur J Trauma Emerg Surg",
+      "title": "Prehospital management of chest injuries in severely injured patients-a systematic review and clinical practice guideline update.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38308661/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Indian J Crit Care Med",
+      "title": "Management of Potential Organ Donor: Indian Society of Critical Care Medicine-Position Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39234232/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Indian J Crit Care Med",
+      "title": "The Indian Society of Critical Care Medicine Position Statement on the Management of Sepsis in Resource-limited Settings.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39234230/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Indian J Crit Care Med",
+      "title": "Indian Society of Critical Care Medicine Position Statement: Approach to a Patient with Poisoning in the Emergency Room and Intensive Care Unit.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39234227/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Indian J Crit Care Med",
+      "title": "Peripartum Infections: A Position Statement of the Indian Society of Critical Care Medicine.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39234221/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine and American Society of Health-System Pharmacists Guideline for the Prevention of Stress-Related Gastrointestinal Bleeding in Critically Ill Adults.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39007578/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary-Society of Critical Care Medicine Guideline and American Society of Health-System Pharmacists for the Prevention of Stress-Related Gastrointestinal Bleeding in Critically Ill Adults.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39007570/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "An Approach to Diversifying the Selection of a Guideline Panel-The Process Utilized for the Updated Adult Critical Care Ultrasound Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38587423/",
+      "date": "Aug 1, 2024",
+      "timestamp": 1722488400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Arch Dis Child",
+      "title": "Assessment of adherence to the 2020 Surviving Sepsis Campaign guidelines for fluid resuscitation in children with suspected septic shock in paediatric emergency departments: a prospective multicentre study.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38499323/",
+      "date": "Jul 18, 2024",
+      "timestamp": 1721278800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Pneumologie",
+      "title": "[European Respiratory Society statement on novel nicotine and tobacco products, their role in tobacco control and \"harm reduction\"].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38670147/",
+      "date": "Jul 1, 2024",
+      "timestamp": 1719810000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society clinical practice guideline on symptom management for adults with serious respiratory illness.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38719772/",
+      "date": "Jun 1, 2024",
+      "timestamp": 1717218000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Which Strategies Should We Use to Reduce Inappropriate Use of Laboratory Resources in the ICU: Guidelines are Urgently Needed!",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38752826/",
+      "date": "Jun 1, 2024",
+      "timestamp": 1717218000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Chest",
+      "title": "Tolerability Outcomes of American Thoracic Society/Infectious Diseases Society of America Guideline-Recommended Multidrug Antibiotic Treatment for Mycobacterium avium Complex Pulmonary Disease in US Medicare Beneficiaries With Bronchiectasis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38086472/",
+      "date": "May 1, 2024",
+      "timestamp": 1714539600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Tolerability Outcomes of American Thoracic Society/Infectious Diseases Society of America Guideline-Recommended Multidrug Antibiotic Treatment for Mycobacterium avium Complex Pulmonary Disease in US Medicare Beneficiaries With Bronchiectasis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38086472/",
+      "date": "May 1, 2024",
+      "timestamp": 1714539600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "2024 Focused Update: Guidelines on Use of Corticosteroids in Sepsis, Acute Respiratory Distress Syndrome, and Community-Acquired Pneumonia.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38240492/",
+      "date": "May 1, 2024",
+      "timestamp": 1714539600000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Guidelines on Use of Corticosteroids in Critically Ill Patients With Sepsis, Acute Respiratory Distress Syndrome, and Community-Acquired Pneumonia Focused Update 2024.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38240490/",
+      "date": "May 1, 2024",
+      "timestamp": 1714539600000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Ann Intensive Care",
+      "title": "Managing sepsis and septic shock in an endothelial glycocalyx-friendly way: from the viewpoint of surviving sepsis campaign guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38658435/",
+      "date": "Apr 24, 2024",
+      "timestamp": 1713934800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Household Air Pollution Interventions to Improve Health in Low- and Middle-Income Countries: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38619436/",
+      "date": "Apr 15, 2024",
+      "timestamp": 1713157200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines on Glycemic Control for Critically Ill Children and Adults 2024.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38240484/",
+      "date": "Apr 1, 2024",
+      "timestamp": 1711947600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines on Glycemic Control for Critically Ill Children and Adults 2024: Executive Summary.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38240482/",
+      "date": "Apr 1, 2024",
+      "timestamp": 1711947600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Clinical Impact of the Implementation Strategies Used to Apply the 2013 Pain, Agitation/Sedation, Delirium or 2018 Pain, Agitation/Sedation, Delirium, Immobility, Sleep Disruption Guideline Recommendations: A Systematic Review and Meta-Analysis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38193764/",
+      "date": "Apr 1, 2024",
+      "timestamp": 1711947600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Eur J Emerg Med",
+      "title": "Emergency airway management: an EUSEM statement with regard to the guidelines of the Society of Critical Care Medicine.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38100641/",
+      "date": "Apr 1, 2024",
+      "timestamp": 1711947600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Assessment of Advanced Diagnostic Bronchoscopy Outcomes for Peripheral Lung Lesions: A Delphi Consensus Definition of Diagnostic Yield and Recommendations for Patient-centered Study Designs. An Official American Thoracic Society/American College of Chest Physicians Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38394646/",
+      "date": "Mar 15, 2024",
+      "timestamp": 1710478800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Panminerva Med",
+      "title": "Beyond the Surviving Sepsis Campaign Guidelines: a systematic review of interventions affecting mortality in sepsis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38093626/",
+      "date": "Mar 1, 2024",
+      "timestamp": 1709272800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "The 2023 American Academy of Neurology, American Academy of Pediatrics, Child Neurology Society, and Society of Critical Care Medicine Pediatric and Adult Brain Death/Death by Neurologic Criteria Determination Consensus Guidelines: What the Critical Care Team Needs to Know.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37921516/",
+      "date": "Mar 1, 2024",
+      "timestamp": 1709272800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Thorax",
+      "title": "Guideline concordance for timely chest imaging after new presentations of dyspnoea or haemoptysis in primary care: a retrospective cohort study.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37620048/",
+      "date": "Feb 15, 2024",
+      "timestamp": 1707976800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Management of Persistent, Post-adenotonsillectomy Obstructive Sleep Apnea in Children: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37890009/",
+      "date": "Feb 1, 2024",
+      "timestamp": 1706767200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Guideline Recommendations and Real-World Practice: Bridging the Famous Divide.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38336433/",
+      "date": "Feb 1, 2024",
+      "timestamp": 1706767200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on novel nicotine and tobacco products, their role in tobacco control and \"harm reduction\".",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38316440/",
+      "date": "Feb 1, 2024",
+      "timestamp": 1706767200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Acute Crit Care",
+      "title": "Liberation from mechanical ventilation in critically ill patients: Korean Society of Critical Care Medicine Clinical Practice Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38476061/",
+      "date": "Feb 1, 2024",
+      "timestamp": 1706767200000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Society of Critical Care Medicine Guidelines on Recognizing and Responding to Clinical Deterioration Outside the ICU: 2023.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38240510/",
+      "date": "Feb 1, 2024",
+      "timestamp": 1706767200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Executive Summary: Society of Critical Care Medicine Guidelines on Recognizing and Responding to Clinical Deterioration Outside the ICU.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38240509/",
+      "date": "Feb 1, 2024",
+      "timestamp": 1706767200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Treatment of Systemic Sclerosis-associated Interstitial Lung Disease: Evidence-based Recommendations. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37772985/",
+      "date": "Jan 15, 2024",
+      "timestamp": 1705298400000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "An Update on Management of Adult Patients with Acute Respiratory Distress Syndrome: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38032683/",
+      "date": "Jan 1, 2024",
+      "timestamp": 1704088800000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Sleep Med",
+      "title": "Endorsement of \"European Respiratory Society guideline on non-CPAP therapies for obstructive sleep apnoea\" by World Sleep Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38086250/",
+      "date": "Jan 1, 2024",
+      "timestamp": 1704088800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Trauma Surg Acute Care Open",
+      "title": "Chest trauma clinical practice guideline protects against delirium in patients with rib fractures.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38860116/",
+      "date": "Dec 31, 2023",
+      "timestamp": 1704067200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Circulation",
+      "title": "Correction to: 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38079489/",
+      "date": "Dec 12, 2023",
+      "timestamp": 1702360800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Antithrombotic Therapy in Arterial Thrombosis and Thromboembolism in COVID-19: An American College of Chest Physicians Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37392958/",
+      "date": "Dec 1, 2023",
+      "timestamp": 1701410400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Crit Care Med",
+      "title": "Is Expertise Evidence? Insights From A New Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37971342/",
+      "date": "Dec 1, 2023",
+      "timestamp": 1701410400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Med Klin Intensivmed Notfmed",
+      "title": "What is new and different in the 2021 Surviving Sepsis Campaign guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37286842/",
+      "date": "Dec 1, 2023",
+      "timestamp": 1701410400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Eur Respir J",
+      "title": "\"European Respiratory Society/American Thoracic Society technical statement: standardisation of the measurement of lung volumes, 2023 update.\" N.R. Bhakta, A. McGowan, K.A. Ramsey, et al. Eur Respir J 2023; 62: 2201519.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38035697/",
+      "date": "Nov 1, 2023",
+      "timestamp": 1698814800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Ann Thorac Surg",
+      "title": "Surgical Perspective on the American Thoracic Society Statement on Race Correction of Pulmonary Function Testing.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37558152/",
+      "date": "Nov 1, 2023",
+      "timestamp": 1698814800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Eur J Radiol",
+      "title": "Impact of retraining a deep learning algorithm for improving guideline-compliant aortic diameter measurements on non-gated chest CT.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37716024/",
+      "date": "Nov 1, 2023",
+      "timestamp": 1698814800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "2023 Canadian Thoracic Society Guideline on Pharmacotherapy in Patients With Stable COPD.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37690008/",
+      "date": "Nov 1, 2023",
+      "timestamp": 1698814800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "\"European Respiratory Society/American Thoracic Society technical statement: standardisation of the measurement of lung volumes, 2023 update.\" N.R. Bhakta, A. McGowan, K.A. Ramsey, et al. Eur Respir J 2023; 62: 2201519.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/38035697/",
+      "date": "Nov 1, 2023",
+      "timestamp": 1698814800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society/American Thoracic Society technical statement: standardisation of the measurement of lung volumes, 2023 update.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37500112/",
+      "date": "Oct 1, 2023",
+      "timestamp": 1696136400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society/American Thoracic Society technical statement: standardisation of the measurement of lung volumes, 2023 update.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37500112/",
+      "date": "Oct 1, 2023",
+      "timestamp": 1696136400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Pulmonary Rehabilitation for Adults with Chronic Respiratory Disease: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37581410/",
+      "date": "Aug 15, 2023",
+      "timestamp": 1692075600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "An Update on Outcomes for COPD Pharmacological Trials: A COPD Investigators Report - Reassessment of the 2008 American Thoracic Society/European Respiratory Society Statement on Outcomes for COPD Pharmacological Trials.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37236628/",
+      "date": "Aug 15, 2023",
+      "timestamp": 1692075600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "An Update on Outcomes for COPD Pharmacological Trials: A COPD Investigators Report - Reassessment of the 2008 American Thoracic Society/European Respiratory Society Statement on Outcomes for COPD Pharmacological Trials.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37236628/",
+      "date": "Aug 15, 2023",
+      "timestamp": 1692075600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Chest",
+      "title": "Effect of Race and Ethnicity on Pulmonary Function Testing Interpretation: An American College of Chest Physicians (CHEST), American Association for Respiratory Care (AARC), American Thoracic Society (ATS), and Canadian Thoracic Society (CTS) Evidence Review and Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36972760/",
+      "date": "Aug 1, 2023",
+      "timestamp": 1690866000000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Respiratory Management of Patients With Neuromuscular Weakness: An American College of Chest Physicians Clinical Practice Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36921894/",
+      "date": "Aug 1, 2023",
+      "timestamp": 1690866000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Climate change and respiratory health: a European Respiratory Society position statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37661094/",
+      "date": "Aug 1, 2023",
+      "timestamp": 1690866000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on frailty in adults with chronic lung disease.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37414420/",
+      "date": "Aug 1, 2023",
+      "timestamp": 1690866000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society clinical practice guideline: palliative care for people with COPD or interstitial lung disease.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37290789/",
+      "date": "Aug 1, 2023",
+      "timestamp": 1690866000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Urol Pract",
+      "title": "Guideline Compliance Regarding Chest Imaging of Suspicious cT1 Renal Masses in MUSIC-KIDNEY.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37103883/",
+      "date": "Jul 1, 2023",
+      "timestamp": 1688187600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Curr Probl Cardiol",
+      "title": "Chest Pain in Women: Considerations From the 2021 AHA/ACC Chest Pain Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36921653/",
+      "date": "Jul 1, 2023",
+      "timestamp": 1688187600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on airway clearance techniques in adults with bronchiectasis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37142337/",
+      "date": "Jul 1, 2023",
+      "timestamp": 1688187600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Questions in Mild Asthma: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37260227/",
+      "date": "Jun 1, 2023",
+      "timestamp": 1685595600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Guideline-Concordant Antibiotic Therapy for the Hospital Treatment of Community-Acquired Pneumonia and 1-Year All-Cause and Cardiovascular Mortality in Older Adult Patients Surviving to Discharge.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36621760/",
+      "date": "Jun 1, 2023",
+      "timestamp": 1685595600000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "\"Statement on Tobacco 21 from the European Respiratory Society Tobacco Control Committee.\" D.W. Cox, L. Rodriguez and J. Grigg on behalf of the Tobacco Control Committee of the European Respiratory Society. Eur Respir J 2023; 61: 2300134.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37230502/",
+      "date": "May 1, 2023",
+      "timestamp": 1682917200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Ann Am Thorac Soc",
+      "title": "When You Cannot Rest Assured That Hemodynamics Are Normal in Chronic Thromboembolic Disease: Beyond the European Society of Cardiology/European Respiratory Society Guideline Definition.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37125998/",
+      "date": "May 1, 2023",
+      "timestamp": 1682917200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Heart J",
+      "title": "Corrigendum to: 2022 ESC/ERS Guidelines for the diagnosis and treatment of pulmonary hypertension: Developed by the task force for the diagnosis and treatment of pulmonary hypertension of the European Society of Cardiology (ESC) and the European Respiratory Society (ERS). Endorsed by the International Society for Heart and Lung Transplantation (ISHLT) and the European Reference Network on rare respiratory diseases (ERN-LUNG).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36821743/",
+      "date": "Apr 17, 2023",
+      "timestamp": 1681707600000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Race and Ethnicity in Pulmonary Function Test Interpretation: An Official American Thoracic Society Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36973004/",
+      "date": "Apr 15, 2023",
+      "timestamp": 1681534800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Causes, Consequences, and Treatments of Sleep and Circadian Disruption in the ICU: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36999950/",
+      "date": "Apr 1, 2023",
+      "timestamp": 1680325200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Research Priorities for Interventions to Address Health Disparities in Lung Nodule Management: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36920066/",
+      "date": "Mar 15, 2023",
+      "timestamp": 1678856400000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Cancer-related Fatigue in Lung Cancer: A Research Agenda: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36856560/",
+      "date": "Mar 1, 2023",
+      "timestamp": 1677650400000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Trauma Acute Care Surg",
+      "title": "Non-surgical management and analgesia strategies for older adults with multiple rib fractures: A systematic review, meta-analysis, and joint practice management guideline from the Eastern Association for the Surgery of Trauma and the Chest Wall Injury Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36730672/",
+      "date": "Mar 1, 2023",
+      "timestamp": 1677650400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Statement on Tobacco 21 from the European Respiratory Society Tobacco Control Committee.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36958744/",
+      "date": "Mar 1, 2023",
+      "timestamp": 1677650400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on familial pulmonary fibrosis.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36549714/",
+      "date": "Mar 1, 2023",
+      "timestamp": 1677650400000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Moving toward Equitable Care for Sleep Apnea in the United States: Positive Airway Pressure Adherence Thresholds: An Official American Thoracic Society Policy Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36722719/",
+      "date": "Feb 1, 2023",
+      "timestamp": 1675231200000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Am Soc Echocardiogr",
+      "title": "Recognized and Unrecognized Value of Echocardiography in Guideline and Consensus Documents Regarding Patients With Chest Pain.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36375734/",
+      "date": "Feb 1, 2023",
+      "timestamp": 1675231200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society guideline on various aspects of quality in lung cancer care.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36396145/",
+      "date": "Feb 1, 2023",
+      "timestamp": 1675231200000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "BMC Prim Care",
+      "title": "Non-acute chest pain in primary care; referral rates, communication and guideline adherence: a cohort study using routinely collected health data.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36550420/",
+      "date": "Dec 22, 2022",
+      "timestamp": 1671688800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Perioperative Management of Antithrombotic Therapy: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35964704/",
+      "date": "Nov 1, 2022",
+      "timestamp": 1667278800000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Executive Summary: Perioperative Management of Antithrombotic Therapy: An American College of Chest Physicians Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35964703/",
+      "date": "Nov 1, 2022",
+      "timestamp": 1667278800000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement for defining respiratory exacerbations in children and adolescents with bronchiectasis for clinical trials.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35728974/",
+      "date": "Nov 1, 2022",
+      "timestamp": 1667278800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "ATS Sch",
+      "title": "The American Thoracic Society Guideline Methodology Training Program.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36312803/",
+      "date": "Oct 1, 2022",
+      "timestamp": 1664600400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Circulation",
+      "title": "Correction to: Eligibility for Noninvasive Testing Based on the 2021 American Heart Association/American College of Cardiology Guideline for the Evaluation and Diagnosis of Stable Chest Pain: Implications From the PROMISE Trial.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/36095067/",
+      "date": "Sep 13, 2022",
+      "timestamp": 1663045200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Am J Prev Cardiol",
+      "title": "Preventive cardiology advances in the 2021 AHA/ACC chest pain guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35844247/",
+      "date": "Sep 1, 2022",
+      "timestamp": 1662008400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Circulation",
+      "title": "Eligibility for Noninvasive Testing Based on the 2021 American Heart Association/American College of Cardiology Guideline for the Evaluation and Diagnosis of Stable Chest Pain: Implications From the PROMISE Trial.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35969650/",
+      "date": "Aug 16, 2022",
+      "timestamp": 1660626000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Am Fam Physician",
+      "title": "Updated American College of Chest Physicians Guideline on Antithrombotic Therapy for Venous Thromboembolism.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35977121/",
+      "date": "Aug 1, 2022",
+      "timestamp": 1659330000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "\"Management of hospitalised adults with coronavirus disease 2019 (COVID-19): a European Respiratory Society living guideline.\" James D. Chalmers, Megan L. Crichton, Pieter C. Goeminne, et al. Eur Respir J 2021; 57: 2100048.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35948349/",
+      "date": "Aug 1, 2022",
+      "timestamp": 1659330000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Update June 2022: management of hospitalised adults with coronavirus disease 2019 (COVID-19): a European Respiratory Society living guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35710264/",
+      "date": "Aug 1, 2022",
+      "timestamp": 1659330000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on long COVID follow-up.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35144991/",
+      "date": "Aug 1, 2022",
+      "timestamp": 1659330000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Impact of Guideline-Concordant Staging and Treatment: Is There Gray Showing at the Roots?",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35809927/",
+      "date": "Jul 1, 2022",
+      "timestamp": 1656651600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Thromboprophylaxis in Patients With COVID-19: A Brief Update to the CHEST Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35167861/",
+      "date": "Jul 1, 2022",
+      "timestamp": 1656651600000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "The Relative Survival Impact of Guideline-Concordant Clinical Staging and Stage-Appropriate Treatment of Potentially Curable Non-Small Cell Lung Cancer.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35122751/",
+      "date": "Jul 1, 2022",
+      "timestamp": 1656651600000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Soc Cardiovasc Angiogr Interv",
+      "title": "The 2021 AHA/ACC Guideline for the Evaluation and Diagnosis of Chest Pain: An Interventionalist's Viewpoint.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/39131964/",
+      "date": "Jun 1, 2022",
+      "timestamp": 1654059600000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "JACC Cardiovasc Imaging",
+      "title": "Implications of the 2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Chest Pain Guideline for Cardiovascular Imaging: A Multisociety Viewpoint.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35512960/",
+      "date": "May 1, 2022",
+      "timestamp": 1651381200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Stakeholder Research Priorities to Promote Implementation of Shared Decision-Making for Lung Cancer Screening: An American Thoracic Society and Veterans Affairs Health Services Research and Development Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35289730/",
+      "date": "Mar 15, 2022",
+      "timestamp": 1647320400000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Guideline-Recommended Lung Cancer Screening Adherence Is Superior With a Centralized Approach.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34536385/",
+      "date": "Mar 1, 2022",
+      "timestamp": 1646114400000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Turk Thorac J",
+      "title": "Turkish Thoracic Society Early Career Members Task Force Group's Virtual Congress Notes: European Respiratory Society International Congress 2020.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35404249/",
+      "date": "Mar 1, 2022",
+      "timestamp": 1646114400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Correction to text in: Optimal NIV Medicare Access Promotion: Patients With OSA; A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/35131061/",
+      "date": "Feb 1, 2022",
+      "timestamp": 1643695200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Cardiovasc Comput Tomogr",
+      "title": "2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34955448/",
+      "date": "Feb 1, 2022",
+      "timestamp": 1643695200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Cardiovasc Comput Tomogr",
+      "title": "The U.S. multi-societal chest pain guideline - A quick look into a long-awaited document.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34732333/",
+      "date": "Feb 1, 2022",
+      "timestamp": 1643695200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "JACC Cardiovasc Imaging",
+      "title": "The 2021 Chest Pain Guideline: A Revolutionary New Paradigm for Cardiac Testing.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34991889/",
+      "date": "Jan 1, 2022",
+      "timestamp": 1641016800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir Rev",
+      "title": "The impact of therapeutics on mortality in hospitalised patients with COVID-19: systematic review and meta-analyses informing the European Respiratory Society living guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34911695/",
+      "date": "Dec 31, 2021",
+      "timestamp": 1640930400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir Rev",
+      "title": "European Respiratory Society guideline on non-CPAP therapies for obstructive sleep apnoea.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34853097/",
+      "date": "Dec 31, 2021",
+      "timestamp": 1640930400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Outpatient Respiratory Management of Infants, Children, and Adolescents with Post-Prematurity Respiratory Disease: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34908518/",
+      "date": "Dec 15, 2021",
+      "timestamp": 1639548000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Crit Pathw Cardiol",
+      "title": "The Impact of American College of Cardiology Chest Pain Center Accreditation on Guideline Recommended Acute Myocardial Infarction Management.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34494982/",
+      "date": "Dec 1, 2021",
+      "timestamp": 1638338400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Executive Summary: Antithrombotic Therapy for VTE Disease: Second Update of the CHEST Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34352279/",
+      "date": "Dec 1, 2021",
+      "timestamp": 1638338400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Antithrombotic Therapy for VTE Disease: Second Update of the CHEST Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34352278/",
+      "date": "Dec 1, 2021",
+      "timestamp": 1638338400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "J Am Coll Cardiol",
+      "title": "2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain: Executive Summary: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34756652/",
+      "date": "Nov 30, 2021",
+      "timestamp": 1638252000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Use of Fractional Exhaled Nitric Oxide to Guide the Treatment of Asthma: An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34779751/",
+      "date": "Nov 15, 2021",
+      "timestamp": 1636956000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Optimal NIV Medicare Access Promotion: Patients With OSA: A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34339689/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Optimal NIV Medicare Access Promotion: Patients With Thoracic Restrictive Disorders: A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34339688/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Optimal NIV Medicare Access Promotion: Patients With Central Sleep Apnea: A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34339687/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Optimal NIV Medicare Access Promotion: Patients With Hypoventilation Syndromes: A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34339686/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Executive Summary: Optimal NIV Medicare Access Promotion: A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34339685/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Optimal NIV Medicare Access Promotion: Patients With COPD: A Technical Expert Panel Report From the American College of Chest Physicians, the American Association for Respiratory Care, the American Academy of Sleep Medicine, and the American Thoracic Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34339684/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Screening for Lung Cancer: CHEST Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34270968/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Executive Summary: Screening for Lung Cancer: Chest Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34270965/",
+      "date": "Nov 1, 2021",
+      "timestamp": 1635742800000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Scand J Trauma Resusc Emerg Med",
+      "title": "Guideline adherence among prehospital emergency nurses when caring for patients with chest pain: a prospective cohort study.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34717716/",
+      "date": "Oct 30, 2021",
+      "timestamp": 1635570000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "A Research Agenda for Precision Medicine in Sepsis and Acute Respiratory Distress Syndrome: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34652268/",
+      "date": "Oct 15, 2021",
+      "timestamp": 1634274000000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Research Needs for Inpatient Management of Severe Alcohol Withdrawal Syndrome: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34609257/",
+      "date": "Oct 1, 2021",
+      "timestamp": 1633064400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Global Physiology and Pathophysiology of Cough: Part 2. Demographic and Clinical Considerations: CHEST Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33905678/",
+      "date": "Oct 1, 2021",
+      "timestamp": 1633064400000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Erratum: Patient-centered Outcomes Research in Interstitial Lung Disease: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34579621/",
+      "date": "Sep 1, 2021",
+      "timestamp": 1630472400000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Enhancing Recruitment and Retention of Minority Populations for Clinical Research in Pulmonary, Critical Care, and Sleep Medicine: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34347574/",
+      "date": "Aug 1, 2021",
+      "timestamp": 1627794000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Informing Healthcare Decisions with Observational Research Assessing Causal Effect: An American Thoracic Society Statement Not Ready for Implementation.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34081880/",
+      "date": "Aug 1, 2021",
+      "timestamp": 1627794000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Reply to Albert: Informing Healthcare Decisions with Observational Research Assessing Causal Effects: An American Thoracic Society Statement Not Ready for Implementation.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34081878/",
+      "date": "Aug 1, 2021",
+      "timestamp": 1627794000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chest",
+      "title": "Executive Summary: Diagnosis and Evaluation of Hypersensitivity Pneumonitis: CHEST Guideline and Expert Panel Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33865835/",
+      "date": "Aug 1, 2021",
+      "timestamp": 1627794000000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Patient-centered Outcomes Research in Interstitial Lung Disease: An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/34283696/",
+      "date": "Jul 15, 2021",
+      "timestamp": 1626325200000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Nucleic Acid-based Testing for Noninfluenza Viral Pathogens in Adults with Suspected Community-acquired Pneumonia. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33929301/",
+      "date": "May 1, 2021",
+      "timestamp": 1619845200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Erratum: Home Oxygen Therapy for Adults with Chronic Lung Disease. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33856281/",
+      "date": "Apr 15, 2021",
+      "timestamp": 1618462800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Management of hospitalised adults with coronavirus disease 2019 (COVID-19): a European Respiratory Society living guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33692120/",
+      "date": "Apr 1, 2021",
+      "timestamp": 1617253200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Research Priorities for Patients with Heart Failure and Central Sleep Apnea. An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33719931/",
+      "date": "Mar 15, 2021",
+      "timestamp": 1615784400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Zhonghua Jie He He Hu Xi Za Zhi",
+      "title": "[Highlights of a European Respiratory Society/American Thoracic Society guideline for management of severe asthma (Revised Edition 2020)].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33721933/",
+      "date": "Mar 12, 2021",
+      "timestamp": 1615528800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Zhonghua Jie He He Hu Xi Za Zhi",
+      "title": "[Highlights of a European Respiratory Society/American Thoracic Society guideline for management of severe asthma (Revised Edition 2020)].",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33721933/",
+      "date": "Mar 12, 2021",
+      "timestamp": 1615528800000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on thoracic ultrasound.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33033148/",
+      "date": "Mar 1, 2021",
+      "timestamp": 1614578400000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Pol Arch Intern Med",
+      "title": "Corrections: Investigations and management of chronic cough: a 2020 update from the European Respiratory Society Chronic Cough Task Force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33641326/",
+      "date": "Feb 26, 2021",
+      "timestamp": 1614319200000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement on sleep apnoea, sleepiness and driving risk.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33008939/",
+      "date": "Feb 1, 2021",
+      "timestamp": 1612159200000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Informing Healthcare Decisions with Observational Research Assessing Causal Effect. An Official American Thoracic Society Research Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33385220/",
+      "date": "Jan 1, 2021",
+      "timestamp": 1609480800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "J Hosp Med",
+      "title": "Clinical Guideline Highlights for the Hospitalist: 2019 American Thoracic Society/Infectious Diseases Society of America Update on Community-Acquired Pneumonia.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32853142/",
+      "date": "Dec 1, 2020",
+      "timestamp": 1606802400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "COVID-19: interim guidance on rehabilitation in the hospital and post-hospital phase from a European Respiratory Society- and American Thoracic Society-coordinated international task force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32817258/",
+      "date": "Dec 1, 2020",
+      "timestamp": 1606802400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Home Oxygen Therapy for Adults with Chronic Lung Disease. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33185464/",
+      "date": "Nov 15, 2020",
+      "timestamp": 1605420000000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Reply to Weber: Treatment Decisions for Unrepresented Patients: American Thoracic Society/American Geriatrics Society Policy Statement Lacks Sufficient Guidance.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32805136/",
+      "date": "Nov 15, 2020",
+      "timestamp": 1605420000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Treatment Decisions for Unrepresented Patients: American Thoracic Society/American Geriatrics Society Policy Statement Lacks Sufficient Guidance.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32804538/",
+      "date": "Nov 15, 2020",
+      "timestamp": 1605420000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Chest",
+      "title": "International Perspective on the New 2019 American Thoracic Society/Infectious Diseases Society of America Community-Acquired Pneumonia Guideline: A Critical Appraisal by a Global Expert Panel.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32858009/",
+      "date": "Nov 1, 2020",
+      "timestamp": 1604206800000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Addressing Disparities in Lung Cancer Screening Eligibility and Healthcare Access. An Official American Thoracic Society Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33000953/",
+      "date": "Oct 1, 2020",
+      "timestamp": 1601528400000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir Rev",
+      "title": "Updated guidance on the management of COVID-19: from an American Thoracic Society/European Respiratory Society coordinated International Task Force (29 July 2020).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33020069/",
+      "date": "Sep 30, 2020",
+      "timestamp": 1601442000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Pol Arch Intern Med",
+      "title": "Investigations and management of chronic cough: a 2020 update from the European Respiratory Society Chronic Cough Task Force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32627514/",
+      "date": "Sep 30, 2020",
+      "timestamp": 1601442000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Erratum: Pharmacologic Management of Chronic Obstructive Pulmonary Disease. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32930634/",
+      "date": "Sep 15, 2020",
+      "timestamp": 1600146000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Ann Am Thorac Soc",
+      "title": "Dual LABA/LAMA Therapy versus LABA or LAMA Monotherapy for Chronic Obstructive Pulmonary Disease. A Systematic Review and Meta-analysis in Support of the American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32530702/",
+      "date": "Sep 1, 2020",
+      "timestamp": 1598936400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "COVID-19: guidance on palliative care from a European Respiratory Society international task force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32675211/",
+      "date": "Sep 1, 2020",
+      "timestamp": 1598936400000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Long-Term Noninvasive Ventilation in Chronic Stable Hypercapnic Chronic Obstructive Pulmonary Disease. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32795139/",
+      "date": "Aug 15, 2020",
+      "timestamp": 1597467600000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Initiating Pharmacologic Treatment in Tobacco-Dependent Adults. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32663106/",
+      "date": "Jul 15, 2020",
+      "timestamp": 1594789200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Withdrawal of inhaled corticosteroids in COPD: a European Respiratory Society guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32366483/",
+      "date": "Jun 1, 2020",
+      "timestamp": 1590987600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Breathe (Sheff)",
+      "title": "Management of severe asthma: summary of the European Respiratory Society/American Thoracic Society task force report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/33304407/",
+      "date": "Jun 1, 2020",
+      "timestamp": 1590987600000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Radiol",
+      "title": "ESR/ERS statement paper on lung cancer screening.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32052170/",
+      "date": "Jun 1, 2020",
+      "timestamp": 1590987600000,
+      "source": "PubMed guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Making Medical Treatment Decisions for Unrepresented Patients in the ICU. An Official American Thoracic Society/American Geriatrics Society Policy Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32412853/",
+      "date": "May 15, 2020",
+      "timestamp": 1589518800000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Arch Pathol Lab Med",
+      "title": "Collection and Handling of Thoracic Small Biopsy and Cytology Specimens for Ancillary Studies: Guideline From the College of American Pathologists in Collaboration With the American College of Chest Physicians, Association for Molecular Pathology, American Society of Cytopathology, American Thoracic Society, Pulmonary Pathology Society, Papanicolaou Society of Cytopathology, Society of Interventional Radiology, and Society of Thoracic Radiology.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32401054/",
+      "date": "May 13, 2020",
+      "timestamp": 1589346000000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Pharmacologic Management of Chronic Obstructive Pulmonary Disease. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32283960/",
+      "date": "May 1, 2020",
+      "timestamp": 1588309200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Curr Opin Pulm Med",
+      "title": "Update in adult community-acquired pneumonia: key points from the new American Thoracic Society/Infectious Diseases Society of America 2019 guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32084039/",
+      "date": "May 1, 2020",
+      "timestamp": 1588309200000,
+      "source": "PubMed guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Diagnosis and Detection of Sarcoidosis. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32293205/",
+      "date": "Apr 15, 2020",
+      "timestamp": 1586926800000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Reply to Townsend: The American Thoracic Society/European Respiratory Society 2019 Spirometry Statement and Occupational Spirometry Testing in the United States.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31930926/",
+      "date": "Apr 15, 2020",
+      "timestamp": 1586926800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "The American Thoracic Society/European Respiratory Society 2019 Spirometry Statement and Occupational Spirometry Testing in the United States.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31930925/",
+      "date": "Apr 15, 2020",
+      "timestamp": 1586926800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Reply to Townsend: The American Thoracic Society/European Respiratory Society 2019 Spirometry Statement and Occupational Spirometry Testing in the United States.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31930926/",
+      "date": "Apr 15, 2020",
+      "timestamp": 1586926800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "The American Thoracic Society/European Respiratory Society 2019 Spirometry Statement and Occupational Spirometry Testing in the United States.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31930925/",
+      "date": "Apr 15, 2020",
+      "timestamp": 1586926800000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "J Bras Pneumol",
+      "title": "Difference between slow vital capacity and forced vital capacity in the diagnosis of airflow limitationAuthors' replyClinical and functional correlations of the difference between slow vital capacity and FVCIs the Slow Vital Capacity Clinically Useful to Uncover Airflow Limitation in Subjects With Preserved FEV1/FVCReference values for spirometry, including vital capacity, in Japanese adults calculated with the LMS method and compared with previous valuesSmooth reference equations for slow vital capacity and flow-volume curve indexesRecommendations for a Standardized Pulmonary Function Report An Official American Thoracic Society Technical Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/32294717/",
+      "date": "Apr 9, 2020",
+      "timestamp": 1586408400000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Eur Respir J",
+      "title": "Management of severe asthma: a European Respiratory Society/American Thoracic Society guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31558662/",
+      "date": "Jan 1, 2020",
+      "timestamp": 1577858400000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society guideline on long-term management of children with bronchopulmonary dysplasia.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31558663/",
+      "date": "Jan 1, 2020",
+      "timestamp": 1577858400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Management of severe asthma: a European Respiratory Society/American Thoracic Society guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31558662/",
+      "date": "Jan 1, 2020",
+      "timestamp": 1577858400000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Ann Am Thorac Soc",
+      "title": "Performance Measure Development, Use, and Measurement of Effectiveness Using the Guideline on Mechanical Ventilation in Acute Respiratory Distress Syndrome. An Official American Thoracic Society Workshop Report.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31774323/",
+      "date": "Dec 1, 2019",
+      "timestamp": 1575180000000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Standardisation of cardiopulmonary exercise testing in chronic lung diseases: summary of key findings from the ERS task force.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31857385/",
+      "date": "Dec 1, 2019",
+      "timestamp": 1575180000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Erratum: Microbiological Laboratory Testing in the Diagnosis of Fungal Infections in Pulmonary and Critical Care Practice. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31729907/",
+      "date": "Nov 15, 2019",
+      "timestamp": 1573797600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Erratum: Evaluation and Management of Obesity Hypoventilation Syndrome. An Official American Thoracic Society Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31729906/",
+      "date": "Nov 15, 2019",
+      "timestamp": 1573797600000,
+      "source": "PubMed guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Standardization of Spirometry 2019 Update. An Official American Thoracic Society and European Respiratory Society Technical Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31613151/",
+      "date": "Oct 15, 2019",
+      "timestamp": 1571115600000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Standardization of Spirometry 2019 Update. An Official American Thoracic Society and European Respiratory Society Technical Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31613151/",
+      "date": "Oct 15, 2019",
+      "timestamp": 1571115600000,
+      "source": "PubMed guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Arch Dis Child Educ Pract Ed",
+      "title": "European Respiratory Society guidelines for the diagnosis of primary ciliary dyskinesia: a guideline review.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/30076157/",
+      "date": "Oct 1, 2019",
+      "timestamp": 1569906000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism developed in collaboration with the European Respiratory Society (ERS): The Task Force for the diagnosis and management of acute pulmonary embolism of the European Society of Cardiology (ESC).",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31473594/",
+      "date": "Sep 1, 2019",
+      "timestamp": 1567314000000,
+      "source": "PubMed guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "The Occupational Burden of Nonmalignant Respiratory Diseases. An Official American Thoracic Society and European Respiratory Society Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/31149852/",
+      "date": "Jun 1, 2019",
+      "timestamp": 1559365200000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Electronic cigarettes: a task force report from the European Respiratory Society.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/30464018/",
+      "date": "Feb 1, 2019",
+      "timestamp": 1549000800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Am J Respir Crit Care Med",
+      "title": "Diagnosis of Idiopathic Pulmonary Fibrosis. An Official ATS/ERS/JRS/ALAT Clinical Practice Guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/30168753/",
+      "date": "Sep 1, 2018",
+      "timestamp": 1535778000000,
+      "source": "PubMed guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Panminerva Med",
+      "title": "Alpha1-antitrypsin deficiency: what's new after European Respiratory Society Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/29696962/",
+      "date": "Sep 1, 2018",
+      "timestamp": 1535778000000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "\"An official European Respiratory Society statement: pulmonary haemodynamics during exercise.\" Gabor Kovacs, Philippe Herve, Joan Albert Barbera, Ari Chaouat, Denis Chemla, Robin Condliffe, Gilles Garcia, Ekkehard Grünig, Luke Howard, Marc Humbert, Edmund Lau, Pierantonio Laveneziana, Gregory D. Lewis, Robert Naeije, Andrew Peacock, Stephan Rosenkranz, Rajeev Saggar, Silvia Ulrich, Dario Vizza, Anton Vonk Noordegraaf and Horst Olschewski. Eur Respir J 2017; 50: 1700578.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/29742061/",
+      "date": "Jan 1, 2018",
+      "timestamp": 1514786400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Multidiscip Respir Med",
+      "title": "Alpha-1 antitrypsin deficiency as a common treatable mechanism in chronic respiratory disorders and for conditions different from pulmonary emphysema? A commentary on the new European Respiratory Society statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/30338069/",
+      "date": "Dec 31, 2017",
+      "timestamp": 1514764800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "European Respiratory Society statement: diagnosis and treatment of pulmonary disease in α(1)-antitrypsin deficiency.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/29191952/",
+      "date": "Nov 1, 2017",
+      "timestamp": 1509512400000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "An official European Respiratory Society statement: pulmonary haemodynamics during exercise.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/29167297/",
+      "date": "Nov 1, 2017",
+      "timestamp": 1509512400000,
+      "source": "PubMed guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Prevention of COPD exacerbations: a European Respiratory Society/American Thoracic Society guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/28889106/",
+      "date": "Sep 1, 2017",
+      "timestamp": 1504242000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Inducible laryngeal obstruction: an official joint European Respiratory Society and European Laryngological Society statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/28889105/",
+      "date": "Sep 1, 2017",
+      "timestamp": 1504242000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Management of COPD exacerbations: a European Respiratory Society/American Thoracic Society guideline.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/28298398/",
+      "date": "Mar 1, 2017",
+      "timestamp": 1488348000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "J Bras Pneumol",
+      "title": "Pulmonary rehabilitation in severe COPD with hyperinflation: some insights into exercise performance. An official American Thoracic Society/European Respiratory Society statement update on limb muscle dysfunction in chronic obstructive pulmonary disease. Sensory-mechanical relationships during high-intensity, constant-work-rate exercise in COPD Chronic obstructive pulmonary disease clinical integrative physiology. AUTHOR'S REPLY.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/27812644/",
+      "date": "Oct 1, 2016",
+      "timestamp": 1475298000000,
+      "source": "PubMed guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Tele-monitoring of ventilator-dependent patients: a European Respiratory Society Statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/27390283/",
+      "date": "Sep 1, 2016",
+      "timestamp": 1472706000000,
+      "source": "PubMed guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Eur Respir J",
+      "title": "Increasing implementation and delivery of pulmonary rehabilitation: key messages from the new ATS/ERS policy statement.",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/27132269/",
+      "date": "May 1, 2016",
+      "timestamp": 1462078800000,
+      "source": "PubMed guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Guideline hub",
+      "title": "British Thoracic Society Guidelines",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/",
+      "date": "Official hub",
+      "source": "BTS",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Guideline hub",
+      "title": "ATS Clinical Practice Guidelines, Statements & Reports",
+      "link": "https://site.thoracic.org/clinicians-researchers/clinical-practice-guidelines-statements-and-reports",
+      "date": "Official hub",
+      "source": "ATS",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Guideline hub",
+      "title": "CHEST Guidelines and Topic Collections",
+      "link": "https://www.chestnet.org/Guidelines-and-Topic-Collections",
+      "date": "Official hub",
+      "source": "CHEST",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Guideline hub",
+      "title": "European Respiratory Society Guidelines",
+      "link": "https://www.ersnet.org/science-and-research/guidelines/",
+      "date": "Official hub",
+      "source": "ERS",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Guideline hub",
+      "title": "Society of Critical Care Medicine Guidelines",
+      "link": "https://www.sccm.org/Clinical-Resources/Guidelines",
+      "date": "Official hub",
+      "source": "SCCM",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Asthma (Chronic)",
+      "title": "BTS/NICE/SIGN Joint Guideline on Asthma: diagnosis, monitoring and chronic asthma management",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/asthma-chronic/",
+      "date": "Nov 2024",
+      "source": "Official BTS guideline page",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Bronchiectasis",
+      "title": "BTS Guideline for Bronchiectasis in Adults",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/bronchiectasis-in-adults/",
+      "date": "Dec 2018",
+      "source": "Official BTS guideline page",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Emergency Oxygen",
+      "title": "BTS Guideline for oxygen use in adults in healthcare and emergency settings",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/emergency-oxygen/",
+      "date": "May 2017",
+      "source": "Official BTS guideline page",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Long Term Macrolide Use",
+      "title": "BTS Guideline for Long Term Macrolide Use",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/long-term-macrolide-use/",
+      "date": "Apr 2020",
+      "source": "Official BTS guideline page",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Mesothelioma",
+      "title": "BTS Guideline for the Investigation and Management of Pleural Mesothelioma",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/mesothelioma/",
+      "date": "Mar 2018",
+      "source": "Official BTS guideline page",
+      "bucket": "Pleural Disease"
+    },
+    {
+      "organization": "BTS",
+      "topic": "NIV",
+      "title": "BTS/ICS Guideline for the Ventilatory Management of Acute Hypercapnic Respiratory Failure in Adults",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/niv/",
+      "date": "Mar 2016",
+      "source": "Official BTS guideline page",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "BTS",
+      "topic": "NTM",
+      "title": "BTS Guideline for the Management of Non-Tuberculous Mycobacterial Pulmonary Disease",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/ntm/",
+      "date": "Oct 2017",
+      "source": "Official BTS guideline page",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Paediatric sleep-disordered breathing",
+      "title": "BTS Guideline paediatric sleep-disordered breathing",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/paediatric-sleep-disordered-breathing/",
+      "date": "Jun 2023",
+      "source": "Official BTS guideline page",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Pleural Disease",
+      "title": "BTS Guideline for Pleural Disease",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/pleural-disease/",
+      "date": "Jul 2023",
+      "source": "Official BTS guideline page",
+      "bucket": "Pleural Disease"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Pneumonia Adults",
+      "title": "Annotated BTS CAP Guideline Summary of Recommendations",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/pneumonia-adults/",
+      "date": "Jan 2015",
+      "source": "Official BTS guideline page",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Pulmonary Embolism",
+      "title": "BTS Guideline for the initial outpatient management of pulmonary embolism",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/pulmonary-embolism/",
+      "date": "Jun 2018",
+      "source": "Official BTS guideline page",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "BTS",
+      "topic": "Pulmonary Nodules",
+      "title": "BTS Guidelines for the Investigation and Management of Pulmonary Nodules",
+      "link": "https://www.brit-thoracic.org.uk/clinical-resources/guidelines/pulmonary-nodules/",
+      "date": "Aug 2015",
+      "source": "Official BTS guideline page",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Community-acquired pneumonia",
+      "title": "Diagnosis and Treatment of Adults with Community-acquired Pneumonia",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.201908-1581ST",
+      "date": "2019",
+      "source": "Built-in society guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Home oxygen",
+      "title": "Home Oxygen Therapy for Adults with Chronic Lung Disease",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.202009-3608ST",
+      "date": "2020",
+      "source": "Built-in society guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Obesity hypoventilation",
+      "title": "Evaluation and Management of Obesity Hypoventilation Syndrome",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.201905-1071ST",
+      "date": "2019",
+      "source": "Built-in society guideline index",
+      "bucket": "Sleep & Home Ventilation"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Sarcoidosis",
+      "title": "Diagnosis and Detection of Sarcoidosis",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.202002-0251ST",
+      "date": "2020",
+      "source": "Built-in society guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "NTM",
+      "title": "Treatment of Nontuberculous Mycobacterial Pulmonary Disease",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.202003-0490ST",
+      "date": "2020",
+      "source": "Built-in society guideline index",
+      "bucket": "Pneumonia, TB, NTM & Fungal Disease"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Idiopathic pulmonary fibrosis",
+      "title": "Idiopathic Pulmonary Fibrosis: Diagnosis and Treatment Update",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.202202-0399ST",
+      "date": "2022",
+      "source": "Built-in society guideline index",
+      "bucket": "ILD & Sarcoidosis"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Severe asthma",
+      "title": "Management of Severe Asthma: ERS/ATS Guideline Update",
+      "link": "https://erj.ersjournals.com/content/55/1/1900588",
+      "date": "2019",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Pulmonary function testing",
+      "title": "ERS/ATS Interpretive Strategies for Routine Lung Function Tests",
+      "link": "https://erj.ersjournals.com/content/60/1/2101499",
+      "date": "2022",
+      "source": "Built-in society guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Spirometry",
+      "title": "ERS/ATS Standardization of Spirometry",
+      "link": "https://erj.ersjournals.com/content/53/5/1801219",
+      "date": "2019",
+      "source": "Built-in society guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ATS",
+      "topic": "Malignant pleural effusion",
+      "title": "Management of Malignant Pleural Effusions. An Official ATS/STS/STR Clinical Practice Guideline",
+      "link": "https://www.atsjournals.org/doi/full/10.1164/rccm.201807-1415ST",
+      "date": "2018",
+      "source": "Built-in society guideline index",
+      "bucket": "Pleural Disease"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Lung cancer screening",
+      "title": "Screening for Lung Cancer: CHEST Guideline and Expert Panel Report",
+      "link": "https://journal.chestnet.org/article/S0012-3692(21)01323-4/fulltext",
+      "date": "2021",
+      "source": "Built-in society guideline index",
+      "bucket": "Lung Cancer, Nodules & Screening"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "VTE",
+      "title": "Antithrombotic Therapy for VTE Disease: CHEST Guideline and Expert Panel Report",
+      "link": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+      "date": "2021",
+      "source": "Built-in society guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Chronic cough",
+      "title": "Treatment of Unexplained Chronic Cough: CHEST Guideline and Expert Panel Report",
+      "link": "https://journal.chestnet.org/article/S0012-3692(15)00336-0/fulltext",
+      "date": "2016",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Cough",
+      "title": "Classification of Cough as a Symptom in Adults and Management Algorithms",
+      "link": "https://journal.chestnet.org/article/S0012-3692(17)32918-7/fulltext",
+      "date": "2018",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Pulmonary arterial hypertension",
+      "title": "Pharmacologic Therapy for Pulmonary Arterial Hypertension in Adults",
+      "link": "https://journal.chestnet.org/article/S0012-3692(14)32780-9/fulltext",
+      "date": "2014",
+      "source": "Built-in society guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "CHEST",
+      "topic": "Perioperative antithrombotics",
+      "title": "Perioperative Management of Antithrombotic Therapy: CHEST Guideline",
+      "link": "https://journal.chestnet.org/article/S0012-3692(22)01359-9/fulltext",
+      "date": "2022",
+      "source": "Built-in society guideline index",
+      "bucket": "Pulmonary Hypertension & PE"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Severe asthma",
+      "title": "Management of Severe Asthma: ERS/ATS Guideline Update",
+      "link": "https://erj.ersjournals.com/content/55/1/1900588",
+      "date": "2019",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Chronic cough",
+      "title": "ERS Guidelines on the Diagnosis and Treatment of Chronic Cough in Adults and Children",
+      "link": "https://erj.ersjournals.com/content/55/1/1901136",
+      "date": "2020",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Bronchiectasis",
+      "title": "European Respiratory Society Guidelines for the Management of Adult Bronchiectasis",
+      "link": "https://erj.ersjournals.com/content/50/3/1700629",
+      "date": "2017",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "COPD exacerbations",
+      "title": "ERS/ATS Guideline for Management of COPD Exacerbations",
+      "link": "https://erj.ersjournals.com/content/49/3/1600791",
+      "date": "2017",
+      "source": "Built-in society guideline index",
+      "bucket": "COPD, Asthma & Airways"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Pulmonary rehabilitation",
+      "title": "ERS/ATS Policy Statement on Pulmonary Rehabilitation",
+      "link": "https://erj.ersjournals.com/content/38/1/55",
+      "date": "2011",
+      "source": "Built-in society guideline index",
+      "bucket": "Quality, Safety & ICU Systems"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Pulmonary function testing",
+      "title": "ERS/ATS Interpretive Strategies for Routine Lung Function Tests",
+      "link": "https://erj.ersjournals.com/content/60/1/2101499",
+      "date": "2022",
+      "source": "Built-in society guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "ERS",
+      "topic": "Spirometry",
+      "title": "ERS/ATS Standardization of Spirometry",
+      "link": "https://erj.ersjournals.com/content/53/5/1801219",
+      "date": "2019",
+      "source": "Built-in society guideline index",
+      "bucket": "Procedures & Interventional Pulm"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Sepsis",
+      "title": "Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock",
+      "link": "https://www.sccm.org/SurvivingSepsisCampaign/Guidelines/Adult-Patients",
+      "date": "2021",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "COVID-19 ICU care",
+      "title": "Surviving Sepsis Campaign Guidelines on the Management of Critically Ill Adults with COVID-19",
+      "link": "https://www.sccm.org/SurvivingSepsisCampaign/Guidelines/COVID-19",
+      "date": "2020",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Pain, agitation, delirium",
+      "title": "Clinical Practice Guidelines for Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult ICU Patients",
+      "link": "https://journals.lww.com/ccmjournal/fulltext/2018/09000/clinical_practice_guidelines_for_the_prevention.29.aspx",
+      "date": "2018",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Liberation from mechanical ventilation",
+      "title": "SCCM ICU Liberation Bundle Resources",
+      "link": "https://www.sccm.org/Clinical-Resources/ICULiberation-Home",
+      "date": "SCCM collection",
+      "source": "Built-in society guideline index",
+      "bucket": "ARDS & Mechanical Ventilation"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Nutrition in critical illness",
+      "title": "Guidelines for the Provision and Assessment of Nutrition Support Therapy in the Adult Critically Ill Patient",
+      "link": "https://www.sccm.org/Clinical-Resources/Guidelines/Guidelines/Guidelines-for-the-Provision-and-Assessment-of-Nutrition",
+      "date": "2016",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "ICU admission and discharge",
+      "title": "Guidelines for ICU Admission, Discharge, and Triage",
+      "link": "https://journals.lww.com/ccmjournal/fulltext/2016/08000/guidelines_for_icu_admission,_discharge,_and.25.aspx",
+      "date": "2016",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Family-centered ICU care",
+      "title": "Guidelines for Family-Centered Care in the Neonatal, Pediatric, and Adult ICU",
+      "link": "https://journals.lww.com/ccmjournal/fulltext/2017/01000/guidelines_for_family_centered_care_in_the.16.aspx",
+      "date": "2017",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "SCCM",
+      "topic": "Palliative care in ICU",
+      "title": "Clinical Practice Guidelines for Quality Palliative Care in the ICU",
+      "link": "https://www.sccm.org/Clinical-Resources/Guidelines",
+      "date": "SCCM collection",
+      "source": "Built-in society guideline index",
+      "bucket": "Sepsis, Shock & ICU Care"
+    },
+    {
+      "organization": "ELSO",
+      "topic": "ECMO",
+      "title": "ELSO Guidelines for ECMO and ECLS",
+      "link": "https://www.elso.org/ecmo-resources/elso-ecmo-guidelines.aspx",
+      "date": "Official ELSO guideline hub",
+      "source": "Built-in society guideline index",
+      "bucket": "ECMO & Transplant"
+    }
+  ],
+  "buckets": [
+    {
+      "name": "ARDS & Mechanical Ventilation",
+      "count": 14
+    },
+    {
+      "name": "Sepsis, Shock & ICU Care",
+      "count": 90
+    },
+    {
+      "name": "COPD, Asthma & Airways",
+      "count": 45
+    },
+    {
+      "name": "ILD & Sarcoidosis",
+      "count": 21
+    },
+    {
+      "name": "Pulmonary Hypertension & PE",
+      "count": 15
+    },
+    {
+      "name": "Pneumonia, TB, NTM & Fungal Disease",
+      "count": 24
+    },
+    {
+      "name": "Pleural Disease",
+      "count": 3
+    },
+    {
+      "name": "Lung Cancer, Nodules & Screening",
+      "count": 18
+    },
+    {
+      "name": "Sleep & Home Ventilation",
+      "count": 22
+    },
+    {
+      "name": "Procedures & Interventional Pulm",
+      "count": 18
+    },
+    {
+      "name": "ECMO & Transplant",
+      "count": 1
+    },
+    {
+      "name": "Quality, Safety & ICU Systems",
+      "count": 84
+    }
+  ],
+  "updatedAt": "2026-07-12T15:17:31.398Z",
+  "nextRefreshAt": "2026-07-12T18:17:31.398Z",
+  "status": "Guidelines updated from official hubs and indexed society documents",
+  "sourceStatus": [
+    {
+      "source": "ATS",
+      "ok": true,
+      "count": 80,
+      "error": null
+    },
+    {
+      "source": "CHEST",
+      "ok": true,
+      "count": 80,
+      "error": null
+    },
+    {
+      "source": "ERS",
+      "ok": true,
+      "count": 79,
+      "error": null
+    },
+    {
+      "source": "SCCM",
+      "ok": true,
+      "count": 80,
+      "error": null
+    }
+  ]
+}

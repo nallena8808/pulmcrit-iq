@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulmCrit IQ Section</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="PulmCrit IQ section header">
+      <div class="left-tools">
+        <a class="login-button admin-link" href="./index.html">Home</a>
+      </div>
+      <a class="brand" href="./index.html" aria-label="PulmCrit IQ home">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="lung left-lung"></span>
+          <span class="lung right-lung"></span>
+          <span class="spark"></span>
+        </span>
+        <span class="brand-text">PulmCrit IQ</span>
+      </a>
+      <form class="search" id="section-search-form" role="search">
+        <label class="visually-hidden" for="section-search-input">Search this section</label>
+        <span aria-hidden="true">⌕</span>
+        <input id="section-search-input" type="search" placeholder="Search this section..." />
+      </form>
+    </header>
+
+    <main class="section-main">
+      <section class="section-hero">
+        <p class="eyebrow" id="section-eyebrow">PulmCrit IQ Library</p>
+        <h1 id="section-title">Loading section...</h1>
+      </section>
+      <section id="section-content" class="section-library" aria-live="polite">Loading...</section>
+    </main>
+
+    <script src="./section.js"></script>
+  </body>
+</html>

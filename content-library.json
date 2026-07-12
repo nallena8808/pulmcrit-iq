@@ -1,0 +1,95 @@
+{
+  "articles": [
+    {
+      "id": "1783867561581-987026cb72dad8",
+      "title": "INTERACT",
+      "source": "Landmark Trial",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/18396107/",
+      "tile": "Landmark Trials",
+      "guidelineBucket": "",
+      "trialBucket": "Neurocritical Care",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "summary": "Patients who had acute spontaneous ICH diagnosed by CT within 6 h of onset, elevated systolic BP (150-220 mm Hg), and no definite indication or contraindication to treatment were randomly assigned to early intensive lowering of BP (target systolic BP 140 mm Hg; n=203) or standard guideline-based management of BP (target systolic BP 180 mm Hg; n=201). The primary efficacy endpoint was proportional change in haematoma volume at 24 h; secondary efficacy outcomes included other measurements of haematoma volume. Early intensive BP-lowering treatment is clinically feasible, well tolerated, and seems to reduce haematoma growth in ICH.",
+      "date": "Jul 12, 2026",
+      "timestamp": 1783867561582,
+      "createdAt": "2026-07-12T14:46:00.784Z"
+    },
+    {
+      "id": "1783828405893-5ee34050edd26",
+      "title": "BOREAS",
+      "source": "Landmark Trial",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/37272521/",
+      "tile": "Landmark Trials",
+      "guidelineBucket": "",
+      "trialBucket": "COPD",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "summary": "",
+      "date": "Jul 11, 2026",
+      "timestamp": 1783828405894,
+      "createdAt": "2026-07-12T03:53:24.678Z"
+    }
+  ],
+  "uploads": [
+    {
+      "filename": "2026-07-12T03-49-51-998Z-IMG_6083.MOV",
+      "title": "Layering sign in hemothorax",
+      "path": "/uploads/image-atlas/2026-07-12T03-49-51-998Z-IMG_6083.MOV",
+      "bytes": 4574392,
+      "uploadedAt": "2026-07-12T03:49:52.001Z",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "note": "The layering sign (also called the hematocrit sign) on lung ultrasound describes the gravitational separation of blood components within a pleural effusion, producing a fluid–fluid level.",
+      "description": "The layering sign (also called the hematocrit sign) on lung ultrasound describes the gravitational separation of blood components within a pleural effusion, producing a fluid–fluid level.",
+      "mediaBucket": "Ultrasound",
+      "isImage": false,
+      "isVideo": true,
+      "featuredSlot": "",
+      "section": "image-atlas"
+    },
+    {
+      "filename": "2026-07-12T03-26-25-808Z-IMG_6083.MOV",
+      "path": "/uploads/image-atlas/2026-07-12T03-26-25-808Z-IMG_6083.MOV",
+      "bytes": 4574392,
+      "uploadedAt": "2026-07-12T03:26:25.810Z",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "title": "layering sign",
+      "description": "layering sign",
+      "mediaBucket": "X-rays",
+      "note": "layering sign",
+      "isImage": false,
+      "isVideo": true,
+      "featuredSlot": "",
+      "section": "image-atlas"
+    },
+    {
+      "filename": "2026-07-11T20-38-48-397Z-ChatGPT-Image-Jul-11,-2026,-03_20_26-PM.png",
+      "path": "/uploads/hero-image/2026-07-11T20-38-48-397Z-ChatGPT-Image-Jul-11,-2026,-03_20_26-PM.png",
+      "bytes": 3376914,
+      "uploadedAt": "2026-07-11T20:38:48.398Z",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "note": "",
+      "isImage": true,
+      "featuredSlot": "1",
+      "section": "hero-image"
+    }
+  ],
+  "subtopics": [],
+  "settings": {
+    "tileOrder": [
+      "1",
+      "2",
+      "6",
+      "9",
+      "10",
+      "3",
+      "4",
+      "8",
+      "5"
+    ],
+    "tileHeight": 500
+  }
+}

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulmCrit IQ Admin</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="left-tools">
+        <a class="text-button admin-home" href="./index.html">Home</a>
+      </div>
+      <a class="brand" href="./index.html" aria-label="PulmCrit IQ home">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="lung left-lung"></span>
+          <span class="lung right-lung"></span>
+          <span class="spark"></span>
+        </span>
+        <span class="brand-text">PulmCrit IQ Admin</span>
+      </a>
+      <div></div>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-band">
+        <h1>Backend Admin</h1>
+        <div class="admin-unlock">
+          <div class="password-field">
+            <input id="admin-key" class="tile-search" type="password" placeholder="Master access key" />
+            <button class="password-toggle" type="button" data-toggle-password="#admin-key">Show</button>
+          </div>
+          <button id="admin-unlock" class="text-button" type="button">Unlock admin</button>
+          <span id="admin-lock-status">Locked</span>
+        </div>
+      </section>
+
+      <section class="admin-grid">
+        <form id="admin-upload-form" class="admin-panel">
+          <h2>Upload To Tile</h2>
+          <label>Destination tile
+            <select id="admin-section" disabled>
+              <option value="guidelines">Guidelines</option>
+              <option value="ventilator-lab">Ventilator Hub</option>
+              <option value="pulmonary-physiology">Pulmonary Physiology</option>
+              <option value="case-rounds">Case Rounds</option>
+              <option value="landmark-trials">Landmark Trials</option>
+              <option value="image-atlas">PCCM Image Atlas</option>
+              <option value="airway">Airway</option>
+              <option value="critical-care">Critical Care</option>
+            </select>
+          </label>
+          <label id="admin-upload-guideline-bucket-wrap" hidden>Guideline bucket
+            <select id="admin-upload-guideline-bucket" disabled>
+              <option>ARDS & Mechanical Ventilation</option>
+              <option>Sepsis, Shock & ICU Care</option>
+              <option>COPD, Asthma & Airways</option>
+              <option>ILD & Sarcoidosis</option>
+              <option>Pulmonary Hypertension & PE</option>
+              <option>Pneumonia, TB, NTM & Fungal Disease</option>
+              <option>Pleural Disease</option>
+              <option>Lung Cancer, Nodules & Screening</option>
+              <option>Sleep & Home Ventilation</option>
+              <option>Procedures & Interventional Pulm</option>
+              <option>ECMO & Transplant</option>
+            </select>
+          </label>
+          <label id="admin-upload-trial-bucket-wrap" hidden>Landmark trial bucket
+            <select id="admin-upload-trial-bucket" disabled>
+              <option>Mechanical Ventilation</option>
+              <option>Sepsis & Septic Shock</option>
+              <option>Shock & Hemodynamics</option>
+              <option>Transfusion & Fluids</option>
+              <option>Acute Kidney Injury</option>
+              <option>ICU Nutrition</option>
+              <option>Pulmonary Embolism</option>
+              <option>COPD</option>
+              <option>Asthma</option>
+              <option>Interstitial Lung Disease</option>
+              <option>Pulmonary Hypertension</option>
+              <option>Pleural Disease</option>
+              <option>Sleep Medicine</option>
+              <option>Lung Cancer</option>
+              <option>Critical Care Infectious Diseases</option>
+              <option>Neurocritical Care</option>
+              <option>ECMO & Cardiac Arrest</option>
+            </select>
+          </label>
+          <label id="admin-upload-image-bucket-wrap" hidden>Image atlas bucket
+            <select id="admin-upload-image-bucket" disabled>
+              <option>X-rays</option>
+              <option>CT scans</option>
+              <option>Ultrasound</option>
+              <option>Echo</option>
+              <option>PET scan</option>
+              <option>PFTs</option>
+            </select>
+          </label>
+          <label id="admin-upload-link-wrap" hidden><span id="admin-upload-link-label">Article link</span>
+            <input id="admin-upload-link" type="url" placeholder="Optional link to place in this tile or bucket" disabled />
+          </label>
+          <label><span id="admin-upload-title-label">Name</span>
+            <input id="admin-upload-title" type="text" placeholder="Optional title; article links can auto-fill this" disabled />
+          </label>
+          <label><span id="admin-upload-note-label">Description</span>
+            <textarea id="admin-upload-note" rows="4" placeholder="Optional abstract, caption, teaching pearl, or description" disabled></textarea>
+          </label>
+          <label>Files
+            <input id="admin-files" type="file" multiple accept="image/*,video/*,.mp4,.mov,.m4v,.webm,.ogg,.pdf,.doc,.docx,.txt,.rtf,.ppt,.pptx,.csv,.xlsx" disabled />
+          </label>
+          <div id="admin-file-meta-list" class="file-meta-list" hidden></div>
+          <button class="text-button" type="submit" disabled>Upload files</button>
+          <small id="admin-upload-status">Unlock admin to upload.</small>
+        </form>
+
+        <section class="admin-panel admin-library">
+          <h2>Content Library</h2>
+          <div id="admin-library-list">Unlock admin to view uploaded content.</div>
+        </section>
+
+        <section class="admin-panel admin-home-layout">
+          <h2>Home Page Layout</h2>
+          <label>Tile height
+            <input id="admin-tile-height" type="range" min="320" max="500" step="10" value="500" disabled />
+          </label>
+          <small id="admin-tile-height-label">Current max height</small>
+          <div id="admin-tile-order-list" class="tile-order-list">Unlock admin to rearrange tiles.</div>
+          <button class="text-button" id="admin-save-layout" type="button" disabled>Save home layout</button>
+          <small id="admin-layout-status">Unlock admin to edit layout.</small>
+        </section>
+
+        <form id="admin-hero-form" class="admin-panel">
+          <h2>Hero Image</h2>
+          <label>Replace image beside the home page heading
+            <input id="admin-hero-file" type="file" accept="image/*" disabled />
+          </label>
+          <label>Image note
+            <input id="admin-hero-note" type="text" placeholder="Optional image label" disabled />
+          </label>
+          <button class="text-button" type="submit" disabled>Upload hero image</button>
+          <small id="admin-hero-status">Unlock admin to update the hero image.</small>
+        </form>
+      </section>
+    </main>
+
+    <script src="./admin.js?v=delete-library-fix-2"></script>
+  </body>
+</html>

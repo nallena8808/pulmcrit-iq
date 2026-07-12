@@ -1,0 +1,845 @@
+{
+  "articles": [
+    {
+      "title": "YEARS Algorithm for Diagnosis of Suspected Pulmonary Embolism in Patients With Cancer: Research Summary.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42437324/",
+      "date": "Jul 12, 2026",
+      "timestamp": 1783832400000,
+      "summary": "years algorithm for diagnosis of suspected pulmonary embolism in patients with cancer research summary"
+    },
+    {
+      "title": "YEARS Algorithm for Diagnosis of Suspected Pulmonary Embolism in Patients With Cancer: A Randomized Clinical Trial.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42437322/",
+      "date": "Jul 12, 2026",
+      "timestamp": 1783832400000,
+      "summary": "years algorithm for diagnosis of suspected pulmonary embolism in patients with cancer a randomized clinical trial"
+    },
+    {
+      "title": "Residual disease activity in cystic fibrosis lung disease: implications for clinical management and research.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42435399/",
+      "date": "Jul 11, 2026",
+      "timestamp": 1783746000000,
+      "summary": "residual disease activity in cystic fibrosis lung disease implications for clinical management and research"
+    },
+    {
+      "title": "Reply to Wang et al.: Potential biases in trans-omics gene-smoking interaction analyses of lung cancer.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42433208/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "reply to wang et al potential biases in trans omics gene smoking interaction analyses of lung cancer"
+    },
+    {
+      "title": "Potential biases in trans-omics gene-smoking interaction analyses of lung cancer.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42433206/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "potential biases in trans omics gene smoking interaction analyses of lung cancer"
+    },
+    {
+      "title": "Association between mechanical power and ventilator-induced lung injury: a question of size and shape.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42433095/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "association between mechanical power and ventilator induced lung injury a question of size and shape"
+    },
+    {
+      "title": "Beyond Right Ventricular Injury: Toward a Full-Chain Right-Heart Monitoring Framework in Acute Respiratory Distress Syndrome.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42433094/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "beyond right ventricular injury toward a full chain right heart monitoring framework in acute respiratory distress syndrome"
+    },
+    {
+      "title": "Reply to Li et al.: Beyond Right Ventricular Injury: Toward a Full-Chain Right-Heart Monitoring Framework in Acute Respiratory Distress Syndrome.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42432859/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "reply to li et al beyond right ventricular injury toward a full chain right heart monitoring framework in acute respiratory distress syndrome"
+    },
+    {
+      "title": "Mycophenolate and Azathioprine in Fibrotic Interstitial Lung Disease.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42432856/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "mycophenolate and azathioprine in fibrotic interstitial lung disease"
+    },
+    {
+      "title": "Reply to Monares-Zepeda and Barrera-Hoffmann: Association between mechanical power and ventilator-induced lung injury: a question of size and shape.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42432855/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "reply to monares zepeda and barrera hoffmann association between mechanical power and ventilator induced lung injury a question of size and shape"
+    },
+    {
+      "title": "Approval of Respiratory Biologics Linked to Decline in Asthma Exacerbations.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42430145/",
+      "date": "Jul 10, 2026",
+      "timestamp": 1783659600000,
+      "summary": "approval of respiratory biologics linked to decline in asthma exacerbations"
+    },
+    {
+      "title": "Aberrant and Ectopic Cell Populations in Restrictive Allograft Syndrome after Lung Transplantation.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425730/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "aberrant and ectopic cell populations in restrictive allograft syndrome after lung transplantation"
+    },
+    {
+      "title": "Lung Transplantation for Pulmonary Alveolar Proteinosis - a Retrospective International Multi-Center Analysis.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425729/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "lung transplantation for pulmonary alveolar proteinosis a retrospective international multi center analysis"
+    },
+    {
+      "title": "Digging Deeper, not Digging In: Can Adversarial Collaboration Bring Us Closer to Optimal Antibiotic Decisions in Sepsis?",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42423297/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "digging deeper not digging in can adversarial collaboration bring us closer to optimal antibiotic decisions in sepsis"
+    },
+    {
+      "title": "Preserving Lung Function in Idiopathic Pulmonary Fibrosis.",
+      "source": "NEJM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42418780/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "preserving lung function in idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Nutrition Therapy in Critically Ill Adults.",
+      "source": "NEJM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42418776/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "nutrition therapy in critically ill adults"
+    },
+    {
+      "title": "Ensartinib in Resected ALK-Positive Non-Small-Cell Lung Cancer.",
+      "source": "NEJM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42418775/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "ensartinib in resected alk positive non small cell lung cancer"
+    },
+    {
+      "title": "Phase 3 Trials of Inhaled Treprostinil for Idiopathic Pulmonary Fibrosis.",
+      "source": "NEJM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42149993/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "phase 3 trials of inhaled treprostinil for idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Inhaled Treprostinil for Idiopathic Pulmonary Fibrosis.",
+      "source": "NEJM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41812190/",
+      "date": "Jul 9, 2026",
+      "timestamp": 1783573200000,
+      "summary": "inhaled treprostinil for idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Eosinophil-derived breath biomarkers and response to anti-IL-5/5R biologics in severe asthma.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42421225/",
+      "date": "Jul 8, 2026",
+      "timestamp": 1783486800000,
+      "summary": "eosinophil derived breath biomarkers and response to anti il 5 5r biologics in severe asthma"
+    },
+    {
+      "title": "Beyond eosinophils: redefining asthma exacerbations in the biologic era.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42419330/",
+      "date": "Jul 8, 2026",
+      "timestamp": 1783486800000,
+      "summary": "beyond eosinophils redefining asthma exacerbations in the biologic era"
+    },
+    {
+      "title": "Lung Transplant for Refractory Lung-Limited Stage IV Non-Small Cell Lung Cancer.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42418196/",
+      "date": "Jul 8, 2026",
+      "timestamp": 1783486800000,
+      "summary": "lung transplant for refractory lung limited stage iv non small cell lung cancer"
+    },
+    {
+      "title": "New Lungs for Lung Cancer-Perils and Promises.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42418180/",
+      "date": "Jul 8, 2026",
+      "timestamp": 1783486800000,
+      "summary": "new lungs for lung cancer perils and promises"
+    },
+    {
+      "title": "A Pragmatic Score to Unmask Pulmonary Veno-Occlusive Disease and Pulmonary Capillary Hemangiomatosis Among Group 1 Pulmonary Arterial Hypertension.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42417394/",
+      "date": "Jul 8, 2026",
+      "timestamp": 1783486800000,
+      "summary": "pragmatic score to unmask pulmonary veno occlusive disease and pulmonary capillary hemangiomatosis among group 1 pulmonary arterial hypertension"
+    },
+    {
+      "title": "Moving to better COPD care-changes to and challenges for GOLD.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42417382/",
+      "date": "Jul 8, 2026",
+      "timestamp": 1783486800000,
+      "summary": "moving to better copd care changes to and challenges for gold"
+    },
+    {
+      "title": "Ifebemtinib plus garsorasib as first-line treatment for KRAS(G12C)-mutated non-small-cell lung cancer in China: a multicentre, single-arm expansion cohort from a phase 1b/2 trial.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42413526/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "ifebemtinib plus garsorasib as first line treatment for kras g12c mutated non small cell lung cancer in china a multicentre single arm expansion cohort from a phase 1b 2 trial"
+    },
+    {
+      "title": "FAK co-inhibition in KRAS(G12C)-mutated non-small-cell lung cancer.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42413525/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "fak co inhibition in kras g12c mutated non small cell lung cancer"
+    },
+    {
+      "title": "Identification of non-ventilated, non-perfused regions using CT-derived lung boundaries and EIT.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42412520/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "identification of non ventilated non perfused regions using ct derived lung boundaries and eit"
+    },
+    {
+      "title": "Granulomatous Lymphocytic Interstitial Lung Disease in Common Variable Immunodeficiency-like Disorder.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42412513/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "granulomatous lymphocytic interstitial lung disease in common variable immunodeficiency like disorder"
+    },
+    {
+      "title": "From Idiopathic Pulmonary Hemosiderosis to ENaC Channelopathy: A Novel SCNN1G Mutation.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42412512/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "from idiopathic pulmonary hemosiderosis to enac channelopathy a novel scnn1g mutation"
+    },
+    {
+      "title": "Bronchoscopic evaluation of human airway surface liquid pH.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42412496/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "bronchoscopic evaluation of human airway surface liquid ph"
+    },
+    {
+      "title": "Nalbuphine for Cough Caused by Idiopathic Pulmonary Fibrosis-Reply.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42207544/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "nalbuphine for cough caused by idiopathic pulmonary fibrosis reply"
+    },
+    {
+      "title": "Nalbuphine for Cough Caused by Idiopathic Pulmonary Fibrosis.",
+      "source": "JAMA",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42207542/",
+      "date": "Jul 7, 2026",
+      "timestamp": 1783400400000,
+      "summary": "nalbuphine for cough caused by idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Asthma diagnosis in adults and children: challenges, future directions, and a call to action.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42409035/",
+      "date": "Jul 6, 2026",
+      "timestamp": 1783314000000,
+      "summary": "asthma diagnosis in adults and children challenges future directions and a call to action"
+    },
+    {
+      "title": "The PERC-Peds rule: a promising step towards structured pulmonary embolism risk assessment in children.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42398513/",
+      "date": "Jul 3, 2026",
+      "timestamp": 1783054800000,
+      "summary": "perc peds rule a promising step towards structured pulmonary embolism risk assessment in children"
+    },
+    {
+      "title": "PERC-Peds rule for bedside exclusion of pulmonary embolism without radiation in children in the USA (BEEPER): a multicentre, prospective, observational, diagnostic accuracy study.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42398511/",
+      "date": "Jul 3, 2026",
+      "timestamp": 1783054800000,
+      "summary": "perc peds rule for bedside exclusion of pulmonary embolism without radiation in children in the usa beeper a multicentre prospective observational diagnostic accuracy study"
+    },
+    {
+      "title": "When an Exacerbation Signals a Different Future in non-severe asthma.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42398016/",
+      "date": "Jul 3, 2026",
+      "timestamp": 1783054800000,
+      "summary": "when an exacerbation signals a different future in non severe asthma"
+    },
+    {
+      "title": "Aim High-Stay Stable: Rethinking Treatment Success in COPD.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42398014/",
+      "date": "Jul 3, 2026",
+      "timestamp": 1783054800000,
+      "summary": "aim high stay stable rethinking treatment success in copd"
+    },
+    {
+      "title": "Three versus six weeks of corticosteroids for mild immune-related pneumonitis: a randomized trial.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42398004/",
+      "date": "Jul 3, 2026",
+      "timestamp": 1783054800000,
+      "summary": "three versus six weeks of corticosteroids for mild immune related pneumonitis a randomized trial"
+    },
+    {
+      "title": "Signal in the Noise: Polygenic Scores and the Problem of Defining Idiopathic Pulmonary Fibrosis.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42394588/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "signal in the noise polygenic scores and the problem of defining idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Beyond the 5th percentile: rethinking diagnostic thresholds in pulmonary function testing.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42392830/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "beyond the 5th percentile rethinking diagnostic thresholds in pulmonary function testing"
+    },
+    {
+      "title": "A Transcriptomic Atlas of Chronic Lung Allograft Dysfunction.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42392829/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "transcriptomic atlas of chronic lung allograft dysfunction"
+    },
+    {
+      "title": "Risk of cancer and mortality in patients with interstitial lung diseases: Danish cohort study.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42392828/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "risk of cancer and mortality in patients with interstitial lung diseases danish cohort study"
+    },
+    {
+      "title": "Proposing a minimal important difference in NTproBNP in pulmonary arterial hypertension.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42392827/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "proposing a minimal important difference in ntprobnp in pulmonary arterial hypertension"
+    },
+    {
+      "title": "Unlocking growth potential: Ivacaftor therapy and developmental gains in lung and height in a cohort study of children and young adults with cystic fibrosis.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42392826/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "unlocking growth potential ivacaftor therapy and developmental gains in lung and height in a cohort study of children and young adults with cystic fibrosis"
+    },
+    {
+      "title": "Short for Their Age: Interpreting Whole-Genome Telomere Length in Idiopathic Pulmonary Fibrosis.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42391604/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "short for their age interpreting whole genome telomere length in idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Association of a Polygenic Risk Score with Diagnosis and Outcomes in Idiopathic Pulmonary Fibrosis.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42391602/",
+      "date": "Jul 2, 2026",
+      "timestamp": 1782968400000,
+      "summary": "association of a polygenic risk score with diagnosis and outcomes in idiopathic pulmonary fibrosis"
+    },
+    {
+      "title": "Critical flaws in: \"Dupilumab and lymphoma risk among patients with asthma: a population-based cohort study\".",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425748/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "critical flaws in dupilumab and lymphoma risk among patients with asthma a population based cohort study"
+    },
+    {
+      "title": "A new frontier for image markers in COPD.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425747/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "new frontier for image markers in copd"
+    },
+    {
+      "title": "Have we resolved anything yet about sarcoidosis trials?",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425746/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "have we resolved anything yet about sarcoidosis trials"
+    },
+    {
+      "title": "FIBRONEER-ILD: taking a second look at the data.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425745/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "fibroneer ild taking a second look at the data"
+    },
+    {
+      "title": "Re-evaluating the role of reference equations in pulmonary function test interpretation.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425744/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "re evaluating the role of reference equations in pulmonary function test interpretation"
+    },
+    {
+      "title": "Fostering trust in digital respiratory medicine: the open access ERS CONNECT digital health technology repository.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42425743/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "fostering trust in digital respiratory medicine the open access ers connect digital health technology repository"
+    },
+    {
+      "title": "Are \"race-neutral\" lung volume prediction equations appropriate? A critical review of the contributions of anthropometric differences and socioeconomic factors to lung volumes.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42209124/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "are race neutral lung volume prediction equations appropriate a critical review of the contributions of anthropometric differences and socioeconomic factors to lung volumes"
+    },
+    {
+      "title": "Genome-wide association study of idiopathic pulmonary fibrosis susceptibility using clinically curated European ancestry datasets.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42167781/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "genome wide association study of idiopathic pulmonary fibrosis susceptibility using clinically curated european ancestry datasets"
+    },
+    {
+      "title": "Vascular targeted therapies for fibrotic lung disease: start of a new era?",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42097685/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "vascular targeted therapies for fibrotic lung disease start of a new era"
+    },
+    {
+      "title": "Nerandomilast in progressive pulmonary fibrosis: data from the whole follow-up period of the FIBRONEER-ILD trial.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41887669/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "nerandomilast in progressive pulmonary fibrosis data from the whole follow up period of the fibroneer ild trial"
+    },
+    {
+      "title": "Safety and efficacy of namilumab for the treatment of chronic pulmonary sarcoidosis (RESOLVE-Lung): a randomised, double-blinded, multicentre, phase 2 study.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41819539/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "safety and efficacy of namilumab for the treatment of chronic pulmonary sarcoidosis resolve lung a randomised double blinded multicentre phase 2 study"
+    },
+    {
+      "title": "Pulmonary hypertension associated with interstitial lung disease: a state-of-the-art review.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41819536/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "pulmonary hypertension associated with interstitial lung disease a state of the art review"
+    },
+    {
+      "title": "Persistent homology analysis of longitudinal computed tomography fibrotic features in COPD.",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41748284/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "persistent homology analysis of longitudinal computed tomography fibrotic features in copd"
+    },
+    {
+      "title": "Physiological quotients and mortality: redefining lung function interpretation beyond FEV(1).",
+      "source": "European Respiratory Journal",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/41571318/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "physiological quotients and mortality redefining lung function interpretation beyond fev 1"
+    },
+    {
+      "title": "How the Exposome Shapes Our Respiratory Health.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42384921/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "how the exposome shapes our respiratory health"
+    },
+    {
+      "title": "Diagnostic criteria for invasive pulmonary aspergillosis in COPD patients.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42384914/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "diagnostic criteria for invasive pulmonary aspergillosis in copd patients"
+    },
+    {
+      "title": "Opportunities for Human Lung Tissue-Based Studies in Fibrotic ILD Research.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42384176/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "opportunities for human lung tissue based studies in fibrotic ild research"
+    },
+    {
+      "title": "Long-term outcomes after sepsis: \"an ounce of prevention is worth a pound of cure\".",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42330345/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "long term outcomes after sepsis an ounce of prevention is worth a pound of cure"
+    },
+    {
+      "title": "Can understanding the spatial expression of IL-33 and its receptor ST2 in the lower airways inform clinical studies?",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42330335/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "can understanding the spatial expression of il 33 and its receptor st2 in the lower airways inform clinical studies"
+    },
+    {
+      "title": "Precision-guided immunomodulatory therapy in sepsis - Authors' reply.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42309113/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "precision guided immunomodulatory therapy in sepsis authors reply"
+    },
+    {
+      "title": "Precision-guided immunomodulatory therapy in sepsis.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42309112/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "precision guided immunomodulatory therapy in sepsis"
+    },
+    {
+      "title": "US Air Quality Index and respiratory health outcomes: background, knowledge gaps, and research prioritization: an Official American Thoracic Society Research Statement.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42206610/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "us air quality index and respiratory health outcomes background knowledge gaps and research prioritization an official american thoracic society research statement"
+    },
+    {
+      "title": "Comorbid diabetes disease severity and microbial changes in patients with bronchiectasis: a combined analysis of data from the EMBARC, EMBARC-India, Australian, and BE-China registries.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42155496/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "comorbid diabetes disease severity and microbial changes in patients with bronchiectasis a combined analysis of data from the embarc embarc india australian and be china registries"
+    },
+    {
+      "title": "Effects of inflammatory phenotypes in acute respiratory distress syndrome on mortality and partitioning of lung and chest wall mechanics in patients in the USA and Canada: a retrospective cohort study.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42155495/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "effects of inflammatory phenotypes in acute respiratory distress syndrome on mortality and partitioning of lung and chest wall mechanics in patients in the usa and canada a retrospective cohort study"
+    },
+    {
+      "title": "Biology meets physiology in ARDS precision medicine.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42155494/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "biology meets physiology in ards precision medicine"
+    },
+    {
+      "title": "Mechanism-directed pharmacotherapy in obstructive sleep apnea: insights from aroxybutynin/atomoxetine (AD109) intervention in the SynAIRgy trial.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42148681/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "mechanism directed pharmacotherapy in obstructive sleep apnea insights from aroxybutynin atomoxetine ad109 intervention in the synairgy trial"
+    },
+    {
+      "title": "Aroxybutynin and atomoxetine (AD109) for obstructive sleep apnea: a randomized phase 3 trial (SynAIRgy).",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42148495/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "aroxybutynin and atomoxetine ad109 for obstructive sleep apnea a randomized phase 3 trial synairgy"
+    },
+    {
+      "title": "Biological subphenotypes in severe acute hypoxaemic respiratory failure and acute respiratory distress syndrome using rapid prospective classification (SPARC) in the USA: a multicentre, observational, study.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42140220/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "biological subphenotypes in severe acute hypoxaemic respiratory failure and acute respiratory distress syndrome using rapid prospective classification sparc in the usa a multicentre observational study"
+    },
+    {
+      "title": "Where fresh air fails: COPD and the hidden burden of coastal living.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42127956/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "where fresh air fails copd and the hidden burden of coastal living"
+    },
+    {
+      "title": "50 years on: how inhaled corticosteroids have changed the treatment of asthma.",
+      "source": "The Lancet. Respiratory medicine",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42107381/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "50 years on how inhaled corticosteroids have changed the treatment of asthma"
+    },
+    {
+      "title": "Effects of an early restrictive versus liberal fluid strategy on long-term patient-centered outcomes in sepsis-induced hypotension: an open-label, randomized controlled trial.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42093058/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "effects of an early restrictive versus liberal fluid strategy on long term patient centered outcomes in sepsis induced hypotension an open label randomized controlled trial"
+    },
+    {
+      "title": "Reply to Qian et al.: Toward noninvasive acute respiratory distress syndrome phenotyping: bridging pulmonary transcriptomics to bedside tools.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42087307/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "reply to qian et al toward noninvasive acute respiratory distress syndrome phenotyping bridging pulmonary transcriptomics to bedside tools"
+    },
+    {
+      "title": "Toward noninvasive acute respiratory distress syndrome phenotyping: bridging pulmonary transcriptomics to bedside tools.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085459/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "toward noninvasive acute respiratory distress syndrome phenotyping bridging pulmonary transcriptomics to bedside tools"
+    },
+    {
+      "title": "Inhaled anti-thymic stromal lymphopoietin antibody fragment, ecleralimab, in severe asthma: A placebo-controlled, multicenter, double-blind, randomized, phase 2b clinical trial.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085310/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "inhaled anti thymic stromal lymphopoietin antibody fragment ecleralimab in severe asthma a placebo controlled multicenter double blind randomized phase 2b clinical trial"
+    },
+    {
+      "title": "Association of annual exposure to air pollution mixture on asthma hospitalizations.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085309/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "association of annual exposure to air pollution mixture on asthma hospitalizations"
+    },
+    {
+      "title": "Spirometry for assessing work ability and impairment: navigating Scylla and Charybdis.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085307/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "spirometry for assessing work ability and impairment navigating scylla and charybdis"
+    },
+    {
+      "title": "Is there more to change in forced vital capacity in pulmonary fibrosis trials?",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085298/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "is there more to change in forced vital capacity in pulmonary fibrosis trials"
+    },
+    {
+      "title": "New trick for an old dog: prostacyclin enhances alveolar repair.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085296/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "new trick for an old dog prostacyclin enhances alveolar repair"
+    },
+    {
+      "title": "Safety and antimicrobial efficacy of CSL787, a novel nebulized IgG therapy, in patients with bronchiectasis: results from a randomized phase 1 trial.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085293/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "safety and antimicrobial efficacy of csl787 a novel nebulized igg therapy in patients with bronchiectasis results from a randomized phase 1 trial"
+    },
+    {
+      "title": "A precision approach to translational research in acute lung injury.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085287/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "precision approach to translational research in acute lung injury"
+    },
+    {
+      "title": "Challenges for predicting oxygen response in OSA.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085284/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "challenges for predicting oxygen response in osa"
+    },
+    {
+      "title": "Oxidized vitamin E metabolites during infancy and childhood asthma risk: too little, too much, or just right?",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085281/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "oxidized vitamin e metabolites during infancy and childhood asthma risk too little too much or just right"
+    },
+    {
+      "title": "A statistical model for lung function trajectory and mortality in patients with fibrotic interstitial lung disease.",
+      "source": "AJRCCM",
+      "link": "https://pubmed.ncbi.nlm.nih.gov/42085272/",
+      "date": "Jul 1, 2026",
+      "timestamp": 1782882000000,
+      "summary": "statistical model for lung function trajectory and mortality in patients with fibrotic interstitial lung disease"
+    },
+    {
+      "title": "Ensartinib in Resected ALK-Positive Non–Small-Cell Lung Cancer",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2518990?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Volume 395, Issue 2, Page 151-161, July 9, 2026."
+    },
+    {
+      "title": "Phase 3 Trials of Inhaled Treprostinil for Idiopathic Pulmonary Fibrosis",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2501488?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Volume 395, Issue 2, Page 115-126, July 9, 2026."
+    },
+    {
+      "title": "Inhaled Treprostinil for Idiopathic Pulmonary Fibrosis",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2512911?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Volume 395, Issue 2, Page 127-137, July 9, 2026."
+    },
+    {
+      "title": "Nutrition Therapy in Critically Ill Adults",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMra2506111?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Volume 395, Issue 2, Page 162-174, July 9, 2026."
+    },
+    {
+      "title": "Preserving Lung Function in Idiopathic Pulmonary Fibrosis",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMe2606821?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Volume 395, Issue 2, Page 189-190, July 9, 2026."
+    },
+    {
+      "title": "Case 19-2026: A 68-Year-Old Man with Fatigue, Fever, and Hypoxemia",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMcpc2517856?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Volume 395, Issue 2, Page 176-185, July 9, 2026."
+    },
+    {
+      "title": "Balanced Fluid or 0.9% Saline in Children Treated for Septic Shock",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2601969?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Ahead of Print."
+    },
+    {
+      "title": "Selpercatinib in Early-Stage RET Fusion–Positive Non–Small-Cell Lung Cancer",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2602628?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Ahead of Print."
+    },
+    {
+      "title": "Sodium Bicarbonate for Critically Ill Adults with Metabolic Acidosis and Shock",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2600526?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Ahead of Print."
+    },
+    {
+      "title": "Vasopressors or Fluids in Early Septic Shock",
+      "source": "NEJM",
+      "link": "https://www.nejm.org/doi/full/10.1056/NEJMoa2516225?af=R&rss=currentIssue",
+      "date": "New",
+      "timestamp": 0,
+      "summary": "New England Journal of Medicine, Ahead of Print."
+    }
+  ],
+  "updatedAt": "2026-07-12T15:17:26.934Z",
+  "nextRefreshAt": "2026-07-12T18:17:26.934Z",
+  "status": "Live journal feeds updated",
+  "sourceStatus": [
+    {
+      "source": "NEJM",
+      "ok": true,
+      "count": 11,
+      "error": null
+    },
+    {
+      "source": "JAMA",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP 404"
+    },
+    {
+      "source": "AJRCCM",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "The Lancet Respiratory Medicine",
+      "ok": true,
+      "count": 19,
+      "error": null
+    },
+    {
+      "source": "European Respiratory Journal",
+      "ok": false,
+      "count": 0,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "PubMed journal index",
+      "ok": true,
+      "count": 93,
+      "error": null
+    }
+  ]
+}

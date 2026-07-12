@@ -1,19 +1,259 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PulmCrit IQ</title>
-    <style>
-      body { font-family: Arial, sans-serif; margin: 0; padding: 2rem; background: #0f172a; color: #f8fafc; }
-      main { max-width: 700px; margin: 0 auto; }
-      a { color: #38bdf8; }
-    </style>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <header class="site-header" aria-label="PulmCrit IQ header">
+      <div class="left-tools">
+        <button class="icon-button" id="main-menu-open" type="button" aria-label="Open menu" title="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <button class="login-button" id="user-login-open" type="button" aria-label="User login">
+          <span class="login-avatar">U</span>
+          <span>Login</span>
+        </button>
+      </div>
+
+      <a class="brand" href="#" aria-label="PulmCrit IQ home">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="lung left-lung"></span>
+          <span class="lung right-lung"></span>
+          <span class="spark"></span>
+        </span>
+        <span class="brand-text">PulmCrit IQ</span>
+      </a>
+
+      <form class="search" id="site-search-form" role="search">
+        <label class="visually-hidden" for="site-search">Search PulmCrit IQ</label>
+        <span aria-hidden="true">⌕</span>
+        <input id="site-search" type="search" placeholder="Search physiology, guidelines, airway..." />
+      </form>
+    </header>
+
     <main>
-      <h1>PulmCrit IQ</h1>
-      <p>This deployment was created from the current repository.</p>
+      <section class="hero" aria-label="Pulmonary critical care teaching dashboard">
+        <div class="hero-copy">
+          <p class="eyebrow">Illustrated pulmonary and critical care teaching hub</p>
+          <h1>Dynamic PCCM learning, guidelines, landmark trials, images, and bedside reasoning in one visual grid.</h1>
+        </div>
+        <div class="hero-illustration" id="hero-illustration" aria-hidden="true">
+          <div class="monitor">
+            <div class="wave wave-one"></div>
+            <div class="wave wave-two"></div>
+            <div class="pressure-loop"></div>
+          </div>
+          <div class="alveoli">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="tile-grid" aria-label="PulmCrit IQ learning tiles">
+        <article class="tile article-tile" data-tile="1">
+          <div class="tile-visual article-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/latest-pccm-articles.png" alt="" />
+          </div>
+          <div class="tile-head">
+            <h2>Latest PCCM Articles</h2>
+          </div>
+          <p class="tile-overview">Curated high-impact articles and updates</p>
+          <a class="explore-button" href="./section.html?section=latest-articles">Explore <span>→</span></a>
+          <ul id="article-list" class="article-list" aria-live="polite">
+            <li>Loading latest articles...</li>
+          </ul>
+          <div class="tile-footer">
+            <span id="article-status">Refreshes every 3 hours</span>
+            <button class="text-button" id="refresh-articles" type="button">Refresh</button>
+          </div>
+        </article>
+
+        <article class="tile guidelines-tile" data-tile="2">
+          <div class="tile-visual guideline-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/guidelines.png" alt="" />
+          </div>
+          <div class="tile-head"><h2>Guidelines</h2></div>
+          <p class="tile-overview">Latest PCCM guidelines from major societies</p>
+          <a class="explore-button" href="./section.html?section=guidelines">Explore <span>→</span></a>
+          <input class="tile-search" id="guideline-search" type="search" placeholder="Search guidelines by disease, society, or topic" />
+          <ul id="guideline-list" class="resource-list" aria-live="polite">
+            <li>Loading guidelines...</li>
+          </ul>
+          <div class="mini-tags"><span>BTS</span><span>ATS</span><span>CHEST</span><span>ERS</span><span>SCCM</span></div>
+          <div class="tile-footer">
+            <span id="guideline-status">Guidelines update every 3 hours</span>
+            <button class="text-button" id="refresh-guidelines" type="button">Refresh</button>
+          </div>
+        </article>
+
+        <article class="tile landmark-tile" data-tile="6">
+          <div class="tile-visual trial-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/landmark-trials.png" alt="" />
+          </div>
+          <div class="tile-head"><h2>Landmark Trials</h2></div>
+          <p class="tile-overview">Key trials that shaped PCCM practice</p>
+          <a class="explore-button" href="./section.html?section=landmark-trials">Explore <span>→</span></a>
+          <input class="tile-search" id="trial-search" type="search" placeholder="Search trials: ARMA, PROSEVA, SAFE..." />
+          <ul id="trial-list" class="trial-list" aria-live="polite">
+            <li>Loading landmark trials...</li>
+          </ul>
+          <div class="tile-footer">
+            <span id="trial-status">Select a bucket to view studies</span>
+          </div>
+        </article>
+
+        <article class="tile airway-tile" data-tile="9">
+          <div class="tile-visual airway-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/airway.png" alt="" />
+          </div>
+          <div class="tile-head"><h2><a href="./section.html?section=airway">Airway</a></h2></div>
+          <p class="tile-overview">Airway anatomy, assessment and management</p>
+          <a class="explore-button" href="./section.html?section=airway">Explore <span>→</span></a>
+        </article>
+
+        <article class="tile critical-tile" data-tile="10">
+          <div class="tile-visual critical-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/critical-care.png" alt="" />
+          </div>
+          <div class="tile-head"><h2><a href="./section.html?section=critical-care">Critical Care</a></h2></div>
+          <p class="tile-overview">Principles and practice of critical care medicine</p>
+          <a class="explore-button" href="./section.html?section=critical-care">Explore <span>→</span></a>
+        </article>
+
+        <article class="tile vent-tile" data-tile="3">
+          <div class="tile-visual vent-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/ventilator-hub.png" alt="" />
+          </div>
+          <div class="tile-head"><h2><a href="./section.html?section=ventilator-lab">Ventilator Hub</a></h2></div>
+          <p class="tile-overview">Ventilator modes, settings and troubleshooting</p>
+          <a class="explore-button" href="./section.html?section=ventilator-lab">Explore <span>→</span></a>
+        </article>
+
+        <article class="tile physiology-tile" data-tile="4">
+          <div class="tile-visual physiology-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/pulmonary-physiology.png" alt="" />
+          </div>
+          <div class="tile-head"><h2><a href="./section.html?section=pulmonary-physiology">Pulmonary Physiology</a></h2></div>
+          <p class="tile-overview">Mechanics, gas exchange and physiology fundamentals</p>
+          <a class="explore-button" href="./section.html?section=pulmonary-physiology">Explore <span>→</span></a>
+        </article>
+
+        <article class="tile image-tile" data-tile="8">
+          <div class="tile-visual imaging-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/pccm-image-atlas.png" alt="" />
+          </div>
+          <div class="tile-head"><h2><a href="./section.html?section=image-atlas">PCCM Image Atlas</a></h2></div>
+          <p class="tile-overview">CT, CXR, ultrasound and critical care images</p>
+          <a class="explore-button" href="./section.html?section=image-atlas">Explore <span>→</span></a>
+        </article>
+
+        <article class="tile cases-tile" data-tile="5">
+          <div class="tile-visual case-visual" aria-hidden="true">
+            <img class="tile-icon-image" src="./assets/tile-icons/case-rounds.png" alt="" />
+          </div>
+          <div class="tile-head"><h2><a href="./section.html?section=case-rounds">Case Rounds</a></h2></div>
+          <p class="tile-overview">Real-world cases for learning and discussion</p>
+          <a class="explore-button" href="./section.html?section=case-rounds">Explore <span>→</span></a>
+        </article>
+      </section>
     </main>
+
+    <div class="menu-popover" id="main-menu" hidden>
+      <div class="menu-card" role="dialog" aria-modal="true" aria-label="Main menu">
+        <div class="auth-card-head">
+          <h2>Menu</h2>
+          <button class="icon-close" id="main-menu-close" type="button" aria-label="Close menu">×</button>
+        </div>
+        <button class="menu-item" id="account-settings-open" type="button">Account settings</button>
+        <a class="menu-item" href="./admin.html">Admin login</a>
+        <button class="menu-item" id="help-open" type="button">Help</button>
+        <div class="menu-panel" id="account-settings-panel" hidden>
+          <h3>Change password</h3>
+          <form id="change-password-form">
+            <label>New password
+              <div class="password-field">
+                <input id="settings-password" type="password" autocomplete="new-password" />
+                <button class="password-toggle" type="button" data-toggle-password="#settings-password">Show</button>
+              </div>
+            </label>
+            <label>Confirm password
+              <div class="password-field">
+                <input id="settings-password-confirm" type="password" autocomplete="new-password" />
+                <button class="password-toggle" type="button" data-toggle-password="#settings-password-confirm">Show</button>
+              </div>
+            </label>
+            <button class="text-button" type="submit">Update password</button>
+          </form>
+          <small id="account-settings-status">Login first to change password.</small>
+        </div>
+        <div class="menu-panel" id="help-panel" hidden>
+          <h3>Contact support</h3>
+          <p>Email: <a href="mailto:pulmcritIQ@gmail.org">pulmcritIQ@gmail.org</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-modal" id="user-auth-modal" hidden>
+      <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="user-auth-title">
+        <div class="auth-card-head">
+          <h2 id="user-auth-title">User Login</h2>
+          <button class="icon-close" id="user-login-close" type="button" aria-label="Close login">×</button>
+        </div>
+        <form class="auth-form active" id="signin-form" data-auth-panel="signin">
+          <label>Email
+            <input id="signin-email" type="email" autocomplete="email" required />
+          </label>
+          <label>Password
+            <div class="password-field">
+              <input id="signin-password" type="password" autocomplete="current-password" required />
+              <button class="password-toggle" type="button" data-toggle-password="#signin-password">Show</button>
+            </div>
+          </label>
+          <button class="text-button" type="submit">Login</button>
+          <div class="inline-recovery">
+            <button class="link-button" type="button" id="forgot-username">Forgot user ID?</button>
+            <button class="link-button" type="button" id="forgot-password">Forgot password?</button>
+          </div>
+          <p class="new-user-line">New user? <button class="link-button" type="button" data-auth-view="register">Create an account</button></p>
+        </form>
+
+        <form class="auth-form" id="register-form" data-auth-panel="register">
+          <label>Email
+            <input id="register-email" type="email" autocomplete="email" required />
+          </label>
+          <label>Set username
+            <input id="register-username" type="text" autocomplete="username" required />
+          </label>
+          <label>Set password
+            <div class="password-field">
+              <input id="register-password" type="password" autocomplete="new-password" required />
+              <button class="password-toggle" type="button" data-toggle-password="#register-password">Show</button>
+            </div>
+          </label>
+          <button class="text-button" type="submit">Create account</button>
+          <p class="new-user-line">Already have an account? <button class="link-button" type="button" data-auth-view="signin">Return to login</button></p>
+        </form>
+
+        <form class="auth-form" id="recover-form" data-auth-panel="recover">
+          <label>Recovery email
+            <input id="recover-email" type="email" autocomplete="email" required />
+          </label>
+          <label>Set new password
+            <div class="password-field">
+              <input id="reset-password" type="password" autocomplete="new-password" />
+              <button class="password-toggle" type="button" data-toggle-password="#reset-password">Show</button>
+            </div>
+          </label>
+          <button class="text-button" type="submit">Save new password</button>
+          <p class="new-user-line"><button class="link-button" type="button" data-auth-view="signin">Return to login</button></p>
+        </form>
+        <small id="user-auth-status">Use your email for username or password recovery.</small>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
   </body>
 </html>
