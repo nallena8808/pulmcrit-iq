@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Notebook | PulmCrit IQ</title>
+    <link rel="stylesheet" href="./styles.css?v=notebook-1" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="PulmCrit IQ notebook header">
+      <div class="left-tools">
+        <a class="login-button admin-link" href="./index.html">Home</a>
+      </div>
+      <a class="brand" href="./index.html" aria-label="PulmCrit IQ home">
+        <span class="logo-mark" aria-hidden="true">
+          <span class="lung left-lung"></span>
+          <span class="lung right-lung"></span>
+          <span class="spark"></span>
+        </span>
+        <span class="brand-text">PulmCrit IQ</span>
+      </a>
+      <form class="search" id="notebook-search-form" role="search">
+        <label class="visually-hidden" for="notebook-search-input">Search My Notebook</label>
+        <span aria-hidden="true">⌕</span>
+        <input id="notebook-search-input" type="search" placeholder="Search saved items..." />
+      </form>
+    </header>
+
+    <main class="section-main notebook-page">
+      <section class="section-hero notebook-hero">
+        <p class="eyebrow">Saved PCCM library</p>
+        <h1>My Notebook</h1>
+        <p id="notebook-page-status">Loading saved items...</p>
+      </section>
+      <section id="notebook-page-content" class="notebook-page-grid" aria-live="polite"></section>
+    </main>
+
+    <script src="./notebook.js?v=notebook-1"></script>
+  </body>
+</html>

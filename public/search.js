@@ -1,6 +1,6 @@
 const SERVER_ORIGIN = window.location.protocol === "file:"
   ? "http://127.0.0.1:4177"
-  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176"].includes(window.location.port)
+  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176", "4178"].includes(window.location.port)
     ? "http://127.0.0.1:4177"
     : "";
 if (window.location.protocol === "file:") {

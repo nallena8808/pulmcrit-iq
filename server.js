@@ -41,6 +41,7 @@ const sectionLabels = {
   airway: "Airway",
   "critical-care": "Critical Care",
   "hero-image": "Hero Image",
+  "about-image": "About Image",
 };
 
 const guidelineBuckets = [
@@ -371,6 +372,18 @@ function uploadStorageMode() {
   return hasBlobStorage() ? "blob" : isVercel ? "vercel-temporary" : "local";
 }
 
+function ensurePersistentAccountStorage(response) {
+  if (isVercel && !hasBlobStorage()) {
+    sendJson(response, {
+      ok: false,
+      error: "Account storage is not active on Vercel. Add BLOB_READ_WRITE_TOKEN, redeploy, then create the account again.",
+      storage: uploadStorageMode(),
+    });
+    return false;
+  }
+  return true;
+}
+
 async function handleStorageStatus(response) {
   const status = {
     ok: true,
@@ -424,9 +437,19 @@ async function getBlobModule() {
 }
 
 function normalizeContentLibrary(library = {}) {
+  const settings = {
+    ...defaultHomeSettings,
+    ...(library.settings || {}),
+    tileOrder: normalizeTileOrder(library.settings?.tileOrder),
+    tileHeight: normalizeTileHeight(library.settings?.tileHeight),
+  };
+  const uploads = settings.imageAtlasStarterCleared
+    ? (library.uploads || [])
+    : (library.uploads || []).filter((item) => item.section !== "image-atlas");
+  settings.imageAtlasStarterCleared = true;
   return {
     articles: library.articles || [],
-    uploads: library.uploads || [],
+    uploads,
     subtopics: library.subtopics || [],
     users: library.users || [],
     notebooks: library.notebooks || {},
@@ -440,12 +463,7 @@ function normalizeContentLibrary(library = {}) {
       visits: library.analytics?.visits || [],
       dailyVisits: library.analytics?.dailyVisits || {},
     },
-    settings: {
-      ...defaultHomeSettings,
-      ...(library.settings || {}),
-      tileOrder: normalizeTileOrder(library.settings?.tileOrder),
-      tileHeight: normalizeTileHeight(library.settings?.tileHeight),
-    },
+    settings,
   };
 }
 
@@ -1377,6 +1395,12 @@ async function handleAdminSettings(request, response) {
     tileOrder: normalizeTileOrder(payload.tileOrder),
     tileHeight: normalizeTileHeight(payload.tileHeight),
   };
+  if (typeof payload.aboutText === "string") {
+    library.settings.aboutText = payload.aboutText.trim();
+  }
+  if (typeof payload.helpEmail === "string") {
+    library.settings.helpEmail = payload.helpEmail.trim();
+  }
   await writeContentLibraryAsync(library);
   sendJson(response, { ok: true, settings: library.settings });
 }
@@ -1613,6 +1637,7 @@ function clientIp(request) {
 }
 
 async function handleUserRegister(request, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const email = String(payload.email || "").trim().toLowerCase();
@@ -1655,6 +1680,7 @@ async function handleUserRegister(request, response) {
 }
 
 async function handleUserLogin(request, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const email = String(payload.email || payload.identifier || "").trim().toLowerCase();
@@ -1688,6 +1714,7 @@ async function handleUserLogin(request, response) {
 }
 
 async function handleUserPasswordUpdate(request, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const email = String(payload.email || "").trim().toLowerCase();
@@ -1714,6 +1741,7 @@ async function handleUserPasswordUpdate(request, response) {
 }
 
 async function handleAccountRecovery(request, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const email = String(payload.email || "").trim().toLowerCase();
@@ -1747,6 +1775,7 @@ async function handleAccountRecovery(request, response) {
 }
 
 async function handleNotebookGet(url, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
   const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
   if (!email) {
     sendJson(response, { ok: false, error: "Login required.", items: [] });
@@ -1757,6 +1786,7 @@ async function handleNotebookGet(url, response) {
 }
 
 async function handleNotebookBookmark(request, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const email = String(payload.email || "").trim().toLowerCase();

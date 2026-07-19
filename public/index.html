@@ -37,7 +37,7 @@
     <main>
       <section class="hero" aria-label="Pulmonary critical care teaching dashboard">
         <div class="hero-copy">
-          <p class="eyebrow">Illustrated pulmonary and critical care teaching hub</p>
+          <p class="eyebrow">Pulmonary and critical care teaching hub</p>
           <h1>Dynamic PCCM learning, guidelines, landmark trials, images, and bedside reasoning in one visual grid.</h1>
         </div>
         <div class="hero-illustration" id="hero-illustration" aria-hidden="true">
@@ -168,8 +168,10 @@
           <button class="icon-close" id="main-menu-close" type="button" aria-label="Close menu">×</button>
         </div>
         <button class="menu-item" id="account-settings-open" type="button">Account settings</button>
-        <button class="menu-item" id="my-notebook-open" type="button">My Notebook</button>
+        <a class="menu-item" id="my-notebook-open" href="./notebook.html">My Notebook</a>
+        <button class="menu-item" id="about-open" type="button">About</button>
         <a class="menu-item" href="./admin.html">Admin login</a>
+        <button class="menu-item signout-item" id="user-signout" type="button" hidden>Sign out</button>
         <button class="menu-item" id="help-open" type="button">Help</button>
         <div class="menu-panel" id="account-settings-panel" hidden>
           <h3>Change password</h3>
@@ -192,13 +194,18 @@
         </div>
         <div class="menu-panel" id="help-panel" hidden>
           <h3>Contact support</h3>
-          <p>Email: <a href="mailto:pulmcritIQ@gmail.org">pulmcritIQ@gmail.org</a></p>
+          <p>Email: <a id="help-email-link" href="mailto:pulmcritIQ@gmail.org">pulmcritIQ@gmail.org</a></p>
         </div>
-        <div class="menu-panel notebook-panel" id="my-notebook-panel" hidden>
-          <h3>My Notebook</h3>
-          <div id="notebook-status">Login to view saved items.</div>
-          <div id="notebook-list" class="notebook-list"></div>
+      </div>
+    </div>
+
+    <div class="about-modal" id="about-modal" hidden>
+      <div class="about-card" role="dialog" aria-modal="true" aria-labelledby="about-title">
+        <div class="auth-card-head">
+          <h2 id="about-title">About</h2>
+          <button class="icon-close" id="about-close" type="button" aria-label="Close about">×</button>
         </div>
+        <div id="about-content" class="about-content"></div>
       </div>
     </div>
 
