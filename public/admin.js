@@ -627,6 +627,56 @@ function collectFileMeta(files) {
   }));
 }
 
+function canCompressImage(file) {
+  return /^image\/(png|jpe?g|webp)$/i.test(file.type || "") && file.size > 750 * 1024;
+}
+
+async function imageFileToBitmap(file) {
+  if ("createImageBitmap" in window) return createImageBitmap(file);
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = URL.createObjectURL(file);
+  });
+}
+
+async function compressImageFile(file, options = {}) {
+  if (!canCompressImage(file)) return file;
+  const maxWidth = options.maxWidth || 1800;
+  const maxHeight = options.maxHeight || 1200;
+  const quality = options.quality || 0.82;
+  try {
+    const bitmap = await imageFileToBitmap(file);
+    const scale = Math.min(1, maxWidth / bitmap.width, maxHeight / bitmap.height);
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext("2d");
+    context.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close?.();
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
+    if (!blob || blob.size >= file.size) return file;
+    const filename = file.name.replace(/\.[^.]+$/, "") || "image";
+    return new File([blob], `${filename}.jpg`, { type: "image/jpeg", lastModified: Date.now() });
+  } catch {
+    return file;
+  }
+}
+
+async function prepareUploadFiles(files, status, options = {}) {
+  const prepared = [];
+  for (const file of files) {
+    if (canCompressImage(file)) {
+      status.textContent = `Optimizing ${file.name} before upload...`;
+    }
+    prepared.push(await compressImageFile(file, options));
+  }
+  return prepared;
+}
+
 async function unlockAdmin(key) {
   adminAccessKey = key.trim();
   if (!adminAccessKey) {
@@ -717,8 +767,9 @@ uploadForm.addEventListener("submit", async (event) => {
     return;
   }
 
+  const preparedFiles = await prepareUploadFiles(files, adminUploadStatus);
   const data = new FormData();
-  files.forEach((file) => data.append("files", file, file.name));
+  preparedFiles.forEach((file) => data.append("files", file, file.name));
   const fileMeta = collectFileMeta(files);
   adminUploadStatus.textContent = `Uploading ${files.length} file${files.length === 1 ? "" : "s"}...`;
   let result;
@@ -871,8 +922,9 @@ adminHeroForm.addEventListener("submit", async (event) => {
     adminHeroStatus.textContent = "Choose an image first.";
     return;
   }
+  const uploadFile = await compressImageFile(file, { maxWidth: 1800, maxHeight: 1200, quality: 0.82 });
   const data = new FormData();
-  data.append("files", file, file.name);
+  data.append("files", uploadFile, uploadFile.name);
   adminHeroStatus.textContent = "Uploading hero image...";
   try {
     const response = await fetch(`${SERVER_ORIGIN}/api/upload?section=hero-image&note=${encodeURIComponent(adminHeroNote.value.trim())}&featuredSlot=1`, {
@@ -899,8 +951,9 @@ adminAboutImageForm.addEventListener("submit", async (event) => {
     adminAboutImageStatus.textContent = "Choose an image first.";
     return;
   }
+  const uploadFile = await compressImageFile(file, { maxWidth: 1600, maxHeight: 1200, quality: 0.82 });
   const data = new FormData();
-  data.append("files", file, file.name);
+  data.append("files", uploadFile, uploadFile.name);
   adminAboutImageStatus.textContent = "Uploading About image...";
   try {
     const response = await fetch(`${SERVER_ORIGIN}/api/upload?section=about-image&featuredSlot=1`, {
