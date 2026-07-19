@@ -33,6 +33,38 @@
   ],
   "uploads": [
     {
+      "filename": "2026-07-12T03-49-51-998Z-IMG_6083.MOV",
+      "title": "Layering sign in hemothorax",
+      "path": "/uploads/image-atlas/2026-07-12T03-49-51-998Z-IMG_6083.MOV",
+      "bytes": 4574392,
+      "uploadedAt": "2026-07-12T03:49:52.001Z",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "note": "The layering sign (also called the hematocrit sign) on lung ultrasound describes the gravitational separation of blood components within a pleural effusion, producing a fluid–fluid level.",
+      "description": "The layering sign (also called the hematocrit sign) on lung ultrasound describes the gravitational separation of blood components within a pleural effusion, producing a fluid–fluid level.",
+      "mediaBucket": "Ultrasound",
+      "isImage": false,
+      "isVideo": true,
+      "featuredSlot": "",
+      "section": "image-atlas"
+    },
+    {
+      "filename": "2026-07-12T03-26-25-808Z-IMG_6083.MOV",
+      "path": "/uploads/image-atlas/2026-07-12T03-26-25-808Z-IMG_6083.MOV",
+      "bytes": 4574392,
+      "uploadedAt": "2026-07-12T03:26:25.810Z",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "title": "layering sign",
+      "description": "layering sign",
+      "mediaBucket": "X-rays",
+      "note": "layering sign",
+      "isImage": false,
+      "isVideo": true,
+      "featuredSlot": "",
+      "section": "image-atlas"
+    },
+    {
       "filename": "2026-07-11T20-38-48-397Z-ChatGPT-Image-Jul-11,-2026,-03_20_26-PM.png",
       "path": "/uploads/hero-image/2026-07-11T20-38-48-397Z-ChatGPT-Image-Jul-11,-2026,-03_20_26-PM.png",
       "bytes": 3376914,
@@ -58,8 +90,6 @@
       "8",
       "5"
     ],
-    "tileHeight": 500,
-    "imageAtlasStarterCleared": true
-  },
-  "notebooks": {}
+    "tileHeight": 500
+  }
 }

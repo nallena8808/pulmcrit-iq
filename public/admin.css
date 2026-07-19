@@ -219,21 +219,6 @@
   cursor: wait;
 }
 
-.admin-inline-status {
-  padding: 10px;
-  border: 1px solid rgba(45, 114, 217, 0.18);
-  border-radius: 8px;
-  background: rgba(230, 244, 255, 0.64);
-  color: var(--muted);
-  font-weight: 850;
-}
-
-.admin-inline-status a {
-  color: var(--blue);
-  font-weight: 950;
-  text-decoration: none;
-}
-
 .file-meta-list {
   display: grid;
   gap: 10px;

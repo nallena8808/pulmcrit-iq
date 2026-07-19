@@ -1,6 +1,6 @@
 const SERVER_ORIGIN = window.location.protocol === "file:"
   ? "http://127.0.0.1:4177"
-  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176", "4178"].includes(window.location.port)
+  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176"].includes(window.location.port)
     ? "http://127.0.0.1:4177"
     : "";
 if (window.location.protocol === "file:") {
@@ -41,15 +41,6 @@ const adminHeroForm = document.querySelector("#admin-hero-form");
 const adminHeroFile = document.querySelector("#admin-hero-file");
 const adminHeroNote = document.querySelector("#admin-hero-note");
 const adminHeroStatus = document.querySelector("#admin-hero-status");
-const adminAboutForm = document.querySelector("#admin-about-form");
-const adminHelpEmail = document.querySelector("#admin-help-email");
-const adminAboutText = document.querySelector("#admin-about-text");
-const adminAboutStatus = document.querySelector("#admin-about-status");
-const adminAboutImageForm = document.querySelector("#admin-about-image-form");
-const adminAboutImageFile = document.querySelector("#admin-about-image-file");
-const adminAboutImageCurrent = document.querySelector("#admin-about-image-current");
-const adminAboutImageDelete = document.querySelector("#admin-about-image-delete");
-const adminAboutImageStatus = document.querySelector("#admin-about-image-status");
 const adminStorageStatus = document.querySelector("#admin-storage-status");
 const adminAnalyticsSummary = document.querySelector("#admin-analytics-summary");
 const adminDailyVisits = document.querySelector("#admin-daily-visits");
@@ -67,16 +58,6 @@ let currentTileOrder = ["1", "2", "6", "9", "10", "3", "4", "8", "5"];
 let trialBucketTouched = false;
 let trialAbstractLoadId = 0;
 const contentChannel = "BroadcastChannel" in window ? new BroadcastChannel("pulmcrit-iq-content") : null;
-const defaultHelpEmail = "pulmcritIQ@gmail.org";
-const defaultAboutText = `I created this website to support residents, fellows, and practicing physicians as they navigate the ever-evolving field of pulmonary and critical care medicine.
-
-Throughout my training, I often found it difficult to locate practical clinical information, landmark trials, current guidelines, and the latest research in one reliable place. Important resources were scattered across journals, society websites, textbooks, and multiple online platforms. - Nishant Allena, MD.
-
-Alvin Toffler famously said, *"The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn."* Nowhere is that more relevant than in critical care, where new evidence continually challenges established practices and reshapes the way we care for patients.
-
-This website was built on that philosophy—to provide a single, organized, and continually updated resource where clinicians can learn, unlearn, and relearn. It brings together the knowledge, lessons, and clinical experiences I have gathered over the years, alongside the latest guidelines, landmark trials, emerging research, practical bedside tools, imaging, procedures, and case-based learning.
-
-My goal is simple: to create a true one-stop platform for pulmonary and critical care medicine, empowering clinicians at every stage of their careers to stay current, think critically, and deliver the highest quality evidence-based care to their patients.`;
 
 const sectionLabels = {
   "latest-articles": "Latest PCCM Articles",
@@ -433,8 +414,6 @@ async function refreshLibrary() {
   const articles = library.articles || [];
   const uploads = library.uploads || [];
   renderHomeLayout(library.settings || {});
-  renderAboutSettings(library.settings || {});
-  renderAboutImageControl(uploads);
   renderUploadOptions();
   renderAnalytics(library);
   renderTrialAbstractEditor(library);
@@ -464,28 +443,6 @@ async function refreshLibrary() {
       ${!articles.length && !uploads.length ? '<div class="library-item">No admin content saved yet.</div>' : ""}
     </div>
   `;
-}
-
-function renderAboutSettings(settings = {}) {
-  if (!adminAboutText) return;
-  adminHelpEmail.value = settings.helpEmail || defaultHelpEmail;
-  adminAboutText.value = settings.aboutText || defaultAboutText;
-}
-
-function currentAboutImage(uploads = currentLibrary.uploads || []) {
-  return (uploads || [])
-    .filter((item) => item.section === "about-image")
-    .sort((a, b) => new Date(b.uploadedAt || 0) - new Date(a.uploadedAt || 0))[0];
-}
-
-function renderAboutImageControl(uploads = currentLibrary.uploads || []) {
-  if (!adminAboutImageCurrent || !adminAboutImageDelete) return;
-  const image = currentAboutImage(uploads);
-  adminAboutImageCurrent.innerHTML = image
-    ? `Current image: <a href="${escapeHtml(image.path)}" target="_blank" rel="noreferrer">${escapeHtml(image.title || image.filename)}</a>`
-    : "No about image uploaded yet.";
-  adminAboutImageDelete.dataset.deleteId = image?.path || image?.filename || "";
-  adminAboutImageDelete.disabled = !adminAccessKey || !image;
 }
 
 async function deleteContent(type, id) {
@@ -545,36 +502,6 @@ async function saveHomeLayout() {
   currentLibrary.settings = result.settings;
   renderHomeLayout(result.settings);
   adminLayoutStatus.textContent = "Home layout saved.";
-}
-
-async function readAdminJson(response, action) {
-  const text = await response.text();
-  try {
-    return JSON.parse(text || "{}");
-  } catch {
-    throw new Error(`${action} could not connect to the updated backend. Restart the local preview, refresh admin, then try again.`);
-  }
-}
-
-async function saveAboutSettings() {
-  adminAboutStatus.textContent = "Saving About section...";
-  const response = await fetch(`${SERVER_ORIGIN}/api/admin/settings`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Admin-Key": adminAccessKey },
-    body: JSON.stringify({
-      tileOrder: currentTileOrder,
-      tileHeight: adminTileHeight.value,
-      helpEmail: adminHelpEmail.value.trim(),
-      aboutText: adminAboutText.value.trim(),
-    }),
-  });
-  const result = await readAdminJson(response, "About save");
-  if (!response.ok) throw new Error(result.error || "About save failed");
-  if (!result.ok) throw new Error(result.error || "About save failed");
-  currentLibrary.settings = result.settings;
-  renderHomeLayout(result.settings);
-  renderAboutSettings(result.settings);
-  adminAboutStatus.textContent = "About section saved.";
 }
 
 function renderUploadOptions() {
@@ -833,16 +760,6 @@ adminSaveLayout.addEventListener("click", async () => {
   }
 });
 
-adminAboutForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  try {
-    await saveAboutSettings();
-    notifyContentUpdated();
-  } catch (error) {
-    adminAboutStatus.textContent = error.message;
-  }
-});
-
 adminTrialAbstractSelect.addEventListener("change", () => renderTrialAbstractEditor(currentLibrary));
 
 adminTrialAbstractForm.addEventListener("submit", async (event) => {
@@ -888,53 +805,6 @@ adminHeroForm.addEventListener("submit", async (event) => {
     await refreshLibrary();
   } catch (error) {
     adminHeroStatus.textContent = error.message;
-  }
-});
-
-adminAboutImageForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const file = adminAboutImageFile.files[0];
-  if (!file) {
-    adminAboutImageStatus.textContent = "Choose an image first.";
-    return;
-  }
-  const data = new FormData();
-  data.append("files", file, file.name);
-  adminAboutImageStatus.textContent = "Uploading About image...";
-  try {
-    const response = await fetch(`${SERVER_ORIGIN}/api/upload?section=about-image&featuredSlot=1`, {
-      method: "POST",
-      headers: { "X-Admin-Key": adminAccessKey },
-      body: data,
-    });
-    const result = await response.json();
-    adminAboutImageStatus.textContent = result.ok ? "About image updated." : "About image upload failed.";
-    adminAboutImageFile.value = "";
-    if (result.ok) notifyContentUpdated();
-    await refreshStorageStatus();
-    await refreshLibrary();
-  } catch (error) {
-    adminAboutImageStatus.textContent = error.message;
-  }
-});
-
-adminAboutImageDelete.addEventListener("click", async () => {
-  const image = currentAboutImage();
-  if (!image) {
-    adminAboutImageStatus.textContent = "No About image to delete.";
-    return;
-  }
-  adminAboutImageDelete.disabled = true;
-  adminAboutImageStatus.textContent = "Deleting About image...";
-  try {
-    await deleteContent("upload", image.path || image.filename);
-    adminAboutImageStatus.textContent = "About image deleted.";
-    notifyContentUpdated();
-    await refreshStorageStatus();
-    await refreshLibrary();
-  } catch (error) {
-    adminAboutImageStatus.textContent = `Delete failed: ${error.message}`;
-    renderAboutImageControl();
   }
 });
 

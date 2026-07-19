@@ -30,4 +30,4 @@ Vercel Blob is used for uploaded files and for the admin content library JSON wh
 
 After deployment, open `admin.html`, unlock admin, and check the Storage panel. It should show `Vercel Blob` and `Permanent storage is active`.
 
-User registration creates the account immediately after checking email and username clashes. Vercel Blob must be active before accounts, notebooks, uploads, and visit analytics will persist. In production, configure `RESEND_API_KEY` and `VERIFY_EMAIL_FROM` for forgot username/password recovery emails.
+User registration creates the account immediately after checking email and username clashes. In production, configure `RESEND_API_KEY` and `VERIFY_EMAIL_FROM` for forgot username/password recovery emails.

@@ -1,6 +1,6 @@
 const SERVER_ORIGIN = window.location.protocol === "file:"
   ? "http://127.0.0.1:4177"
-  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176", "4178"].includes(window.location.port)
+  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176"].includes(window.location.port)
     ? "http://127.0.0.1:4177"
     : "";
 
@@ -250,7 +250,7 @@ function renderLiveSection(searchTerm, adminArticles) {
             <details class="section-subtopic" open>
               <summary>${escapeHtml(group.bucket)} <small>${group.articles.length}</small></summary>
               <ul>
-                ${group.articles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.source || "Journal")} · ${escapeHtml(item.date || "Recent")}</small>${bookmarkButton({ type: "article", title: item.title, link: item.link, source: item.source || "Journal", summary: [group.bucket, item.date || ""].filter(Boolean).join(" · "), bucket: "Latest PCCM Articles" })}</li>`).join("")}
+                ${group.articles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.source || "Journal")} · ${escapeHtml(item.date || "Recent")}</small>${bookmarkButton({ type: "article", title: item.title, link: item.link, source: item.source || "Journal", summary: item.date || "", bucket: group.bucket })}</li>`).join("")}
               </ul>
             </details>
           `).join("")}
