@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PulmCrit IQ Admin</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=article-buckets-1" />
     <link rel="stylesheet" href="./admin.css" />
   </head>
   <body>
@@ -37,6 +37,39 @@
       </section>
 
       <section class="admin-grid">
+        <section class="admin-panel admin-storage">
+          <h2>Storage</h2>
+          <div id="admin-storage-status" class="storage-status">Unlock admin to check storage.</div>
+        </section>
+
+        <section class="admin-panel admin-analytics">
+          <h2>Users & Site Visits</h2>
+          <div id="admin-analytics-summary" class="analytics-summary">Unlock admin to view users and visits.</div>
+          <div id="admin-daily-visits" class="analytics-list"></div>
+          <div id="admin-user-list" class="analytics-list"></div>
+        </section>
+
+        <form id="admin-trial-abstract-form" class="admin-panel admin-trial-abstracts">
+          <h2>Landmark Trial Abstracts</h2>
+          <label>Trial
+            <select id="admin-trial-abstract-select" disabled></select>
+          </label>
+          <label>Edited abstract
+            <textarea id="admin-trial-abstract-text" rows="8" placeholder="Type or edit the abstract that should appear when this trial opens." disabled></textarea>
+          </label>
+          <button class="text-button" type="submit" disabled>Save abstract</button>
+          <small id="admin-trial-abstract-status">Unlock admin to edit landmark trial abstracts.</small>
+        </form>
+
+        <form id="admin-cleanup-form" class="admin-panel admin-cleanup">
+          <h2>Cleanup Guidelines & Trials</h2>
+          <label>Item to remove from the site
+            <select id="admin-cleanup-item" disabled></select>
+          </label>
+          <button class="text-button" type="submit" disabled>Remove selected item</button>
+          <small id="admin-cleanup-status">Unlock admin to remove guidelines or landmark trials.</small>
+        </form>
+
         <form id="admin-upload-form" class="admin-panel">
           <h2>Upload To Tile</h2>
           <label>Destination tile
@@ -144,6 +177,6 @@
       </section>
     </main>
 
-    <script src="./admin.js?v=delete-library-fix-2"></script>
+    <script src="./admin.js?v=storage-1"></script>
   </body>
 </html>

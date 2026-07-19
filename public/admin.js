@@ -41,10 +41,22 @@ const adminHeroForm = document.querySelector("#admin-hero-form");
 const adminHeroFile = document.querySelector("#admin-hero-file");
 const adminHeroNote = document.querySelector("#admin-hero-note");
 const adminHeroStatus = document.querySelector("#admin-hero-status");
+const adminStorageStatus = document.querySelector("#admin-storage-status");
+const adminAnalyticsSummary = document.querySelector("#admin-analytics-summary");
+const adminDailyVisits = document.querySelector("#admin-daily-visits");
+const adminUserList = document.querySelector("#admin-user-list");
+const adminTrialAbstractForm = document.querySelector("#admin-trial-abstract-form");
+const adminTrialAbstractSelect = document.querySelector("#admin-trial-abstract-select");
+const adminTrialAbstractText = document.querySelector("#admin-trial-abstract-text");
+const adminTrialAbstractStatus = document.querySelector("#admin-trial-abstract-status");
+const adminCleanupForm = document.querySelector("#admin-cleanup-form");
+const adminCleanupItem = document.querySelector("#admin-cleanup-item");
+const adminCleanupStatus = document.querySelector("#admin-cleanup-status");
 
 let currentLibrary = { articles: [], uploads: [], subtopics: [] };
 let currentTileOrder = ["1", "2", "6", "9", "10", "3", "4", "8", "5"];
 let trialBucketTouched = false;
+let trialAbstractLoadId = 0;
 const contentChannel = "BroadcastChannel" in window ? new BroadcastChannel("pulmcrit-iq-content") : null;
 
 const sectionLabels = {
@@ -71,6 +83,32 @@ const tileLabels = {
   "10": "Critical Care",
 };
 
+const landmarkTrialBuckets = [
+  ["Mechanical Ventilation", ["ARMA - Low tidal volume ventilation", "PROSEVA - Prone positioning", "FACCT - Conservative fluid strategy", "ALVEOLI - High vs low PEEP", "ACURASYS - Early neuromuscular blockade", "ROSE - Neuromuscular blockade", "DEXA-ARDS - Dexamethasone", "EOLIA - VV ECMO", "CESAR - ECMO referral", "Esteban SBT Trial - Spontaneous breathing trials"]],
+  ["Sepsis & Septic Shock", ["Rivers EGDT", "ProCESS", "ARISE", "ProMISe", "SAFE", "SMART", "CLASSIC", "CLOVERS", "ADRENAL", "APROCCHSS"]],
+  ["Shock & Hemodynamics", ["VASST", "ATHOS-3", "IABP-SHOCK II", "CULPRIT-SHOCK"]],
+  ["Transfusion & Fluids", ["TRICC", "BaSICS", "PLUS"]],
+  ["Acute Kidney Injury", ["AKIKI", "ELAIN", "STARRT-AKI", "RENAL"]],
+  ["ICU Nutrition", ["EDEN", "EPaNIC", "NUTRIREA-2"]],
+  ["Pulmonary Embolism", ["PEITHO", "ULTIMA", "MOPETT"]],
+  ["COPD", ["TORCH", "UPLIFT", "FLAME", "IMPACT", "ETHOS"]],
+  ["Asthma", ["SYGMA", "Novel START", "NAVIGATOR", "LIBERTY ASTHMA QUEST"]],
+  ["Interstitial Lung Disease", ["ASCEND", "INPULSIS", "INBUILD", "SENSCIS"]],
+  ["Pulmonary Hypertension", ["SERAPHIN", "AMBITION", "GRIPHON", "INCREASE"]],
+  ["Pleural Disease", ["MIST-2", "AMPLE"]],
+  ["Sleep Medicine", ["SAVE", "SERVE-HF"]],
+  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC", "CHECKMATE", "KEYNOTE 024", "KEYNOTE 042"]],
+  ["Critical Care Infectious Diseases", ["RECOVERY", "ACTT-1"]],
+  ["Neurocritical Care", ["TTM", "TTM2", "HYPERION", "INTERACT", "INTERACT2", "ATACH", "ATACH-II", "CLEAR III", "MISTIE III"]],
+  ["ECMO & Cardiac Arrest", ["CESAR", "EOLIA", "ARREST"]],
+].map(([bucket, trials]) => ({
+  bucket,
+  trials: trials.map((trial) => {
+    const [name, description] = trial.split(" - ");
+    return { name, description: description || "" };
+  }),
+}));
+
 function labelToSection(label) {
   const match = Object.entries(sectionLabels).find(([, value]) => value === label);
   return match?.[0] || "";
@@ -84,6 +122,9 @@ function setAdminEnabled(enabled) {
   });
   adminLockStatus.textContent = enabled ? "Unlocked" : "Locked";
   adminUploadStatus.textContent = enabled ? "Ready to upload." : "Unlock admin to upload.";
+  if (!enabled && adminStorageStatus) {
+    adminStorageStatus.textContent = "Unlock admin to check storage.";
+  }
 }
 
 function escapeHtml(value) {
@@ -102,6 +143,270 @@ function notifyContentUpdated() {
   localStorage.setItem("pulmcrit-iq-content-updated", String(payload.updatedAt));
 }
 
+function trialAbstractKey(name, bucket) {
+  return `${String(bucket || "").trim().toLowerCase()}::${String(name || "").trim().toLowerCase()}`;
+}
+
+function guidelineCleanupKey(guideline) {
+  return `${String(guideline.organization || guideline.source || "").trim().toLowerCase()}::${String(guideline.title || "").trim().toLowerCase()}`;
+}
+
+function trialCleanupKey(name, bucket) {
+  return `${String(bucket || "").trim().toLowerCase()}::${String(name || "").trim().toLowerCase()}`;
+}
+
+function selectedTrialAbstractOption() {
+  const option = adminTrialAbstractSelect.selectedOptions[0];
+  return {
+    name: option?.dataset.name || "",
+    bucket: option?.dataset.bucket || "",
+    description: option?.dataset.description || "",
+  };
+}
+
+function renderTrialAbstractOptions() {
+  if (adminTrialAbstractSelect.options.length) return;
+  adminTrialAbstractSelect.innerHTML = landmarkTrialBuckets.map((group) => `
+    <optgroup label="${escapeHtml(group.bucket)}">
+      ${group.trials.map((trial) => `
+        <option value="${escapeHtml(`${group.bucket}::${trial.name}`)}" data-bucket="${escapeHtml(group.bucket)}" data-name="${escapeHtml(trial.name)}" data-description="${escapeHtml(trial.description)}">${escapeHtml(trial.name)}</option>
+      `).join("")}
+    </optgroup>
+  `).join("");
+}
+
+async function loadGeneratedTrialAbstract(selected, loadId) {
+  if (!selected.name || !selected.bucket) return;
+  adminTrialAbstractStatus.textContent = `Loading generated abstract for ${selected.name}...`;
+  try {
+    const params = new URLSearchParams({
+      name: selected.name,
+      description: selected.description || "",
+      bucket: selected.bucket,
+    });
+    const response = await fetch(`${SERVER_ORIGIN}/api/trial?${params.toString()}`, { cache: "no-store" });
+    const detail = await response.json();
+    if (loadId !== trialAbstractLoadId) return;
+    adminTrialAbstractText.value = detail.abstract || "";
+    adminTrialAbstractStatus.textContent = detail.abstract
+      ? `Generated abstract loaded for ${selected.name}. Edit it, then save.`
+      : `No generated abstract found for ${selected.name}. You can type one here.`;
+  } catch (error) {
+    if (loadId !== trialAbstractLoadId) return;
+    adminTrialAbstractText.value = "";
+    adminTrialAbstractStatus.textContent = `Could not load generated abstract: ${error.message}`;
+  }
+}
+
+function renderTrialAbstractEditor(library) {
+  renderTrialAbstractOptions();
+  const selected = selectedTrialAbstractOption();
+  const saved = (library.trialAbstracts || {})[trialAbstractKey(selected.name, selected.bucket)];
+  const loadId = ++trialAbstractLoadId;
+  if (saved?.abstract) {
+    adminTrialAbstractText.value = saved.abstract;
+    adminTrialAbstractStatus.textContent = `Saved abstract for ${selected.name}; updated ${formatDate(saved.updatedAt)}.`;
+    return;
+  }
+  adminTrialAbstractText.value = "";
+  loadGeneratedTrialAbstract(selected, loadId);
+}
+
+async function saveTrialAbstract() {
+  const selected = selectedTrialAbstractOption();
+  adminTrialAbstractStatus.textContent = "Saving abstract...";
+  const response = await fetch(`${SERVER_ORIGIN}/api/admin/trial-abstract`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Admin-Key": adminAccessKey },
+    body: JSON.stringify({
+      name: selected.name,
+      bucket: selected.bucket,
+      title: selected.name,
+      abstract: adminTrialAbstractText.value.trim(),
+    }),
+  });
+  const result = await response.json();
+  if (!result.ok) throw new Error(result.error || "Abstract save failed");
+  adminTrialAbstractStatus.textContent = adminTrialAbstractText.value.trim()
+    ? `Saved abstract for ${selected.name}.`
+    : `Cleared edited abstract for ${selected.name}.`;
+  notifyContentUpdated();
+  await refreshLibrary();
+}
+
+async function renderCleanupOptions(library) {
+  const hiddenGuidelines = new Set(library.hiddenGuidelines || []);
+  const hiddenTrials = new Set(library.hiddenTrials || []);
+  let guidelines = [];
+  try {
+    const response = await fetch(`${SERVER_ORIGIN}/api/guidelines`, { cache: "no-store" });
+    if (response.ok) {
+      const data = await response.json();
+      guidelines = data.guidelines || [];
+    }
+  } catch {
+    guidelines = [];
+  }
+
+  const manualGuidelines = (library.articles || [])
+    .filter((article) => article.tile === "Guidelines")
+    .map((article) => ({
+      id: article.id,
+      organization: article.source || "PulmCrit IQ Admin",
+      title: article.title,
+      bucket: article.guidelineBucket || "Guidelines",
+      manual: true,
+    }));
+
+  const guidelineOptions = [...manualGuidelines, ...guidelines]
+    .filter((guideline, index, all) => {
+      const key = guidelineCleanupKey(guideline);
+      return key && !hiddenGuidelines.has(key) && all.findIndex((item) => guidelineCleanupKey(item) === key) === index;
+    })
+    .slice(0, 250);
+
+  const manualTrials = (library.articles || [])
+    .filter((article) => article.tile === "Landmark Trials")
+    .map((article) => ({ id: article.id, name: article.title, bucket: article.trialBucket || "Mechanical Ventilation", manual: true }));
+  const builtInTrials = landmarkTrialBuckets.flatMap((group) => group.trials.map((trial) => ({ name: trial.name, bucket: group.bucket })));
+  const trialOptions = [...builtInTrials, ...manualTrials]
+    .filter((trial, index, all) => {
+      const key = trialCleanupKey(trial.name, trial.bucket);
+      return key && !hiddenTrials.has(key) && all.findIndex((item) => trialCleanupKey(item.name, item.bucket) === key) === index;
+    });
+
+  adminCleanupItem.innerHTML = `
+    <option value="">Choose a guideline or landmark trial</option>
+    <optgroup label="Guidelines">
+      ${guidelineOptions.map((guideline) => `
+        <option value="${escapeHtml(JSON.stringify({ type: "guideline", id: guideline.id || "", key: guidelineCleanupKey(guideline), title: guideline.title, bucket: guideline.bucket || "", organization: guideline.organization || "" }))}">
+          ${escapeHtml(guideline.organization || "Guideline")} - ${escapeHtml(guideline.title)}
+        </option>
+      `).join("")}
+    </optgroup>
+    <optgroup label="Landmark Trials">
+      ${trialOptions.map((trial) => `
+        <option value="${escapeHtml(JSON.stringify({ type: "trial", id: trial.id || "", key: trialCleanupKey(trial.name, trial.bucket), title: trial.name, bucket: trial.bucket }))}">
+          ${escapeHtml(trial.bucket)} - ${escapeHtml(trial.name)}
+        </option>
+      `).join("")}
+    </optgroup>
+  `;
+  adminCleanupStatus.textContent = "Choose a guideline or landmark trial to remove.";
+}
+
+async function cleanupSelectedItem() {
+  const raw = adminCleanupItem.value;
+  if (!raw) {
+    adminCleanupStatus.textContent = "Choose an item first.";
+    return;
+  }
+  const item = JSON.parse(raw);
+  adminCleanupStatus.textContent = "Removing selected item...";
+  const response = await fetch(`${SERVER_ORIGIN}/api/admin/cleanup-delete`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Admin-Key": adminAccessKey },
+    body: JSON.stringify(item),
+  });
+  const result = await response.json();
+  if (!result.ok) throw new Error(result.error || "Cleanup failed");
+  adminCleanupStatus.textContent = `Removed ${item.title}.`;
+  notifyContentUpdated();
+  await refreshLibrary();
+}
+
+function formatDate(value) {
+  if (!value) return "Never";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString(undefined, { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" });
+}
+
+function renderAnalytics(library) {
+  const users = library.users || [];
+  const analytics = library.analytics || {};
+  const dailyVisits = analytics.dailyVisits || {};
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const today = dailyVisits[todayKey] || { visits: 0, uniqueVisitors: [] };
+  const dailyRows = Object.values(dailyVisits)
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    .slice(0, 14);
+  const lastSignup = users
+    .slice()
+    .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))[0];
+
+  adminAnalyticsSummary.innerHTML = `
+    <div class="analytics-card"><strong>${users.length}</strong><span>Total users</span></div>
+    <div class="analytics-card"><strong>${today.visits || 0}</strong><span>Visits today</span></div>
+    <div class="analytics-card"><strong>${(today.uniqueVisitors || []).length}</strong><span>Unique visitors today</span></div>
+    <div class="analytics-card"><strong>${escapeHtml(lastSignup?.username || "None")}</strong><span>Latest signup</span></div>
+  `;
+
+  adminDailyVisits.innerHTML = `
+    <h3>Daily Site Visits</h3>
+    <div class="analytics-row header"><span>Date</span><span>Visits</span><span>Unique</span><span></span><span></span></div>
+    ${dailyRows.length ? dailyRows.map((day) => `
+      <div class="analytics-row">
+        <span>${escapeHtml(day.date)}</span>
+        <span>${Number(day.visits) || 0}</span>
+        <span>${(day.uniqueVisitors || []).length}</span>
+        <span></span>
+        <span></span>
+      </div>
+    `).join("") : '<div class="library-item">No visit data yet.</div>'}
+  `;
+
+  adminUserList.innerHTML = `
+    <h3>User Accounts</h3>
+    <div class="analytics-row header"><span>User</span><span>Email</span><span>Created</span><span>Logins</span><span>Last login</span></div>
+    ${users.length ? users.map((user) => `
+      <div class="analytics-row">
+        <span><strong>${escapeHtml(user.username)}</strong></span>
+        <span>${escapeHtml(user.email)}</span>
+        <span>${escapeHtml(formatDate(user.createdAt))}</span>
+        <span>${Number(user.loginCount) || 0}</span>
+        <span>${escapeHtml(formatDate(user.lastLoginAt))}</span>
+      </div>
+    `).join("") : '<div class="library-item">No users have created accounts yet.</div>'}
+  `;
+}
+
+function renderStorageStatus(status = {}) {
+  if (!adminStorageStatus) return;
+  const stateClass = status.ok && status.persistent ? "ok" : status.ok ? "warn" : "error";
+  const storageLine = status.provider || status.mode || "Unknown storage";
+  const persistence = status.persistent ? "Permanent storage is active" : "Permanent storage is not active";
+  adminStorageStatus.innerHTML = `
+    <div class="storage-card ${stateClass}">
+      <strong>${escapeHtml(storageLine)}</strong>
+      <span>${escapeHtml(persistence)}</span>
+      <small>${escapeHtml(status.message || "Storage status unavailable.")}</small>
+      <small>Content library: ${escapeHtml(status.contentLibrary || "Unknown")}</small>
+      <small>Uploads: ${Number(status.uploadCount) || 0}</small>
+    </div>
+  `;
+}
+
+async function refreshStorageStatus() {
+  if (!adminStorageStatus || !adminAccessKey) return;
+  adminStorageStatus.textContent = "Checking storage...";
+  try {
+    const response = await fetch(`${SERVER_ORIGIN}/api/storage/status`, {
+      headers: { "X-Admin-Key": adminAccessKey },
+      cache: "no-store",
+    });
+    const status = await response.json();
+    renderStorageStatus(status);
+  } catch (error) {
+    renderStorageStatus({
+      ok: false,
+      persistent: false,
+      provider: "Storage check failed",
+      message: error.message,
+    });
+  }
+}
+
 async function refreshLibrary() {
   const response = await fetch(`${SERVER_ORIGIN}/api/admin/content`, { cache: "no-store" });
   const library = await response.json();
@@ -110,6 +415,9 @@ async function refreshLibrary() {
   const uploads = library.uploads || [];
   renderHomeLayout(library.settings || {});
   renderUploadOptions();
+  renderAnalytics(library);
+  renderTrialAbstractEditor(library);
+  await renderCleanupOptions(library);
 
   libraryList.innerHTML = `
     <small id="admin-library-status" class="admin-library-status">Delete removes the item from this library and the front end.</small>
@@ -155,6 +463,7 @@ async function deleteContent(type, id) {
   if (!result.ok) throw new Error(result.error || "Delete failed");
   if (!result.deleted) throw new Error("This item was not found in the content library.");
   notifyContentUpdated();
+  await refreshStorageStatus();
   await refreshLibrary();
   return result;
 }
@@ -261,6 +570,7 @@ async function unlockAdmin(key) {
     sessionStorage.setItem(ADMIN_SESSION_KEY, adminAccessKey);
     adminKey.value = adminAccessKey;
     setAdminEnabled(true);
+    await refreshStorageStatus();
     await refreshLibrary();
   } catch {
     adminAccessKey = "";
@@ -328,6 +638,7 @@ uploadForm.addEventListener("submit", async (event) => {
       adminUploadStatus.textContent = "Choose files or paste a link first.";
     }
     notifyContentUpdated();
+    await refreshStorageStatus();
     await refreshLibrary();
     return;
   }
@@ -336,13 +647,26 @@ uploadForm.addEventListener("submit", async (event) => {
   files.forEach((file) => data.append("files", file, file.name));
   const fileMeta = collectFileMeta(files);
   adminUploadStatus.textContent = `Uploading ${files.length} file${files.length === 1 ? "" : "s"}...`;
-  const response = await fetch(`${SERVER_ORIGIN}/api/upload?section=${encodeURIComponent(adminSection.value)}&title=${encodeURIComponent(title)}&note=${encodeURIComponent(note)}&mediaBucket=${encodeURIComponent(adminSection.value === "image-atlas" ? adminUploadImageBucket.value : "")}&fileMeta=${encodeURIComponent(JSON.stringify(fileMeta))}`, {
-    method: "POST",
-    headers: { "X-Admin-Key": adminAccessKey },
-    body: data,
-  });
-  const result = await response.json();
-  adminUploadStatus.textContent = result.ok ? `${result.saved.length} file${result.saved.length === 1 ? "" : "s"} saved.` : "Upload failed.";
+  let result;
+  try {
+    const response = await fetch(`${SERVER_ORIGIN}/api/upload?section=${encodeURIComponent(adminSection.value)}&title=${encodeURIComponent(title)}&note=${encodeURIComponent(note)}&mediaBucket=${encodeURIComponent(adminSection.value === "image-atlas" ? adminUploadImageBucket.value : "")}&fileMeta=${encodeURIComponent(JSON.stringify(fileMeta))}`, {
+      method: "POST",
+      headers: { "X-Admin-Key": adminAccessKey },
+      body: data,
+    });
+    const responseText = await response.text();
+    try {
+      result = JSON.parse(responseText || "{}");
+    } catch {
+      throw new Error(responseText || "Upload failed before the server could answer.");
+    }
+    if (!response.ok || !result.ok) throw new Error(result.error || "Upload failed.");
+  } catch (error) {
+    adminUploadStatus.textContent = `Upload failed: ${error.message}`;
+    return;
+  }
+  const storageLabel = result.storage === "blob" ? " to Vercel Blob" : "";
+  adminUploadStatus.textContent = `${result.saved.length} file${result.saved.length === 1 ? "" : "s"} saved${storageLabel}.`;
   if (result.ok && link) {
     try {
       await saveArticleFromUpload({ link, note, title });
@@ -358,6 +682,7 @@ uploadForm.addEventListener("submit", async (event) => {
   adminUploadNote.value = "";
   adminUploadLink.value = "";
   notifyContentUpdated();
+  await refreshStorageStatus();
   await refreshLibrary();
 });
 
@@ -435,6 +760,26 @@ adminSaveLayout.addEventListener("click", async () => {
   }
 });
 
+adminTrialAbstractSelect.addEventListener("change", () => renderTrialAbstractEditor(currentLibrary));
+
+adminTrialAbstractForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  try {
+    await saveTrialAbstract();
+  } catch (error) {
+    adminTrialAbstractStatus.textContent = error.message;
+  }
+});
+
+adminCleanupForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  try {
+    await cleanupSelectedItem();
+  } catch (error) {
+    adminCleanupStatus.textContent = error.message;
+  }
+});
+
 adminHeroForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const file = adminHeroFile.files[0];
@@ -456,6 +801,7 @@ adminHeroForm.addEventListener("submit", async (event) => {
     adminHeroFile.value = "";
     adminHeroNote.value = "";
     if (result.ok) notifyContentUpdated();
+    await refreshStorageStatus();
     await refreshLibrary();
   } catch (error) {
     adminHeroStatus.textContent = error.message;

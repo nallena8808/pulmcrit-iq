@@ -7,6 +7,9 @@
     "start": "node server.js",
     "vercel-build": "node -e \"console.log('PulmCrit IQ static assets ready')\""
   },
+  "dependencies": {
+    "@vercel/blob": "latest"
+  },
   "engines": {
     "node": "20.x"
   }

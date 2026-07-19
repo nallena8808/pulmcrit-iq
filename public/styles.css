@@ -615,6 +615,31 @@ main {
   text-decoration: none;
 }
 
+.bookmark-button {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  margin-top: 8px;
+  border: 1px solid rgba(45, 114, 217, 0.28);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--blue);
+  padding: 0;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(23, 32, 34, 0.10);
+}
+
+.bookmark-button.saved {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
 .tile-search,
 .score-workbench select,
 .score-field input {
@@ -920,6 +945,12 @@ main {
   font-weight: 950;
 }
 
+.section-subtopic summary small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-weight: 850;
+}
+
 .section-subtopic p {
   white-space: pre-wrap;
   color: var(--muted);
@@ -1071,6 +1102,56 @@ main {
   color: var(--blue);
   font-weight: 950;
   text-decoration: none;
+}
+
+.notebook-panel {
+  max-height: min(70vh, 560px);
+  overflow: auto;
+}
+
+.notebook-list {
+  display: grid;
+  gap: 10px;
+}
+
+.notebook-bucket {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(230, 244, 255, 0.68);
+  padding: 10px;
+}
+
+.notebook-bucket summary {
+  cursor: pointer;
+  font-weight: 950;
+}
+
+.notebook-bucket ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+.notebook-bucket li {
+  display: grid;
+  gap: 3px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.notebook-bucket a {
+  color: var(--ink);
+  font-weight: 900;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.notebook-bucket small {
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .auth-modal[hidden] {

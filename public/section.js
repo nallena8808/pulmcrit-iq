@@ -26,10 +26,16 @@ const sectionTitle = document.querySelector("#section-title");
 const sectionContent = document.querySelector("#section-content");
 const sectionSearchForm = document.querySelector("#section-search-form");
 const sectionSearchInput = document.querySelector("#section-search-input");
+const initialSectionQuery = new URLSearchParams(window.location.search).get("q") || "";
+const ACTIVE_USER_KEY = "pulmcrit-iq-active-user";
+const USER_STORE_KEY = "pulmcrit-iq-users";
+const USER_NOTEBOOK_API_URL = `${SERVER_ORIGIN}/api/users/notebook`;
+const USER_BOOKMARK_API_URL = `${SERVER_ORIGIN}/api/users/bookmark`;
 
 let library = { articles: [], uploads: [], subtopics: [] };
 let liveArticles = [];
 let liveGuidelines = [];
+let currentNotebookItems = [];
 const contentChannel = "BroadcastChannel" in window ? new BroadcastChannel("pulmcrit-iq-content") : null;
 
 const landmarkTrialBuckets = [
@@ -46,11 +52,62 @@ const landmarkTrialBuckets = [
   ["Pulmonary Hypertension", ["SERAPHIN", "AMBITION", "GRIPHON", "INCREASE"]],
   ["Pleural Disease", ["MIST-2", "AMPLE"]],
   ["Sleep Medicine", ["SAVE", "SERVE-HF"]],
-  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC"]],
+  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC", "CHECKMATE", "KEYNOTE 024", "KEYNOTE 042"]],
   ["Critical Care Infectious Diseases", ["RECOVERY", "ACTT-1"]],
   ["Neurocritical Care", ["TTM", "TTM2", "HYPERION", "INTERACT", "INTERACT2", "ATACH", "ATACH-II", "CLEAR III", "MISTIE III"]],
   ["ECMO & Cardiac Arrest", ["CESAR", "EOLIA", "ARREST"]],
 ].map(([bucket, trials]) => ({ bucket, trials }));
+
+const articleTopicBuckets = [
+  {
+    name: "ARDS & Mechanical Ventilation",
+    keywords: ["ards", "acute respiratory distress", "mechanical ventilation", "ventilator", "ventilation", "peep", "tidal volume", "prone", "weaning", "extubation", "respiratory failure", "noninvasive ventilation", "high-flow"],
+  },
+  {
+    name: "Sepsis, Shock & ICU Care",
+    keywords: ["sepsis", "septic", "shock", "vasopressor", "norepinephrine", "icu", "intensive care", "critical care", "sedation", "delirium", "analgesia", "resuscitation", "lactate"],
+  },
+  {
+    name: "COPD, Asthma & Airways",
+    keywords: ["copd", "asthma", "airway", "bronchiectasis", "exacerbation", "eosinophil", "inhaled", "bronchodilator", "dupilumab", "mucus"],
+  },
+  {
+    name: "ILD & Sarcoidosis",
+    keywords: ["interstitial", "fibrosis", "fibrotic", "ipf", "sarcoidosis", "hypersensitivity pneumonitis", "nintedanib", "pirfenidone"],
+  },
+  {
+    name: "Pulmonary Hypertension & PE",
+    keywords: ["pulmonary hypertension", "pulmonary arterial hypertension", "pulmonary embolism", "embolism", "vte", "thromboembolism", "right ventricle", "anticoagulation"],
+  },
+  {
+    name: "Pneumonia, TB, NTM & Fungal Disease",
+    keywords: ["pneumonia", "tuberculosis", "tb", "ntm", "mycobacter", "fungal", "aspergillus", "influenza", "rsv", "covid", "infection", "antibiotic"],
+  },
+  {
+    name: "Pleural Disease",
+    keywords: ["pleural", "pleura", "effusion", "pneumothorax", "empyema", "mesothelioma"],
+  },
+  {
+    name: "Lung Cancer, Nodules & Screening",
+    keywords: ["lung cancer", "nodule", "nodules", "screening", "nsclc", "small-cell", "non-small-cell", "malignancy", "immunotherapy", "checkpoint"],
+  },
+  {
+    name: "Sleep & Home Ventilation",
+    keywords: ["sleep", "osa", "apnea", "cpap", "home ventilation", "home oxygen", "obesity hypoventilation", "long-term ventilation"],
+  },
+  {
+    name: "Procedures & Interventional Pulm",
+    keywords: ["bronchoscopy", "ebus", "procedure", "interventional", "biopsy", "thoracentesis", "ultrasound", "spirometry", "pulmonary function"],
+  },
+  {
+    name: "ECMO & Transplant",
+    keywords: ["ecmo", "ecls", "extracorporeal", "transplant", "transplantation", "donor lung"],
+  },
+  {
+    name: "Pulmonary Physiology & Imaging",
+    keywords: ["physiology", "gas exchange", "hypoxemia", "hypercapnia", "ct", "x-ray", "radiograph", "imaging", "ultrasound", "pft"],
+  },
+];
 
 function escapeHtml(value) {
   return String(value || "").replace(/[&<>"']/g, (char) => ({
@@ -76,6 +133,75 @@ function assetUrl(path) {
   return `${SERVER_ORIGIN}${path}`;
 }
 
+function getUsers() {
+  try {
+    return JSON.parse(localStorage.getItem(USER_STORE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function getActiveUser() {
+  const email = localStorage.getItem(ACTIVE_USER_KEY);
+  return email ? getUsers().find((user) => user.email.toLowerCase() === email.toLowerCase()) : null;
+}
+
+function bookmarkKey(item) {
+  return String(item.id || `${item.type}:${item.bucket}:${item.title}:${item.link}`).trim().toLowerCase();
+}
+
+function notebookHas(item) {
+  const key = bookmarkKey(item);
+  return currentNotebookItems.some((saved) => saved.id === key);
+}
+
+function bookmarkButton(item) {
+  const saved = notebookHas(item);
+  const label = saved ? "Remove from My Notebook" : "Save to My Notebook";
+  return `<button class="bookmark-button${saved ? " saved" : ""}" type="button" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}" data-bookmark-type="${escapeHtml(item.type)}" data-bookmark-title="${escapeHtml(item.title)}" data-bookmark-link="${escapeHtml(item.link || "#")}" data-bookmark-source="${escapeHtml(item.source || "")}" data-bookmark-summary="${escapeHtml(item.summary || "")}" data-bookmark-bucket="${escapeHtml(item.bucket || "")}" data-bookmark-section="${escapeHtml(item.section || "")}" data-bookmark-media-bucket="${escapeHtml(item.mediaBucket || "")}"><span aria-hidden="true">⌑</span></button>`;
+}
+
+async function loadNotebook() {
+  const user = getActiveUser();
+  if (!user) {
+    currentNotebookItems = [];
+    return;
+  }
+  try {
+    const response = await fetch(`${USER_NOTEBOOK_API_URL}?email=${encodeURIComponent(user.email)}`, { cache: "no-store" });
+    const result = await response.json();
+    currentNotebookItems = result.items || [];
+  } catch {
+    currentNotebookItems = JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+  }
+}
+
+async function toggleBookmark(item) {
+  const user = getActiveUser();
+  if (!user) {
+    sessionStorage.setItem("pulmcrit-iq-return-after-login", window.location.href);
+    window.location.href = "./index.html?login=1";
+    return;
+  }
+  const normalized = { ...item, id: bookmarkKey(item) };
+  try {
+    const response = await fetch(USER_BOOKMARK_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: user.email, item: normalized }),
+    });
+    const result = await response.json();
+    if (!result.ok) throw new Error(result.error || "Bookmark failed.");
+    currentNotebookItems = result.items || [];
+  } catch {
+    const existing = currentNotebookItems.findIndex((saved) => saved.id === normalized.id);
+    if (existing >= 0) currentNotebookItems.splice(existing, 1);
+    else currentNotebookItems.unshift(normalized);
+    localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(currentNotebookItems));
+  }
+  renderSection();
+}
+
 function articleBelongs(article) {
   const legacyLabels = {
     "ventilator-lab": ["Ventilator Lab"],
@@ -86,19 +212,49 @@ function articleBelongs(article) {
 
 function itemMatches(item, searchTerm) {
   if (!searchTerm) return true;
-  return JSON.stringify(item).toLowerCase().includes(searchTerm);
+  const tokens = String(searchTerm || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  const haystack = JSON.stringify(item)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ");
+  return tokens.every((token) => haystack.includes(token));
+}
+
+function classifyArticleTopic(article) {
+  const text = `${article.title || ""} ${article.summary || ""} ${article.source || ""}`.toLowerCase();
+  const match = articleTopicBuckets.find((bucket) => bucket.keywords.some((keyword) => text.includes(keyword)));
+  return match?.name || "General PCCM Updates";
 }
 
 function renderLiveSection(searchTerm, adminArticles) {
   if (section === "latest-articles") {
     const articles = liveArticles.filter((item) => itemMatches(item, searchTerm));
     if (!articles.length) return "";
+    const bucketNames = [
+      ...articleTopicBuckets.map((bucket) => bucket.name),
+      "General PCCM Updates",
+    ];
+    const buckets = bucketNames.map((bucket) => ({
+      bucket,
+      articles: articles.filter((item) => classifyArticleTopic(item) === bucket),
+    })).filter((group) => group.articles.length);
     return `
       <div class="section-block">
         <h2>Latest PCCM Articles</h2>
-        <ul class="section-resource-list">
-          ${articles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.source || "Journal")} · ${escapeHtml(item.date || "Recent")}</small></li>`).join("")}
-        </ul>
+        <div class="section-subtopics">
+          ${buckets.map((group) => `
+            <details class="section-subtopic" open>
+              <summary>${escapeHtml(group.bucket)} <small>${group.articles.length}</small></summary>
+              <ul>
+                ${group.articles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.source || "Journal")} · ${escapeHtml(item.date || "Recent")}</small>${bookmarkButton({ type: "article", title: item.title, link: item.link, source: item.source || "Journal", summary: item.date || "", bucket: group.bucket })}</li>`).join("")}
+              </ul>
+            </details>
+          `).join("")}
+        </div>
       </div>
     `;
   }
@@ -117,7 +273,7 @@ function renderLiveSection(searchTerm, adminArticles) {
               <details class="section-subtopic" open>
                 <summary>${escapeHtml(bucket)}</summary>
                 <ul>
-                  ${bucketGuidelines.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.organization || "Guideline")} · ${escapeHtml(item.topic || "PCCM")} · ${escapeHtml(item.date || "Current")}</small></li>`).join("")}
+                  ${bucketGuidelines.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.organization || "Guideline")} · ${escapeHtml(item.topic || "PCCM")} · ${escapeHtml(item.date || "Current")}</small>${bookmarkButton({ type: "guideline", title: item.title, link: item.link, source: item.organization || "Guideline", summary: item.topic || "", bucket: "Guidelines" })}</li>`).join("")}
                 </ul>
               </details>
             `;
@@ -128,8 +284,10 @@ function renderLiveSection(searchTerm, adminArticles) {
   }
 
   if (section === "landmark-trials") {
+    const hiddenTrials = new Set(library.hiddenTrials || []);
     const manualTrials = adminArticles
       .filter((article) => article.tile === "Landmark Trials")
+      .filter((article) => !hiddenTrials.has(`${String(article.trialBucket || "Mechanical Ventilation").trim().toLowerCase()}::${String(article.title || "").trim().toLowerCase()}`))
       .map((article) => ({
         bucket: article.trialBucket || "Mechanical Ventilation",
         title: article.title,
@@ -141,7 +299,7 @@ function renderLiveSection(searchTerm, adminArticles) {
       return {
         bucket,
         trials: [
-          ...trials.map((trial) => {
+          ...trials.filter((trial) => !hiddenTrials.has(`${bucket.toLowerCase()}::${trial.toLowerCase()}`)).map((trial) => {
             const manualMatch = manualForBucket.find((manualTrial) => manualTrial.title.toLowerCase() === trial.toLowerCase());
             return {
               title: trial,
@@ -162,7 +320,7 @@ function renderLiveSection(searchTerm, adminArticles) {
             <details class="section-subtopic" open>
               <summary>${escapeHtml(group.bucket)}</summary>
               <ul>
-                ${group.trials.map((trial) => `<li><a href="${escapeHtml(trial.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(trial.title)}</a><small>${escapeHtml(trial.meta)}</small></li>`).join("")}
+                ${group.trials.map((trial) => `<li><a href="${escapeHtml(trial.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(trial.title)}</a><small>${escapeHtml(trial.meta)}</small>${bookmarkButton({ type: "trial", title: trial.title, link: trial.link, source: "Landmark Trial", summary: trial.meta, bucket: "Landmark Trials" })}</li>`).join("")}
               </ul>
             </details>
           `).join("")}
@@ -192,11 +350,12 @@ function renderSection() {
     const description = escapeHtml(item.description || item.note || `${Math.round((item.bytes || 0) / 1024)} KB`);
     if (isImageUpload(item)) {
       return `
-        <a class="section-image-card" href="${url}" target="_blank" rel="noreferrer">
-          <img src="${url}" alt="${title}" />
+        <article class="section-image-card">
+          <a href="${url}" target="_blank" rel="noreferrer"><img src="${url}" alt="${title}" /></a>
           <strong>${title}</strong>
           <small>${description}</small>
-        </a>
+          ${bookmarkButton({ type: "upload", title: item.title || item.note || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}
+        </article>
       `;
     }
     if (isVideoUpload(item)) {
@@ -205,14 +364,17 @@ function renderSection() {
           <video src="${url}" controls preload="metadata"></video>
           <a href="${url}" target="_blank" rel="noreferrer">${title}</a>
           <small>${description}</small>
+          ${bookmarkButton({ type: "upload", title: item.title || item.note || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}
         </article>
       `;
     }
     return `
-      <a class="section-image-card" href="${url}" target="_blank" rel="noreferrer">
+      <article class="section-image-card">
         <strong>${title}</strong>
         <small>${description}</small>
-      </a>
+        <a href="${url}" target="_blank" rel="noreferrer">Open file</a>
+        ${bookmarkButton({ type: "upload", title: item.title || item.note || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}
+      </article>
     `;
   };
   const imageMarkup = section === "image-atlas"
@@ -242,11 +404,12 @@ function renderSection() {
         <h2>Images</h2>
         <div class="section-image-grid">
           ${imageUploads.map((item) => `
-            <a class="section-image-card" href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer">
-              <img src="${escapeHtml(assetUrl(item.path))}" alt="${escapeHtml(item.title || item.note || item.filename)}" />
+            <article class="section-image-card">
+              <a href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer"><img src="${escapeHtml(assetUrl(item.path))}" alt="${escapeHtml(item.title || item.note || item.filename)}" /></a>
               <strong>${escapeHtml(item.title || item.note || item.filename)}</strong>
               <small>${escapeHtml(item.description || item.note || "Image")}</small>
-            </a>
+              ${bookmarkButton({ type: "upload", title: item.title || item.note || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}
+            </article>
           `).join("")}
         </div>
       </div>
@@ -261,6 +424,7 @@ function renderSection() {
               <video src="${escapeHtml(assetUrl(item.path))}" controls preload="metadata"></video>
               <a href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer">${escapeHtml(item.title || item.note || item.filename)}</a>
               <small>${escapeHtml(item.description || item.note || "Video")}</small>
+              ${bookmarkButton({ type: "upload", title: item.title || item.note || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}
             </article>
           `).join("")}
         </div>
@@ -280,8 +444,8 @@ function renderSection() {
                 ${subtopic.body ? `<p>${escapeHtml(subtopic.body)}</p>` : ""}
                 ${linkedArticles.length || linkedUploads.length ? `
                   <ul>
-                    ${linkedArticles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.summary || item.source || "Article")}</small></li>`).join("")}
-                    ${linkedUploads.map((item) => `<li><a href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer">${escapeHtml(item.filename)}</a><small>${escapeHtml(item.note || `${Math.round((item.bytes || 0) / 1024)} KB`)}</small></li>`).join("")}
+                    ${linkedArticles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.summary || item.source || "Article")}</small>${bookmarkButton({ type: "article", title: item.title, link: item.link, source: item.source || "Article", summary: item.summary || "", bucket: sectionLabels[section] || "Uploaded Content" })}</li>`).join("")}
+                    ${linkedUploads.map((item) => `<li><a href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer">${escapeHtml(item.title || item.filename)}</a><small>${escapeHtml(item.note || `${Math.round((item.bytes || 0) / 1024)} KB`)}</small>${bookmarkButton({ type: "upload", title: item.title || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}</li>`).join("")}
                   </ul>
                 ` : ""}
               </details>
@@ -295,8 +459,8 @@ function renderSection() {
       <div class="section-block">
         <h2>Articles And Files</h2>
         <ul class="section-resource-list">
-          ${articles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.summary || item.source || "Article")}</small></li>`).join("")}
-          ${fileUploads.map((item) => `<li><a href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer">${escapeHtml(item.title || item.filename)}</a><small>${escapeHtml(item.description || item.note || `${Math.round((item.bytes || 0) / 1024)} KB`)}</small></li>`).join("")}
+          ${articles.map((item) => `<li><a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a><small>${escapeHtml(item.summary || item.source || "Article")}</small>${bookmarkButton({ type: "article", title: item.title, link: item.link, source: item.source || "Article", summary: item.summary || "", bucket: sectionLabels[section] || "Uploaded Content" })}</li>`).join("")}
+          ${fileUploads.map((item) => `<li><a href="${escapeHtml(assetUrl(item.path))}" target="_blank" rel="noreferrer">${escapeHtml(item.title || item.filename)}</a><small>${escapeHtml(item.description || item.note || `${Math.round((item.bytes || 0) / 1024)} KB`)}</small>${bookmarkButton({ type: "upload", title: item.title || item.filename, link: assetUrl(item.path), source: "Upload", summary: item.description || item.note || "", bucket: sectionLabels[item.section] || "Uploaded Content", section: item.section, mediaBucket: item.mediaBucket })}</li>`).join("")}
         </ul>
       </div>
     ` : ""}
@@ -307,10 +471,36 @@ function renderSection() {
 
 sectionSearchForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  const url = new URL(window.location.href);
+  const query = sectionSearchInput.value.trim();
+  if (query) url.searchParams.set("q", query);
+  else url.searchParams.delete("q");
+  window.history.replaceState({}, "", url);
   renderSection();
 });
 
 sectionSearchInput.addEventListener("input", renderSection);
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-bookmark-type]");
+  if (!button) return;
+  event.preventDefault();
+  event.stopPropagation();
+  toggleBookmark({
+    type: button.dataset.bookmarkType,
+    title: button.dataset.bookmarkTitle,
+    link: button.dataset.bookmarkLink,
+    source: button.dataset.bookmarkSource,
+    summary: button.dataset.bookmarkSummary,
+    bucket: button.dataset.bookmarkBucket,
+    section: button.dataset.bookmarkSection,
+    mediaBucket: button.dataset.bookmarkMediaBucket,
+  });
+});
+
+if (initialSectionQuery) {
+  sectionSearchInput.value = initialSectionQuery;
+}
 
 async function loadSection() {
   const [libraryResponse, articlesResponse, guidelinesResponse] = await Promise.all([
@@ -327,6 +517,7 @@ async function loadSection() {
     const data = await guidelinesResponse.json();
     liveGuidelines = data.guidelines || [];
   }
+  await loadNotebook();
   renderSection();
 }
 

@@ -15,6 +15,14 @@ const API_URL = `${SERVER_ORIGIN}/api/articles`;
 const GUIDELINE_API_URL = `${SERVER_ORIGIN}/api/guidelines`;
 const TRIAL_API_URL = `${SERVER_ORIGIN}/api/trial`;
 const CONTENT_API_URL = `${SERVER_ORIGIN}/api/admin/content`;
+const VISIT_API_URL = `${SERVER_ORIGIN}/api/analytics/visit`;
+const USER_REGISTER_API_URL = `${SERVER_ORIGIN}/api/users/register`;
+const USER_LOGIN_API_URL = `${SERVER_ORIGIN}/api/users/login`;
+const USER_PASSWORD_API_URL = `${SERVER_ORIGIN}/api/users/password`;
+const USER_RECOVERY_API_URL = `${SERVER_ORIGIN}/api/users/recover`;
+const USER_NOTEBOOK_API_URL = `${SERVER_ORIGIN}/api/users/notebook`;
+const USER_BOOKMARK_API_URL = `${SERVER_ORIGIN}/api/users/bookmark`;
+const VISITOR_ID_KEY = "pulmcrit-iq-visitor-id";
 
 const pccmKeywords = [
   "acute respiratory",
@@ -144,9 +152,13 @@ const mainMenuOpen = document.querySelector("#main-menu-open");
 const mainMenuClose = document.querySelector("#main-menu-close");
 const mainMenu = document.querySelector("#main-menu");
 const accountSettingsOpen = document.querySelector("#account-settings-open");
+const myNotebookOpen = document.querySelector("#my-notebook-open");
 const helpOpen = document.querySelector("#help-open");
 const accountSettingsPanel = document.querySelector("#account-settings-panel");
 const helpPanel = document.querySelector("#help-panel");
+const myNotebookPanel = document.querySelector("#my-notebook-panel");
+const notebookStatus = document.querySelector("#notebook-status");
+const notebookList = document.querySelector("#notebook-list");
 const changePasswordForm = document.querySelector("#change-password-form");
 const accountSettingsStatus = document.querySelector("#account-settings-status");
 const heroIllustration = document.querySelector("#hero-illustration");
@@ -156,6 +168,7 @@ let activeGuidelineBucket = null;
 let activeTrialBucket = null;
 let activeTrialKey = null;
 let currentContentLibrary = { articles: [], uploads: [], subtopics: [] };
+let currentNotebookItems = [];
 const trialDetailCache = new Map();
 const defaultTileOrder = ["1", "2", "6", "9", "10", "3", "4", "8", "5"];
 const contentChannel = "BroadcastChannel" in window ? new BroadcastChannel("pulmcrit-iq-content") : null;
@@ -170,6 +183,18 @@ const tileContentMap = {
   "8": { sections: ["image-atlas"], labels: ["PCCM Image Atlas"] },
   "9": { sections: ["airway"], labels: ["Airway"] },
   "10": { sections: ["critical-care"], labels: ["Critical Care"] },
+};
+
+const sectionLabels = {
+  "latest-articles": "Latest PCCM Articles",
+  guidelines: "Guidelines",
+  "ventilator-lab": "Ventilator Hub",
+  "pulmonary-physiology": "Pulmonary Physiology",
+  "case-rounds": "Case Rounds",
+  "landmark-trials": "Landmark Trials",
+  "image-atlas": "PCCM Image Atlas",
+  airway: "Airway",
+  "critical-care": "Critical Care",
 };
 
 const guidelineBucketOrder = [
@@ -200,7 +225,7 @@ const landmarkTrialBuckets = [
   ["Pulmonary Hypertension", ["SERAPHIN", "AMBITION", "GRIPHON", "INCREASE"]],
   ["Pleural Disease", ["MIST-2", "AMPLE"]],
   ["Sleep Medicine", ["SAVE", "SERVE-HF"]],
-  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC"]],
+  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC", "CHECKMATE", "KEYNOTE 024", "KEYNOTE 042"]],
   ["Critical Care Infectious Diseases", ["RECOVERY", "ACTT-1"]],
   ["Neurocritical Care", ["TTM", "TTM2", "HYPERION", "INTERACT", "INTERACT2", "ATACH", "ATACH-II", "CLEAR III", "MISTIE III"]],
   ["ECMO & Cardiac Arrest", ["CESAR", "EOLIA", "ARREST"]],
@@ -248,6 +273,7 @@ function renderGuidelines(guidelines, status) {
           <li class="guideline-item">
             <a href="${escapeHtml(guideline.link)}" target="_blank" rel="noreferrer">${escapeHtml(guideline.title)}</a>
             <small>${escapeHtml(guideline.organization)} · ${escapeHtml(guideline.topic || "Guideline")} · ${escapeHtml(guideline.date || "Current")}</small>
+            ${bookmarkIconButton({ type: "guideline", title: guideline.title, link: guideline.link, source: guideline.organization, summary: guideline.topic || "", bucket: "Guidelines" })}
           </li>
         `).join("") || '<li class="guideline-item muted">No matching guidelines in this bucket.</li>'
       : "";
@@ -279,6 +305,54 @@ function writeCache(articles, key = CACHE_KEY) {
   localStorage.setItem(key, JSON.stringify({ savedAt: Date.now(), articles }));
 }
 
+function getVisitorId() {
+  let visitorId = localStorage.getItem(VISITOR_ID_KEY);
+  if (!visitorId) {
+    visitorId = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    localStorage.setItem(VISITOR_ID_KEY, visitorId);
+  }
+  return visitorId;
+}
+
+function postJson(url, payload) {
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  }).catch(() => null);
+}
+
+function trackVisit() {
+  const user = getActiveUser();
+  postJson(VISIT_API_URL, {
+    visitorId: getVisitorId(),
+    path: `${window.location.pathname}${window.location.search}`,
+    referrer: document.referrer,
+    email: user?.email || "",
+  });
+}
+
+function recordUserRegister(user) {
+  postJson(USER_REGISTER_API_URL, {
+    email: user.email,
+    username: user.username,
+    createdAt: user.createdAt,
+  });
+}
+
+function recordUserLogin(user) {
+  postJson(USER_LOGIN_API_URL, {
+    email: user.email,
+    username: user.username,
+  });
+}
+
+function recordUserPasswordUpdate(user) {
+  postJson(USER_PASSWORD_API_URL, {
+    email: user.email,
+  });
+}
+
 function getUsers() {
   try {
     return JSON.parse(localStorage.getItem(USER_STORE_KEY)) || [];
@@ -305,9 +379,15 @@ function setAuthStatus(message) {
 }
 
 function setActiveUser(user) {
+  const users = getUsers();
+  const existingIndex = users.findIndex((candidate) => candidate.email.toLowerCase() === user.email.toLowerCase());
+  if (existingIndex >= 0) users[existingIndex] = { ...users[existingIndex], ...user };
+  else users.unshift(user);
+  saveUsers(users);
   localStorage.setItem(ACTIVE_USER_KEY, user.email);
   userLoginOpen.querySelector(".login-avatar").textContent = user.username.slice(0, 1).toUpperCase();
   userLoginOpen.querySelector("span:last-child").textContent = user.username;
+  loadNotebook();
 }
 
 function restoreActiveUser() {
@@ -324,10 +404,18 @@ function closeUserAuth() {
   userAuthModal.hidden = true;
 }
 
+function redirectAfterLoginIfNeeded() {
+  const returnUrl = sessionStorage.getItem("pulmcrit-iq-return-after-login");
+  if (!returnUrl) return;
+  sessionStorage.removeItem("pulmcrit-iq-return-after-login");
+  window.location.href = returnUrl;
+}
+
 function openMainMenu() {
   mainMenu.hidden = false;
   accountSettingsPanel.hidden = true;
   helpPanel.hidden = true;
+  myNotebookPanel.hidden = true;
   accountSettingsOpen.hidden = !getActiveUser();
 }
 
@@ -337,6 +425,7 @@ function closeMainMenu() {
 
 function showAccountSettings() {
   helpPanel.hidden = true;
+  myNotebookPanel.hidden = true;
   accountSettingsPanel.hidden = false;
   const user = getActiveUser();
   if (!user) {
@@ -349,7 +438,127 @@ function showAccountSettings() {
 
 function showHelp() {
   accountSettingsPanel.hidden = true;
+  myNotebookPanel.hidden = true;
   helpPanel.hidden = false;
+}
+
+function bookmarkKey(item) {
+  return String(item.id || `${item.type}:${item.bucket}:${item.title}:${item.link}`).trim().toLowerCase();
+}
+
+function notebookHas(item) {
+  const key = bookmarkKey(item);
+  return currentNotebookItems.some((saved) => saved.id === key);
+}
+
+function bookmarkIconButton(item) {
+  const normalized = {
+    ...item,
+    bucket: item.bucket || notebookBucketFor(item),
+  };
+  const saved = notebookHas(normalized);
+  const label = saved ? "Remove from My Notebook" : "Save to My Notebook";
+  return `<button class="bookmark-button${saved ? " saved" : ""}" type="button" aria-label="${escapeHtml(label)}" title="${escapeHtml(label)}" data-bookmark-type="${escapeHtml(normalized.type)}" data-bookmark-title="${escapeHtml(normalized.title)}" data-bookmark-link="${escapeHtml(normalized.link || "#")}" data-bookmark-source="${escapeHtml(normalized.source || "")}" data-bookmark-summary="${escapeHtml(normalized.summary || "")}" data-bookmark-bucket="${escapeHtml(normalized.bucket || "")}" data-bookmark-section="${escapeHtml(normalized.section || "")}" data-bookmark-media-bucket="${escapeHtml(normalized.mediaBucket || "")}"><span aria-hidden="true">⌑</span></button>`;
+}
+
+function notebookBucketFor(item) {
+  if (item.type === "guideline") return "Guidelines";
+  if (item.type === "trial") return "Landmark Trials";
+  if (item.type === "upload") return sectionLabels[item.section] || item.bucket || "Uploaded Content";
+  return item.bucket || "Saved Items";
+}
+
+function renderNotebook() {
+  if (!notebookList || !notebookStatus) return;
+  const user = getActiveUser();
+  if (!user) {
+    notebookStatus.textContent = "Login to view saved items.";
+    notebookList.innerHTML = "";
+    return;
+  }
+  notebookStatus.textContent = currentNotebookItems.length
+    ? `${currentNotebookItems.length} saved item${currentNotebookItems.length === 1 ? "" : "s"} for ${user.username}.`
+    : "No bookmarks yet.";
+  const buckets = [...new Set(currentNotebookItems.map((item) => item.bucket || notebookBucketFor(item)))];
+  notebookList.innerHTML = buckets.map((bucket) => {
+    const items = currentNotebookItems.filter((item) => (item.bucket || notebookBucketFor(item)) === bucket);
+    return `
+      <details class="notebook-bucket" open>
+        <summary>${escapeHtml(bucket)}</summary>
+        <ul>
+          ${items.map((item) => `
+            <li>
+              <a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>
+              <small>${escapeHtml([item.source, item.summary].filter(Boolean).join(" · "))}</small>
+            </li>
+          `).join("")}
+        </ul>
+      </details>
+    `;
+  }).join("");
+}
+
+async function loadNotebook() {
+  const user = getActiveUser();
+  if (!user) {
+    currentNotebookItems = [];
+    renderNotebook();
+    return;
+  }
+  try {
+    const response = await fetch(`${USER_NOTEBOOK_API_URL}?email=${encodeURIComponent(user.email)}`, { cache: "no-store" });
+    const result = await response.json();
+    currentNotebookItems = result.items || [];
+  } catch {
+    currentNotebookItems = JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+  }
+  renderNotebook();
+  renderGuidelines(currentGuidelines, guidelineStatus.textContent);
+  renderLandmarkTrials();
+}
+
+async function toggleBookmark(item) {
+  const user = getActiveUser();
+  if (!user) {
+    openUserAuth("signin");
+    setAuthStatus("Login first to save bookmarks.");
+    return;
+  }
+  const normalized = {
+    ...item,
+    id: bookmarkKey(item),
+    bucket: item.bucket || notebookBucketFor(item),
+  };
+  try {
+    const response = await fetch(USER_BOOKMARK_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: user.email, item: normalized }),
+    });
+    const result = await response.json();
+    if (!result.ok) throw new Error(result.error || "Bookmark failed.");
+    currentNotebookItems = result.items || [];
+  } catch {
+    const existing = currentNotebookItems.findIndex((saved) => saved.id === normalized.id);
+    if (existing >= 0) currentNotebookItems.splice(existing, 1);
+    else currentNotebookItems.unshift(normalized);
+    localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(currentNotebookItems));
+  }
+  renderNotebook();
+  renderGuidelines(currentGuidelines, guidelineStatus.textContent);
+  renderLandmarkTrials();
+}
+
+function showNotebook() {
+  accountSettingsPanel.hidden = true;
+  helpPanel.hidden = true;
+  myNotebookPanel.hidden = false;
+  if (!getActiveUser()) {
+    notebookStatus.textContent = "Login first to use My Notebook.";
+    openUserAuth("signin");
+    return;
+  }
+  loadNotebook();
 }
 
 function switchAuthView(view) {
@@ -373,7 +582,20 @@ function togglePassword(button) {
   button.textContent = showing ? "Show" : "Hide";
 }
 
-function registerUser(event) {
+async function readApiJson(response, action) {
+  const text = await response.text();
+  try {
+    return JSON.parse(text || "{}");
+  } catch {
+    const reply = text.trim();
+    if (reply.toLowerCase() === "not found") {
+      throw new Error(`${action} service is not active yet. Restart the local preview server, then refresh this page.`);
+    }
+    throw new Error(reply || `${action} failed before the server could answer.`);
+  }
+}
+
+async function registerUser(event) {
   event.preventDefault();
   const email = document.querySelector("#register-email").value.trim();
   const username = document.querySelector("#register-username").value.trim();
@@ -393,50 +615,103 @@ function registerUser(event) {
     return;
   }
 
-  const user = { email, username, password, createdAt: new Date().toISOString() };
-  saveUsers([user, ...users]);
-  setActiveUser(user);
-  setAuthStatus("Account created. You are logged in.");
-}
-
-function signInUser(event) {
-  event.preventDefault();
-  const email = document.querySelector("#signin-email").value.trim();
-  const password = document.querySelector("#signin-password").value;
-  const user = findUserByEmail(email);
-  if (!user || user.password !== password) {
-    setAuthStatus("Email or password does not match.");
-    return;
+  try {
+    const response = await fetch(USER_REGISTER_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, username, password }),
+    });
+    const result = await readApiJson(response, "Account creation");
+    if (!result.ok) throw new Error(result.error || "Account creation failed.");
+    setActiveUser({ ...result.user, password });
+    setAuthStatus("Account created. You are logged in.");
+    closeUserAuth();
+    redirectAfterLoginIfNeeded();
+  } catch (error) {
+    setAuthStatus(error.message || "Could not create account.");
   }
-  setActiveUser(user);
-  setAuthStatus("Logged in.");
-  closeUserAuth();
 }
 
-function recoverUsername() {
+async function signInUser(event) {
+  event.preventDefault();
+  const identifier = document.querySelector("#signin-email").value.trim();
+  const password = document.querySelector("#signin-password").value;
+  try {
+    const response = await fetch(USER_LOGIN_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: identifier, username: identifier, password }),
+    });
+    const result = await readApiJson(response, "Login");
+    if (!result.ok) throw new Error(result.error || "Login failed.");
+    setActiveUser({ ...result.user, password });
+    setAuthStatus("Logged in.");
+    closeUserAuth();
+    redirectAfterLoginIfNeeded();
+  } catch (error) {
+    const user = findUserByEmail(identifier) || getUsers().find((candidate) => candidate.username.toLowerCase() === identifier.toLowerCase());
+    if (!user || user.password !== password) {
+      setAuthStatus(error.message || "Username/email or password does not match.");
+      return;
+    }
+    setActiveUser(user);
+    recordUserLogin(user);
+    setAuthStatus("Logged in.");
+    closeUserAuth();
+    redirectAfterLoginIfNeeded();
+  }
+}
+
+async function recoverUsername() {
   const email = document.querySelector("#signin-email").value.trim() || document.querySelector("#recover-email").value.trim();
-  const user = findUserByEmail(email);
-  setAuthStatus(email ? (user ? `User ID for this email: ${user.username}` : "No account found for that email.") : "Enter your email above first.");
-}
-
-function preparePasswordReset() {
-  const email = document.querySelector("#signin-email").value.trim();
-  const user = findUserByEmail(email);
   if (!email) {
     setAuthStatus("Enter your email above first.");
     return;
   }
-  if (!user) {
-    setAuthStatus("No account found for that email.");
-    return;
+  try {
+    const response = await fetch(USER_RECOVERY_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, mode: "username" }),
+    });
+    const result = await readApiJson(response, "Recovery");
+    if (!result.ok) throw new Error(result.error || "Recovery failed.");
+    setAuthStatus(result.devUsername ? `Recovery email prepared. Local test username: ${result.devUsername}` : "Your username has been sent to your email.");
+  } catch (error) {
+    const user = findUserByEmail(email);
+    setAuthStatus(user ? `Recovery email unavailable. Local username: ${user.username}` : (error.message || "No account found for that email."));
   }
-  document.querySelector("#recover-email").value = email;
-  switchAuthView("recover");
 }
 
-function resetUserPassword(event) {
+async function preparePasswordReset() {
+  const email = document.querySelector("#signin-email").value.trim();
+  if (!email) {
+    setAuthStatus("Enter your email above first.");
+    return;
+  }
+  try {
+    const response = await fetch(USER_RECOVERY_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, mode: "password" }),
+    });
+    const result = await readApiJson(response, "Recovery");
+    if (!result.ok) throw new Error(result.error || "Recovery failed.");
+    document.querySelector("#recover-email").value = email;
+    document.querySelector("#reset-code").value = "";
+    switchAuthView("recover");
+    setAuthStatus(result.devCode
+      ? `Password reset code sent. Local test code: ${result.devCode}`
+      : "Password reset code sent to your email.");
+  } catch (error) {
+    setAuthStatus(error.message || "No account found for that email.");
+  }
+}
+
+async function resetUserPassword(event) {
   event.preventDefault();
   const email = document.querySelector("#recover-email").value.trim();
+  const code = document.querySelector("#reset-code").value.trim();
   const newPassword = document.querySelector("#reset-password").value;
   const users = getUsers();
   const index = users.findIndex((user) => user.email.toLowerCase() === email.toLowerCase());
@@ -448,9 +723,23 @@ function resetUserPassword(event) {
     setAuthStatus("Type a new password first.");
     return;
   }
+  if (!code) {
+    setAuthStatus("Enter the code sent to your email.");
+    return;
+  }
   users[index].password = newPassword;
   users[index].passwordUpdatedAt = new Date().toISOString();
   saveUsers(users);
+  const response = await fetch(USER_PASSWORD_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password: newPassword, code }),
+  });
+  const result = await readApiJson(response, "Password reset");
+  if (!result.ok) {
+    setAuthStatus(result.error || "Password reset failed.");
+    return;
+  }
   setAuthStatus("Password updated. You can log in now.");
   switchAuthView("signin");
 }
@@ -484,6 +773,7 @@ function changeActiveUserPassword(event) {
   users[index].password = password;
   users[index].passwordUpdatedAt = new Date().toISOString();
   saveUsers(users);
+  postJson(USER_PASSWORD_API_URL, { email: users[index].email, password });
   changePasswordForm.reset();
   accountSettingsStatus.textContent = "Password changed.";
 }
@@ -716,8 +1006,10 @@ async function loadGuidelines(force = false) {
 
 function renderLandmarkTrials() {
   const searchTerm = trialSearch.value.trim().toLowerCase();
+  const hiddenTrials = new Set(currentContentLibrary.hiddenTrials || []);
   const manualTrials = (currentContentLibrary.articles || [])
     .filter((article) => article.tile === "Landmark Trials")
+    .filter((article) => !hiddenTrials.has(`${String(article.trialBucket || "Mechanical Ventilation").trim().toLowerCase()}::${String(article.title || "").trim().toLowerCase()}`))
     .map((article) => ({
       name: article.title,
       description: article.summary || "Saved trial article",
@@ -729,7 +1021,7 @@ function renderLandmarkTrials() {
   const markup = landmarkTrialBuckets.map(({ bucket, trials }) => {
     const manualForBucket = manualTrials.filter((trial) => trial.bucket === bucket);
     const bucketTrials = [
-      ...trials.map((trial) => {
+      ...trials.filter((trial) => !hiddenTrials.has(`${bucket.toLowerCase()}::${trial.name.toLowerCase()}`)).map((trial) => {
         const manualMatch = manualForBucket.find((manualTrial) => manualTrial.name.toLowerCase() === trial.name.toLowerCase());
         return manualMatch ? { ...trial, description: trial.description, savedAbstract: manualMatch.description, link: manualMatch.link, manualMerged: true } : trial;
       }),
@@ -746,6 +1038,7 @@ function renderLandmarkTrials() {
           <li class="trial-item" data-trial-key="${escapeHtml(`${bucket}::${trial.name}`)}" data-trial-name="${escapeHtml(trial.name)}" data-trial-description="${escapeHtml(trial.savedAbstract || trial.description)}" data-trial-bucket-name="${escapeHtml(bucket)}" data-trial-link="${escapeHtml(trial.link || "")}">
             <strong>${escapeHtml(trial.name)}</strong>
             ${trial.description ? `<small>${escapeHtml(trial.description)}</small>` : ""}
+            ${bookmarkIconButton({ type: "trial", title: trial.name, link: trial.link || `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(`${trial.name} ${trial.description || ""}`)}`, source: "Landmark Trial", summary: trial.savedAbstract || trial.description || "", bucket: "Landmark Trials" })}
             ${activeTrialKey === `${bucket}::${trial.name}` ? renderTrialDetail(bucket, trial) : ""}
           </li>
         `).join("") || '<li class="trial-item muted">No matching trials in this bucket.</li>'
@@ -764,7 +1057,7 @@ function renderLandmarkTrials() {
     const bucket = landmarkTrialBuckets.find((group) => group.bucket === manualTrial.bucket);
     return bucket?.trials.some((trial) => trial.name.toLowerCase() === manualTrial.name.toLowerCase());
   }).length;
-  const totalTrials = landmarkTrialBuckets.reduce((sum, bucket) => sum + bucket.trials.length, 0) + manualTrials.length - mergedManualCount;
+  const totalTrials = landmarkTrialBuckets.reduce((sum, group) => sum + group.trials.filter((trial) => !hiddenTrials.has(`${group.bucket.toLowerCase()}::${trial.name.toLowerCase()}`)).length, 0) + manualTrials.length - mergedManualCount;
   trialList.innerHTML = `${markup}${activeTrialBucket || searchTerm ? "" : '<li class="trial-item muted">Select a trial bucket to view studies.</li>'}`;
   trialStatus.textContent = `${totalTrials} landmark trials across ${landmarkTrialBuckets.length} buckets`;
 }
@@ -863,7 +1156,25 @@ function openResourceLink(event) {
   window.open(link.href, "_blank", "noopener");
 }
 
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-bookmark-type]");
+  if (!button) return;
+  event.preventDefault();
+  event.stopPropagation();
+  toggleBookmark({
+    type: button.dataset.bookmarkType,
+    title: button.dataset.bookmarkTitle,
+    link: button.dataset.bookmarkLink,
+    source: button.dataset.bookmarkSource,
+    summary: button.dataset.bookmarkSummary,
+    bucket: button.dataset.bookmarkBucket,
+    section: button.dataset.bookmarkSection,
+    mediaBucket: button.dataset.bookmarkMediaBucket,
+  });
+});
+
 guidelineList.addEventListener("click", (event) => {
+  if (event.target.closest("[data-bookmark-type]")) return;
   const bucket = event.target.closest(".guideline-bucket")?.dataset.bucket;
   if (!bucket) return;
   activeGuidelineBucket = activeGuidelineBucket === bucket ? null : bucket;
@@ -873,6 +1184,7 @@ guidelineList.addEventListener("click", (event) => {
 guidelineSearch.addEventListener("input", () => renderGuidelines(currentGuidelines, guidelineStatus.textContent));
 trialSearch.addEventListener("input", renderLandmarkTrials);
 trialList.addEventListener("click", (event) => {
+  if (event.target.closest("[data-bookmark-type]")) return;
   if (event.target.closest("a")) return;
   const trialItem = event.target.closest(".trial-item:not(.muted)");
   if (trialItem) {
@@ -900,6 +1212,7 @@ mainMenu.addEventListener("click", (event) => {
   if (event.target === mainMenu) closeMainMenu();
 });
 accountSettingsOpen.addEventListener("click", showAccountSettings);
+myNotebookOpen.addEventListener("click", showNotebook);
 helpOpen.addEventListener("click", showHelp);
 changePasswordForm.addEventListener("submit", changeActiveUserPassword);
 document.querySelectorAll("[data-auth-view]").forEach((tab) => {
@@ -925,6 +1238,12 @@ refreshButton.addEventListener("click", () => loadArticles(true));
 guidelineRefreshButton.addEventListener("click", () => loadGuidelines(true));
 renderLandmarkTrials();
 restoreActiveUser();
+if (new URLSearchParams(window.location.search).get("login") === "1" && !getActiveUser()) {
+  openUserAuth("signin");
+  setAuthStatus("Login to save this item to My Notebook.");
+}
+loadNotebook();
+trackVisit();
 applyHomeSettings();
 setupTileResizing();
 loadContentLibrary();

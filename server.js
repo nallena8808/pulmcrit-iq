@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const PORT = Number(process.env.PORT || 4173);
 const REFRESH_INTERVAL_MS = 3 * 60 * 60 * 1000;
@@ -21,11 +22,25 @@ const guidelineCachePath = path.join(runtimeRoot, "guidelines-cache.json");
 const uploadRoot = path.join(runtimeRoot, "uploads");
 const contentLibraryPath = path.join(runtimeRoot, "content-library.json");
 const adminKeyPath = path.join(runtimeRoot, ".pulmcrit-admin-key");
+const contentLibraryBlobPath = "pulmcrit-iq/content-library.json";
 const trialAbstractCache = new Map();
+let blobModulePromise = null;
 const defaultTileOrder = ["1", "2", "6", "9", "10", "3", "4", "8", "5"];
 const defaultHomeSettings = {
   tileOrder: defaultTileOrder,
   tileHeight: 500,
+};
+const sectionLabels = {
+  "latest-articles": "Latest PCCM Articles",
+  guidelines: "Guidelines",
+  "ventilator-lab": "Ventilator Hub",
+  "pulmonary-physiology": "Pulmonary Physiology",
+  "case-rounds": "Case Rounds",
+  "landmark-trials": "Landmark Trials",
+  "image-atlas": "PCCM Image Atlas",
+  airway: "Airway",
+  "critical-care": "Critical Care",
+  "hero-image": "Hero Image",
 };
 
 const guidelineBuckets = [
@@ -348,47 +363,180 @@ function hasAdminAccess(request) {
   return request.headers["x-admin-key"] === getAdminKey();
 }
 
+function hasBlobStorage() {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+}
+
+function uploadStorageMode() {
+  return hasBlobStorage() ? "blob" : isVercel ? "vercel-temporary" : "local";
+}
+
+async function handleStorageStatus(response) {
+  const status = {
+    ok: true,
+    mode: uploadStorageMode(),
+    persistent: !isVercel || hasBlobStorage(),
+    environment: isVercel ? "Vercel" : "Local preview",
+    provider: hasBlobStorage() ? "Vercel Blob" : isVercel ? "Vercel temporary runtime" : "Local file storage",
+    blobConfigured: hasBlobStorage(),
+    blobReachable: false,
+    contentLibrary: hasBlobStorage() ? contentLibraryBlobPath : contentLibraryPath,
+    uploadRoot: hasBlobStorage() ? "pulmcrit-iq/uploads/" : uploadRoot,
+    uploadCount: 0,
+    message: "",
+  };
+
+  try {
+    if (hasBlobStorage()) {
+      const { list } = await getBlobModule();
+      await list({ prefix: "pulmcrit-iq/", limit: 1 });
+      status.blobReachable = true;
+      status.message = "Vercel Blob is active. Admin uploads, user accounts, visits, and content metadata should persist after redeploys.";
+    } else if (isVercel) {
+      status.ok = false;
+      status.message = "Vercel Blob is not active for this deployment. Add BLOB_READ_WRITE_TOKEN in Vercel, then redeploy.";
+    } else {
+      status.message = "Local uploads are saved in this project folder. Vercel deployments need Blob storage for permanent uploads.";
+    }
+    const library = await readContentLibraryAsync();
+    status.uploadCount = (library.uploads || []).length;
+  } catch (error) {
+    status.ok = false;
+    status.persistent = false;
+    status.message = `Storage check failed: ${error.message}`;
+  }
+
+  sendJson(response, status);
+}
+
+function emptyAnalytics() {
+  return {
+    visits: [],
+    dailyVisits: {},
+  };
+}
+
+async function getBlobModule() {
+  if (!blobModulePromise) {
+    blobModulePromise = import("@vercel/blob");
+  }
+  return blobModulePromise;
+}
+
+function normalizeContentLibrary(library = {}) {
+  return {
+    articles: library.articles || [],
+    uploads: library.uploads || [],
+    subtopics: library.subtopics || [],
+    users: library.users || [],
+    notebooks: library.notebooks || {},
+    pendingUsers: library.pendingUsers || [],
+    trialAbstracts: library.trialAbstracts || {},
+    hiddenGuidelines: library.hiddenGuidelines || [],
+    hiddenTrials: library.hiddenTrials || [],
+    analytics: {
+      ...emptyAnalytics(),
+      ...(library.analytics || {}),
+      visits: library.analytics?.visits || [],
+      dailyVisits: library.analytics?.dailyVisits || {},
+    },
+    settings: {
+      ...defaultHomeSettings,
+      ...(library.settings || {}),
+      tileOrder: normalizeTileOrder(library.settings?.tileOrder),
+      tileHeight: normalizeTileHeight(library.settings?.tileHeight),
+    },
+  };
+}
+
+function readBundledContentLibrary() {
+  try {
+    return normalizeContentLibrary(JSON.parse(fs.readFileSync(bundledContentLibraryPath, "utf8")));
+  } catch {
+    return normalizeContentLibrary();
+  }
+}
+
 function readContentLibrary() {
   try {
-    const library = JSON.parse(fs.readFileSync(contentLibraryPath, "utf8"));
-    return {
-      articles: library.articles || [],
-      uploads: library.uploads || [],
-      subtopics: library.subtopics || [],
-      settings: {
-        ...defaultHomeSettings,
-        ...(library.settings || {}),
-        tileOrder: normalizeTileOrder(library.settings?.tileOrder),
-        tileHeight: normalizeTileHeight(library.settings?.tileHeight),
-      },
-    };
+    return normalizeContentLibrary(JSON.parse(fs.readFileSync(contentLibraryPath, "utf8")));
   } catch {
-    try {
-      const library = JSON.parse(fs.readFileSync(bundledContentLibraryPath, "utf8"));
-      return {
-        articles: library.articles || [],
-        uploads: library.uploads || [],
-        subtopics: library.subtopics || [],
-        settings: {
-          ...defaultHomeSettings,
-          ...(library.settings || {}),
-          tileOrder: normalizeTileOrder(library.settings?.tileOrder),
-          tileHeight: normalizeTileHeight(library.settings?.tileHeight),
-        },
-      };
-    } catch {
-      return {
-        articles: [],
-        uploads: [],
-        subtopics: [],
-        settings: defaultHomeSettings,
-      };
-    }
+    return readBundledContentLibrary();
   }
 }
 
 function writeContentLibrary(library) {
   fs.writeFileSync(contentLibraryPath, JSON.stringify(library, null, 2));
+}
+
+async function readContentLibraryAsync() {
+  if (hasBlobStorage()) {
+    try {
+      const { list } = await getBlobModule();
+      const result = await list({ prefix: contentLibraryBlobPath, limit: 1 });
+      const blob = (result.blobs || []).find((item) => item.pathname === contentLibraryBlobPath) || result.blobs?.[0];
+      if (blob?.url) {
+        const response = await fetch(blob.url, { cache: "no-store" });
+        if (response.ok) {
+          return normalizeContentLibrary(await response.json());
+        }
+      }
+    } catch (error) {
+      console.warn(`Blob content library read failed: ${error.message}`);
+    }
+  }
+  return readContentLibrary();
+}
+
+async function writeContentLibraryAsync(library) {
+  writeContentLibrary(library);
+  if (hasBlobStorage()) {
+    const { put } = await getBlobModule();
+    await put(contentLibraryBlobPath, JSON.stringify(library, null, 2), {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json",
+    });
+  }
+}
+
+async function saveUploadFile(section, filename, content) {
+  const blobPath = `pulmcrit-iq/uploads/${sanitizeName(section)}/${filename}`;
+  if (hasBlobStorage()) {
+    const { put } = await getBlobModule();
+    const blob = await put(blobPath, content, {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+    });
+    return { path: blob.url, blobUrl: blob.url, blobPath };
+  }
+
+  const sectionDir = path.join(uploadRoot, sanitizeName(section));
+  fs.mkdirSync(sectionDir, { recursive: true });
+  fs.writeFileSync(path.join(sectionDir, filename), content);
+  return { path: `/uploads/${sanitizeName(section)}/${filename}`, blobUrl: "", blobPath: "" };
+}
+
+async function deleteUploadFile(upload) {
+  if (hasBlobStorage() && (upload.blobUrl || upload.blobPath || /^https?:\/\//i.test(upload.path || ""))) {
+    try {
+      const { del } = await getBlobModule();
+      await del(upload.blobUrl || upload.path || upload.blobPath);
+    } catch (error) {
+      console.warn(`Blob delete failed: ${error.message}`);
+    }
+    return;
+  }
+
+  if (upload?.path) {
+    const relativeUploadPath = path.normalize(upload.path).replace(/^[/\\]+/, "").replace(/^(\.\.[/\\])+/, "");
+    const filePath = path.join(publicDir, relativeUploadPath);
+    if (filePath.startsWith(publicDir)) {
+      fs.rm(filePath, { force: true }, () => {});
+    }
+  }
 }
 
 function normalizeTileOrder(tileOrder) {
@@ -818,6 +966,40 @@ async function fetchTrialAbstract({ name, description, bucket }) {
   }
 }
 
+function trialAbstractKey(name, bucket) {
+  return `${String(bucket || "").trim().toLowerCase()}::${String(name || "").trim().toLowerCase()}`;
+}
+
+function guidelineCleanupKey(guideline) {
+  return `${String(guideline.organization || guideline.source || "").trim().toLowerCase()}::${String(guideline.title || "").trim().toLowerCase()}`;
+}
+
+function trialCleanupKey(name, bucket) {
+  return `${String(bucket || "").trim().toLowerCase()}::${String(name || "").trim().toLowerCase()}`;
+}
+
+async function handleTrialDetail(url, response) {
+  const name = url.searchParams.get("name") || "Trial";
+  const description = url.searchParams.get("description") || "";
+  const bucket = url.searchParams.get("bucket") || "";
+  const library = await readContentLibraryAsync();
+  const override = library.trialAbstracts?.[trialAbstractKey(name, bucket)];
+  if (override?.abstract) {
+    sendJson(response, {
+      name,
+      title: override.title || name,
+      journal: override.journal || "PulmCrit IQ Admin",
+      abstract: override.abstract,
+      link: override.link || `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(`${name} ${description || ""} ${bucket || ""}`.trim())}`,
+      doi: override.doi || "",
+      edited: true,
+    });
+    return;
+  }
+
+  sendJson(response, await fetchTrialAbstract({ name, description, bucket }));
+}
+
 async function refreshGuidelines(force = false) {
   if (guidelineRefreshPromise) return guidelineRefreshPromise;
 
@@ -982,10 +1164,16 @@ async function handleUpload(request, response, section) {
     sendJson(response, { ok: false, error: "Latest PCCM Articles is an automatic feed and does not accept admin uploads." });
     return;
   }
+  if (isVercel && !hasBlobStorage()) {
+    sendJson(response, {
+      ok: false,
+      error: "Vercel Blob is not active for this deployment. Add BLOB_READ_WRITE_TOKEN in Vercel, then redeploy.",
+      storage: uploadStorageMode(),
+    });
+    return;
+  }
   const body = await receiveBody(request);
   const files = parseMultipartUpload(request, body);
-  const sectionDir = path.join(uploadRoot, sanitizeName(section));
-  fs.mkdirSync(sectionDir, { recursive: true });
   const url = new URL(request.url, `http://${request.headers.host}`);
   const subtopicId = String(url.searchParams.get("subtopicId") || "").trim();
   const subtopicTitle = String(url.searchParams.get("subtopicTitle") || "").trim();
@@ -997,11 +1185,10 @@ async function handleUpload(request, response, section) {
   const featuredSlot = ["1", "2", "3"].includes(requestedSlot) ? requestedSlot : "";
 
   let featuredSlotUsed = false;
-  const saved = files.map((file, index) => {
+  const saved = await Promise.all(files.map(async (file, index) => {
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
     const filename = `${timestamp}-${file.filename}`;
-    const filePath = path.join(sectionDir, filename);
-    fs.writeFileSync(filePath, file.content);
+    const savedFile = await saveUploadFile(section, filename, file.content);
     const isImage = isImageFilename(filename);
     const isVideo = isVideoFilename(filename);
     const meta = Array.isArray(fileMeta) ? fileMeta[index] || {} : {};
@@ -1012,7 +1199,9 @@ async function handleUpload(request, response, section) {
     return {
       filename,
       title,
-      path: `/uploads/${sanitizeName(section)}/${filename}`,
+      path: savedFile.path,
+      blobUrl: savedFile.blobUrl,
+      blobPath: savedFile.blobPath,
       bytes: file.content.length,
       uploadedAt: new Date().toISOString(),
       subtopicId,
@@ -1024,9 +1213,9 @@ async function handleUpload(request, response, section) {
       isVideo,
       featuredSlot: fileFeaturedSlot,
     };
-  });
+  }));
 
-  const library = readContentLibrary();
+  const library = await readContentLibraryAsync();
   const savedWithSection = saved.map((file) => ({ ...file, section }));
   let existingUploads = library.uploads || [];
   savedWithSection.forEach((file) => {
@@ -1035,9 +1224,9 @@ async function handleUpload(request, response, section) {
     }
   });
   library.uploads = [...savedWithSection, ...existingUploads];
-  writeContentLibrary(library);
+  await writeContentLibraryAsync(library);
 
-  sendJson(response, { ok: true, section, saved });
+  sendJson(response, { ok: true, section, saved, storage: uploadStorageMode() });
 }
 
 async function handleSubtopic(request, response) {
@@ -1061,7 +1250,7 @@ async function handleSubtopic(request, response) {
     return;
   }
 
-  const library = readContentLibrary();
+  const library = await readContentLibraryAsync();
   const index = library.subtopics.findIndex((item) => item.id === subtopic.id);
   if (index >= 0) {
     library.subtopics[index] = {
@@ -1072,7 +1261,7 @@ async function handleSubtopic(request, response) {
   } else {
     library.subtopics = [subtopic, ...library.subtopics];
   }
-  writeContentLibrary(library);
+  await writeContentLibraryAsync(library);
   sendJson(response, { ok: true, subtopic });
 }
 
@@ -1090,7 +1279,7 @@ const trialBucketLookup = [
   ["Pulmonary Hypertension", ["SERAPHIN", "AMBITION", "GRIPHON", "INCREASE"]],
   ["Pleural Disease", ["MIST-2", "AMPLE"]],
   ["Sleep Medicine", ["SAVE", "SERVE-HF"]],
-  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC"]],
+  ["Lung Cancer", ["NLST", "NELSON", "PACIFIC", "CHECKMATE", "KEYNOTE 024", "KEYNOTE 042"]],
   ["Critical Care Infectious Diseases", ["RECOVERY", "ACTT-1"]],
   ["Neurocritical Care", ["TTM", "TTM2", "HYPERION", "INTERACT", "INTERACT2", "ATACH", "ATACH-II", "CLEAR III", "MISTIE III"]],
   ["ECMO & Cardiac Arrest", ["ARREST"]],
@@ -1173,23 +1362,57 @@ async function handleManualArticle(request, response) {
     return;
   }
 
-  const library = readContentLibrary();
+  const library = await readContentLibraryAsync();
   library.articles = [article, ...(library.articles || [])];
-  writeContentLibrary(library);
+  await writeContentLibraryAsync(library);
   sendJson(response, { ok: true, article });
 }
 
 async function handleAdminSettings(request, response) {
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
-  const library = readContentLibrary();
+  const library = await readContentLibraryAsync();
   library.settings = {
     ...library.settings,
     tileOrder: normalizeTileOrder(payload.tileOrder),
     tileHeight: normalizeTileHeight(payload.tileHeight),
   };
-  writeContentLibrary(library);
+  await writeContentLibraryAsync(library);
   sendJson(response, { ok: true, settings: library.settings });
+}
+
+async function handleTrialAbstractSave(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const name = String(payload.name || "").trim();
+  const bucket = String(payload.bucket || "").trim();
+  const abstract = String(payload.abstract || "").trim();
+  const title = String(payload.title || name).trim();
+  const link = String(payload.link || "").trim();
+  const now = new Date().toISOString();
+
+  if (!name || !bucket) {
+    sendJson(response, { ok: false, error: "Trial and bucket are required." });
+    return;
+  }
+
+  const library = await readContentLibraryAsync();
+  library.trialAbstracts = library.trialAbstracts || {};
+  const key = trialAbstractKey(name, bucket);
+  if (abstract) {
+    library.trialAbstracts[key] = {
+      name,
+      bucket,
+      title,
+      abstract,
+      link,
+      updatedAt: now,
+    };
+  } else {
+    delete library.trialAbstracts[key];
+  }
+  await writeContentLibraryAsync(library);
+  sendJson(response, { ok: true, abstract: library.trialAbstracts[key] || null });
 }
 
 async function handleDeleteContent(request, response) {
@@ -1197,7 +1420,7 @@ async function handleDeleteContent(request, response) {
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const type = String(payload.type || "").trim();
   const id = String(payload.id || "").trim();
-  const library = readContentLibrary();
+  const library = await readContentLibraryAsync();
 
   if (type === "article") {
     const before = (library.articles || []).length;
@@ -1207,7 +1430,7 @@ async function handleDeleteContent(request, response) {
       sendJson(response, { ok: false, error: "Article not found in the content library.", deleted: 0 });
       return;
     }
-    writeContentLibrary(library);
+    await writeContentLibraryAsync(library);
     sendJson(response, { ok: true, deleted });
     return;
   }
@@ -1219,14 +1442,8 @@ async function handleDeleteContent(request, response) {
       return;
     }
     library.uploads = (library.uploads || []).filter((item) => item.path !== id && item.filename !== id);
-    if (upload?.path) {
-      const relativeUploadPath = path.normalize(upload.path).replace(/^[/\\]+/, "").replace(/^(\.\.[/\\])+/, "");
-      const filePath = path.join(publicDir, relativeUploadPath);
-      if (filePath.startsWith(publicDir)) {
-        fs.rm(filePath, { force: true }, () => {});
-      }
-    }
-    writeContentLibrary(library);
+    await deleteUploadFile(upload);
+    await writeContentLibraryAsync(library);
     sendJson(response, { ok: true, deleted: 1 });
     return;
   }
@@ -1234,7 +1451,367 @@ async function handleDeleteContent(request, response) {
   sendJson(response, { ok: false, error: "Unknown content type" });
 }
 
-function landmarkTrialSearchItems() {
+async function handleCleanupDelete(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const type = String(payload.type || "").trim();
+  const key = String(payload.key || "").trim();
+  const title = String(payload.title || "").trim();
+  const bucket = String(payload.bucket || "").trim();
+  const id = String(payload.id || "").trim();
+  const library = await readContentLibraryAsync();
+
+  if (type === "guideline") {
+    library.hiddenGuidelines = [...new Set([...(library.hiddenGuidelines || []), key])].filter(Boolean);
+    const before = (library.articles || []).length;
+    library.articles = (library.articles || []).filter((article) => {
+      if (id && article.id === id) return false;
+      if (article.tile !== "Guidelines") return true;
+      return String(article.title || "").trim().toLowerCase() !== title.toLowerCase();
+    });
+    await writeContentLibraryAsync(library);
+    sendJson(response, { ok: true, hidden: library.hiddenGuidelines.length, removed: before - library.articles.length });
+    return;
+  }
+
+  if (type === "trial") {
+    const trialKey = key || trialCleanupKey(title, bucket);
+    library.hiddenTrials = [...new Set([...(library.hiddenTrials || []), trialKey])].filter(Boolean);
+    const before = (library.articles || []).length;
+    library.articles = (library.articles || []).filter((article) => {
+      if (id && article.id === id) return false;
+      if (article.tile !== "Landmark Trials") return true;
+      const sameTitle = String(article.title || "").trim().toLowerCase() === title.toLowerCase();
+      const sameBucket = String(article.trialBucket || "").trim().toLowerCase() === bucket.toLowerCase();
+      return !(sameTitle && (!bucket || sameBucket));
+    });
+    await writeContentLibraryAsync(library);
+    sendJson(response, { ok: true, hidden: library.hiddenTrials.length, removed: before - library.articles.length });
+    return;
+  }
+
+  sendJson(response, { ok: false, error: "Choose a guideline or landmark trial to remove." });
+}
+
+function publicUserRecord(user) {
+  return {
+    id: user.id,
+    email: user.email,
+    username: user.username,
+    createdAt: user.createdAt,
+    lastLoginAt: user.lastLoginAt || "",
+    loginCount: user.loginCount || 0,
+    passwordUpdatedAt: user.passwordUpdatedAt || "",
+  };
+}
+
+function hashPassword(password) {
+  return crypto.createHash("sha256").update(String(password || "")).digest("hex");
+}
+
+function verificationCode() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+async function sendVerificationEmail(email, code) {
+  if (process.env.RESEND_API_KEY) {
+    const from = process.env.VERIFY_EMAIL_FROM || "PulmCrit IQ <onboarding@resend.dev>";
+    const result = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [email],
+        subject: "PulmCrit IQ verification code",
+        text: `Your PulmCrit IQ verification code is ${code}. This code expires in 15 minutes.`,
+      }),
+    });
+    if (!result.ok) {
+      const text = await result.text().catch(() => "");
+      throw new Error(text || "Email provider rejected the verification email.");
+    }
+    return { sent: true, provider: "resend" };
+  }
+  return { sent: false, provider: "local-dev" };
+}
+
+async function sendAccountRecoveryEmail(email, user, code = "") {
+  const text = [
+    `PulmCrit IQ account recovery`,
+    ``,
+    `Your username is: ${user.username}`,
+    code ? `Your password reset verification code is: ${code}` : "",
+    code ? `This code expires in 15 minutes.` : "",
+  ].filter(Boolean).join("\n");
+
+  if (process.env.RESEND_API_KEY) {
+    const from = process.env.VERIFY_EMAIL_FROM || "PulmCrit IQ <onboarding@resend.dev>";
+    const result = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [email],
+        subject: "PulmCrit IQ account recovery",
+        text,
+      }),
+    });
+    if (!result.ok) {
+      const responseText = await result.text().catch(() => "");
+      throw new Error(responseText || "Email provider rejected the recovery email.");
+    }
+    return { sent: true, provider: "resend" };
+  }
+  return { sent: false, provider: "local-dev" };
+}
+
+function notebookBucketFor(item) {
+  const type = String(item.type || "").trim();
+  if (type === "guideline") return "Guidelines";
+  if (type === "trial") return "Landmark Trials";
+  if (type === "upload") return sectionLabels[item.section] || item.bucket || "Uploaded Content";
+  return item.bucket || "Saved Items";
+}
+
+function normalizeBookmarkItem(item = {}) {
+  const title = String(item.title || "").trim();
+  const link = String(item.link || "").trim();
+  const type = String(item.type || "item").trim();
+  const bucket = notebookBucketFor(item);
+  const id = String(item.id || `${type}:${bucket}:${title}:${link}`).trim().toLowerCase();
+  return {
+    id,
+    type,
+    title,
+    link,
+    bucket,
+    source: String(item.source || "").trim(),
+    summary: String(item.summary || item.description || item.note || "").trim(),
+    section: String(item.section || "").trim(),
+    mediaBucket: String(item.mediaBucket || "").trim(),
+    savedAt: new Date().toISOString(),
+  };
+}
+
+function userNotebook(library, email) {
+  library.notebooks = library.notebooks || {};
+  library.notebooks[email] = library.notebooks[email] || { items: [] };
+  library.notebooks[email].items = library.notebooks[email].items || [];
+  return library.notebooks[email];
+}
+
+function clientIp(request) {
+  return String(request.headers["x-forwarded-for"] || request.socket.remoteAddress || "")
+    .split(",")[0]
+    .trim();
+}
+
+async function handleUserRegister(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const email = String(payload.email || "").trim().toLowerCase();
+  const username = String(payload.username || "").trim();
+  const password = String(payload.password || "");
+  const now = new Date().toISOString();
+
+  if (!email || !username || !password) {
+    sendJson(response, { ok: false, error: "Email, username, and password are required." });
+    return;
+  }
+
+  const library = await readContentLibraryAsync();
+  const users = library.users || [];
+  if (users.some((item) => item.email.toLowerCase() === email)) {
+    sendJson(response, { ok: false, error: "An account already exists for that email." });
+    return;
+  }
+  if (users.some((item) => item.username.toLowerCase() === username.toLowerCase())) {
+    sendJson(response, { ok: false, error: "That username is already taken." });
+    return;
+  }
+
+  const user = {
+    id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    email,
+    username,
+    passwordHash: hashPassword(password),
+    createdAt: now,
+    updatedAt: now,
+    lastLoginAt: now,
+    loginCount: 1,
+    passwordUpdatedAt: "",
+  };
+  users.unshift(user);
+  library.users = users;
+  library.pendingUsers = (library.pendingUsers || []).filter((item) => item.email !== email && item.username.toLowerCase() !== username.toLowerCase());
+  await writeContentLibraryAsync(library);
+  sendJson(response, { ok: true, user: publicUserRecord(user), totalUsers: users.length });
+}
+
+async function handleUserLogin(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const email = String(payload.email || payload.identifier || "").trim().toLowerCase();
+  const username = String(payload.username || "").trim();
+  const password = String(payload.password || "");
+  const now = new Date().toISOString();
+
+  if ((!email && !username) || !password) {
+    sendJson(response, { ok: false, error: "Username/email and password are required." });
+    return;
+  }
+
+  const library = await readContentLibraryAsync();
+  const users = library.users || [];
+  let user = users.find((item) => item.email.toLowerCase() === email || item.username.toLowerCase() === username.toLowerCase());
+  if (!user) {
+    sendJson(response, { ok: false, error: "Account not found." });
+    return;
+  }
+  if (user.passwordHash && user.passwordHash !== hashPassword(password)) {
+    sendJson(response, { ok: false, error: "Username/email or password does not match." });
+    return;
+  }
+  user.passwordHash = user.passwordHash || hashPassword(password);
+  user.lastLoginAt = now;
+  user.loginCount = (Number(user.loginCount) || 0) + 1;
+  user.updatedAt = now;
+  library.users = users;
+  await writeContentLibraryAsync(library);
+  sendJson(response, { ok: true, user: publicUserRecord(user) });
+}
+
+async function handleUserPasswordUpdate(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const email = String(payload.email || "").trim().toLowerCase();
+  const password = String(payload.password || "");
+  const code = String(payload.code || "").trim();
+  const now = new Date().toISOString();
+  const library = await readContentLibraryAsync();
+  const user = (library.users || []).find((item) => item.email.toLowerCase() === email);
+  if (user) {
+    if (password && user.resetCodeHash) {
+      if (!code || user.resetCodeHash !== hashPassword(code) || new Date(user.resetExpiresAt || 0).getTime() < Date.now()) {
+        sendJson(response, { ok: false, error: "Password reset code is missing, incorrect, or expired." });
+        return;
+      }
+      user.resetCodeHash = "";
+      user.resetExpiresAt = "";
+    }
+    if (password) user.passwordHash = hashPassword(password);
+    user.passwordUpdatedAt = now;
+    user.updatedAt = now;
+    await writeContentLibraryAsync(library);
+  }
+  sendJson(response, { ok: true });
+}
+
+async function handleAccountRecovery(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const email = String(payload.email || "").trim().toLowerCase();
+  const mode = String(payload.mode || "username").trim();
+  if (!email) {
+    sendJson(response, { ok: false, error: "Email is required." });
+    return;
+  }
+  const library = await readContentLibraryAsync();
+  const user = (library.users || []).find((item) => item.email.toLowerCase() === email);
+  if (!user) {
+    sendJson(response, { ok: false, error: "No account found for that email." });
+    return;
+  }
+  let code = "";
+  if (mode === "password") {
+    code = verificationCode();
+    user.resetCodeHash = hashPassword(code);
+    user.resetExpiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+    user.updatedAt = new Date().toISOString();
+  }
+  const emailResult = await sendAccountRecoveryEmail(email, user, code);
+  await writeContentLibraryAsync(library);
+  sendJson(response, {
+    ok: true,
+    emailSent: emailResult.sent,
+    provider: emailResult.provider,
+    devCode: emailResult.sent ? "" : code,
+    devUsername: emailResult.sent ? "" : user.username,
+  });
+}
+
+async function handleNotebookGet(url, response) {
+  const email = String(url.searchParams.get("email") || "").trim().toLowerCase();
+  if (!email) {
+    sendJson(response, { ok: false, error: "Login required.", items: [] });
+    return;
+  }
+  const library = await readContentLibraryAsync();
+  sendJson(response, { ok: true, items: userNotebook(library, email).items });
+}
+
+async function handleNotebookBookmark(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const email = String(payload.email || "").trim().toLowerCase();
+  if (!email) {
+    sendJson(response, { ok: false, error: "Login required." });
+    return;
+  }
+  const item = normalizeBookmarkItem(payload.item || {});
+  if (!item.title) {
+    sendJson(response, { ok: false, error: "Bookmark needs a title." });
+    return;
+  }
+  const library = await readContentLibraryAsync();
+  const notebook = userNotebook(library, email);
+  const existingIndex = notebook.items.findIndex((candidate) => candidate.id === item.id);
+  if (existingIndex >= 0) notebook.items.splice(existingIndex, 1);
+  else notebook.items.unshift(item);
+  await writeContentLibraryAsync(library);
+  sendJson(response, { ok: true, saved: existingIndex < 0, items: notebook.items });
+}
+
+async function handleVisit(request, response) {
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const now = new Date();
+  const date = now.toISOString().slice(0, 10);
+  const visitorId = String(payload.visitorId || "").trim() || `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const pathName = String(payload.path || "/").slice(0, 200);
+  const email = String(payload.email || "").trim().toLowerCase();
+  const library = await readContentLibraryAsync();
+  const analytics = library.analytics || emptyAnalytics();
+  const visit = {
+    id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    visitorId,
+    email,
+    path: pathName,
+    date,
+    visitedAt: now.toISOString(),
+    referrer: String(payload.referrer || "").slice(0, 300),
+    userAgent: String(request.headers["user-agent"] || "").slice(0, 300),
+    ip: clientIp(request),
+  };
+  analytics.visits = [visit, ...(analytics.visits || [])].slice(0, 1000);
+  analytics.dailyVisits = analytics.dailyVisits || {};
+  const day = analytics.dailyVisits[date] || { date, visits: 0, uniqueVisitors: [] };
+  day.visits = (Number(day.visits) || 0) + 1;
+  day.uniqueVisitors = [...new Set([...(day.uniqueVisitors || []), visitorId])].slice(-5000);
+  analytics.dailyVisits[date] = day;
+  library.analytics = analytics;
+  await writeContentLibraryAsync(library);
+  sendJson(response, { ok: true });
+}
+
+function landmarkTrialSearchItems(library = readContentLibrary()) {
+  const hiddenTrials = new Set(library.hiddenTrials || []);
   const buckets = [
     ["Mechanical Ventilation", ["ARMA - Low tidal volume ventilation", "PROSEVA - Prone positioning", "FACCT - Conservative fluid strategy", "ALVEOLI - High vs low PEEP", "ACURASYS - Early neuromuscular blockade", "ROSE - Neuromuscular blockade", "DEXA-ARDS - Dexamethasone", "EOLIA - VV ECMO", "CESAR - ECMO referral", "Esteban SBT Trial - Spontaneous breathing trials"]],
     ["Sepsis & Septic Shock", ["Rivers EGDT", "ProCESS", "ARISE", "ProMISe", "SAFE", "SMART", "CLASSIC", "CLOVERS", "ADRENAL", "APROCCHSS"]],
@@ -1249,13 +1826,16 @@ function landmarkTrialSearchItems() {
     ["Pulmonary Hypertension", ["SERAPHIN", "AMBITION", "GRIPHON", "INCREASE"]],
     ["Pleural Disease", ["MIST-2", "AMPLE"]],
     ["Sleep Medicine", ["SAVE", "SERVE-HF"]],
-    ["Lung Cancer", ["NLST", "NELSON", "PACIFIC"]],
+    ["Lung Cancer", ["NLST", "NELSON", "PACIFIC", "CHECKMATE", "KEYNOTE 024", "KEYNOTE 042"]],
     ["Critical Care Infectious Diseases", ["RECOVERY", "ACTT-1"]],
     ["Neurocritical Care", ["TTM", "TTM2", "HYPERION", "INTERACT", "INTERACT2", "ATACH", "ATACH-II", "CLEAR III", "MISTIE III"]],
     ["ECMO & Cardiac Arrest", ["CESAR", "EOLIA", "ARREST"]],
   ];
 
-  return buckets.flatMap(([bucket, trials]) => trials.map((trial) => {
+  return buckets.flatMap(([bucket, trials]) => trials.filter((trial) => {
+    const [name] = trial.split(" - ");
+    return !hiddenTrials.has(trialCleanupKey(name, bucket));
+  }).map((trial) => {
     const [name, description] = trial.split(" - ");
     return {
       bucket,
@@ -1266,13 +1846,41 @@ function landmarkTrialSearchItems() {
   }));
 }
 
+function normalizeSearchText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function searchTokens(query) {
+  return normalizeSearchText(query).split(/\s+/).filter(Boolean);
+}
+
 function matchesQuery(item, query) {
-  return `${item.title || ""} ${item.summary || ""} ${item.source || ""} ${item.bucket || ""} ${item.topic || ""}`.toLowerCase().includes(query);
+  const tokens = searchTokens(query);
+  if (!tokens.length) return false;
+  const haystack = normalizeSearchText([
+    item.title,
+    item.filename,
+    item.summary,
+    item.description,
+    item.note,
+    item.source,
+    item.bucket,
+    item.topic,
+    item.section,
+    item.mediaBucket,
+    item.subtopicTitle,
+    item.link,
+  ].filter(Boolean).join(" "));
+  return tokens.every((token) => haystack.includes(token));
 }
 
 async function handleSearch(url, response) {
   const query = String(url.searchParams.get("q") || "").trim().toLowerCase();
-  const library = readContentLibrary();
+  const library = await readContentLibraryAsync();
+  const hiddenGuidelines = new Set(library.hiddenGuidelines || []);
   const guidelineStateForSearch = await refreshGuidelines(false).catch(() => guidelineState);
   const articleStateForSearch = await refreshArticles(false).catch(() => articleState);
   const manualArticles = library.articles || [];
@@ -1295,11 +1903,19 @@ async function handleSearch(url, response) {
       link: `/?subtopic=${encodeURIComponent(item.id)}`,
     })),
     ...(library.uploads || []).map((item) => ({
-      title: item.filename,
-      summary: item.note || item.subtopicTitle || "",
+      title: item.title || item.filename,
+      filename: item.filename,
+      summary: item.description || item.note || item.subtopicTitle || "",
+      description: item.description,
+      note: item.note,
       source: "Upload",
-      bucket: item.section,
-      link: item.path,
+      bucket: item.mediaBucket || sectionLabels[item.section] || item.section,
+      section: item.section,
+      mediaBucket: item.mediaBucket,
+      subtopicTitle: item.subtopicTitle,
+      link: item.section && item.section !== "hero-image"
+        ? `/section.html?section=${encodeURIComponent(item.section)}&q=${encodeURIComponent(item.title || item.filename || "")}`
+        : item.path,
     })),
     ...manualArticles.filter((item) => item.tile !== "Latest PCCM Articles" && item.tile !== "Guidelines").map((item) => ({
       title: item.title,
@@ -1312,8 +1928,10 @@ async function handleSearch(url, response) {
 
   const buckets = [
     ["Latest PCCM Articles", allArticles.map((item) => ({ title: item.title, summary: item.summary || "", source: item.source, link: item.link }))],
-    ["Guidelines", [...manualGuidelines, ...(guidelineStateForSearch.guidelines || []).map((item) => ({ title: item.title, summary: item.topic, source: item.organization, bucket: item.bucket, link: item.link }))]],
-    ["Landmark Trials", landmarkTrialSearchItems()],
+    ["Guidelines", [...manualGuidelines, ...(guidelineStateForSearch.guidelines || [])
+      .filter((item) => !hiddenGuidelines.has(guidelineCleanupKey(item)))
+      .map((item) => ({ title: item.title, summary: item.topic, source: item.organization, bucket: item.bucket, link: item.link }))]],
+    ["Landmark Trials", landmarkTrialSearchItems(library)],
     ["Admin Subtopics & Uploads", adminItems],
   ].map(([bucket, items]) => ({
     bucket,
@@ -1381,7 +1999,7 @@ const server = http.createServer(async (request, response) => {
   if (url.pathname === "/api/articles") {
     try {
       const state = await refreshArticles(url.searchParams.get("refresh") === "1");
-      const library = readContentLibrary();
+      const library = await readContentLibraryAsync();
       const manualLatestArticles = (library.articles || []).filter((article) => article.tile === "Latest PCCM Articles");
       sendJson(response, {
         ...state,
@@ -1399,7 +2017,8 @@ const server = http.createServer(async (request, response) => {
   if (url.pathname === "/api/guidelines") {
     try {
       const state = await refreshGuidelines(url.searchParams.get("refresh") === "1");
-      const library = readContentLibrary();
+      const library = await readContentLibraryAsync();
+      const hiddenGuidelines = new Set(library.hiddenGuidelines || []);
       const manualGuidelines = (library.articles || [])
         .filter((article) => article.tile === "Guidelines")
         .map((article) => ({
@@ -1413,7 +2032,7 @@ const server = http.createServer(async (request, response) => {
         }));
       sendJson(response, {
         ...state,
-        guidelines: [...manualGuidelines, ...(state.guidelines || [])],
+        guidelines: [...manualGuidelines, ...(state.guidelines || []).filter((guideline) => !hiddenGuidelines.has(guidelineCleanupKey(guideline)))],
       });
     } catch (error) {
       sendJson(response, {
@@ -1425,12 +2044,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (url.pathname === "/api/trial") {
-    const detail = await fetchTrialAbstract({
-      name: url.searchParams.get("name") || "Trial",
-      description: url.searchParams.get("description") || "",
-      bucket: url.searchParams.get("bucket") || "",
-    });
-    sendJson(response, detail);
+    await handleTrialDetail(url, response);
     return;
   }
 
@@ -1439,6 +2053,82 @@ const server = http.createServer(async (request, response) => {
       await handleSearch(url, response);
     } catch (error) {
       sendJson(response, { query: url.searchParams.get("q") || "", buckets: [], error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/storage/status") {
+    if (!hasAdminAccess(request)) {
+      response.writeHead(403, {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+      });
+      response.end(JSON.stringify({ ok: false, error: "Admin key required" }));
+      return;
+    }
+    await handleStorageStatus(response);
+    return;
+  }
+
+  if (url.pathname === "/api/analytics/visit" && request.method === "POST") {
+    try {
+      await handleVisit(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/register" && request.method === "POST") {
+    try {
+      await handleUserRegister(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/login" && request.method === "POST") {
+    try {
+      await handleUserLogin(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/password" && request.method === "POST") {
+    try {
+      await handleUserPasswordUpdate(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/recover" && request.method === "POST") {
+    try {
+      await handleAccountRecovery(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/notebook" && request.method === "GET") {
+    try {
+      await handleNotebookGet(url, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message, items: [] });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/bookmark" && request.method === "POST") {
+    try {
+      await handleNotebookBookmark(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
     }
     return;
   }
@@ -1465,7 +2155,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   if (url.pathname === "/api/admin/content") {
-    sendJson(response, readContentLibrary());
+    sendJson(response, await readContentLibraryAsync());
     return;
   }
 
@@ -1527,6 +2217,40 @@ const server = http.createServer(async (request, response) => {
     }
     try {
       await handleAdminSettings(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/admin/trial-abstract" && request.method === "POST") {
+    if (!hasAdminAccess(request)) {
+      response.writeHead(403, {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+      });
+      response.end(JSON.stringify({ ok: false, error: "Admin key required" }));
+      return;
+    }
+    try {
+      await handleTrialAbstractSave(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/admin/cleanup-delete" && request.method === "POST") {
+    if (!hasAdminAccess(request)) {
+      response.writeHead(403, {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+      });
+      response.end(JSON.stringify({ ok: false, error: "Admin key required" }));
+      return;
+    }
+    try {
+      await handleCleanupDelete(request, response);
     } catch (error) {
       sendJson(response, { ok: false, error: error.message });
     }
