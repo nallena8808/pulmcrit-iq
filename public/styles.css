@@ -869,6 +869,47 @@ main {
   gap: 14px;
 }
 
+.section-atlas-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.atlas-title-tabs {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.atlas-title-tab {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.atlas-extra-image:not([hidden]) {
+  display: contents;
+}
+
+.atlas-extra-image[hidden] {
+  display: none;
+}
+
+.atlas-more-button {
+  justify-self: start;
+  min-height: 38px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #9c3b68, #77214d);
+  color: #fff;
+  padding: 0 14px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(124, 33, 77, 0.16);
+}
+
+.atlas-more-button:hover {
+  filter: brightness(1.05);
+}
+
 .section-video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1288,6 +1329,34 @@ main {
   border: 1px solid rgba(23, 32, 34, 0.08);
 }
 
+.notebook-item-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 10px;
+}
+
+.notebook-delete-button {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(124, 16, 62, 0.2);
+  border-radius: 8px;
+  background: #fff5f8;
+  color: #8a1648;
+  font-size: 1.15rem;
+  font-weight: 950;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(124, 16, 62, 0.08);
+}
+
+.notebook-delete-button:hover {
+  background: #8a1648;
+  color: #fff;
+}
+
 .notebook-page-bucket a {
   color: var(--ink);
   font-weight: 950;
@@ -1303,6 +1372,10 @@ main {
 }
 
 @media (max-width: 760px) {
+  .section-atlas-grid {
+    grid-template-columns: 1fr;
+  }
+
   .notebook-page-grid {
     grid-template-columns: 1fr;
   }

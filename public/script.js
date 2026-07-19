@@ -22,6 +22,7 @@ const USER_PASSWORD_API_URL = `${SERVER_ORIGIN}/api/users/password`;
 const USER_RECOVERY_API_URL = `${SERVER_ORIGIN}/api/users/recover`;
 const USER_NOTEBOOK_API_URL = `${SERVER_ORIGIN}/api/users/notebook`;
 const USER_BOOKMARK_API_URL = `${SERVER_ORIGIN}/api/users/bookmark`;
+const USER_BOOKMARK_DELETE_API_URL = `${SERVER_ORIGIN}/api/users/bookmark-delete`;
 const VISITOR_ID_KEY = "pulmcrit-iq-visitor-id";
 
 const pccmKeywords = [
@@ -473,7 +474,7 @@ function formatAboutParagraph(text) {
 
 function renderAbout(library = currentContentLibrary) {
   if (!aboutContent) return;
-  const aboutText = String(library.settings?.aboutText || defaultAboutText).trim();
+  const aboutText = String(library.settings && Object.prototype.hasOwnProperty.call(library.settings, "aboutText") ? library.settings.aboutText : defaultAboutText).trim();
   const image = (library.uploads || [])
     .filter((item) => item.section === "about-image" && (item.isImage || /\.(png|jpe?g|gif|webp|svg)$/i.test(item.filename || item.path || "")))
     .sort((a, b) => new Date(b.uploadedAt || 0) - new Date(a.uploadedAt || 0))[0];
@@ -506,6 +507,33 @@ function renderHelp(settings = {}) {
 
 function bookmarkKey(item) {
   return String(item.id || `${item.type}:${item.bucket}:${item.title}:${item.link}`).trim().toLowerCase();
+}
+
+function localNotebookItems(user) {
+  if (!user) return [];
+  try {
+    return JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function mergeNotebookItems(...groups) {
+  const merged = new Map();
+  groups.flat().filter(Boolean).forEach((item) => {
+    const normalized = {
+      ...item,
+      id: bookmarkKey(item),
+      bucket: item.bucket || notebookBucketFor(item),
+    };
+    if (normalized.title && !merged.has(normalized.id)) merged.set(normalized.id, normalized);
+  });
+  return [...merged.values()];
+}
+
+function saveNotebookLocal(user, items) {
+  if (!user) return;
+  localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(items));
 }
 
 function notebookHas(item) {
@@ -570,10 +598,12 @@ async function loadNotebook() {
   try {
     const response = await fetch(`${USER_NOTEBOOK_API_URL}?email=${encodeURIComponent(user.email)}`, { cache: "no-store" });
     const result = await response.json();
-    currentNotebookItems = result.items || [];
+    if (!response.ok || !result.ok) throw new Error(result.error || "Notebook unavailable.");
+    currentNotebookItems = mergeNotebookItems(result.items || [], localNotebookItems(user));
   } catch {
-    currentNotebookItems = JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+    currentNotebookItems = mergeNotebookItems(localNotebookItems(user));
   }
+  saveNotebookLocal(user, currentNotebookItems);
   renderNotebook();
   renderGuidelines(currentGuidelines, guidelineStatus.textContent);
   renderLandmarkTrials();
@@ -591,21 +621,24 @@ async function toggleBookmark(item) {
     id: bookmarkKey(item),
     bucket: item.bucket || notebookBucketFor(item),
   };
+  const wasSaved = notebookHas(normalized);
   try {
-    const response = await fetch(USER_BOOKMARK_API_URL, {
+    const response = await fetch(wasSaved ? USER_BOOKMARK_DELETE_API_URL : USER_BOOKMARK_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: user.email, item: normalized }),
+      body: JSON.stringify(wasSaved ? { email: user.email, id: normalized.id } : { email: user.email, item: normalized }),
     });
     const result = await response.json();
     if (!result.ok) throw new Error(result.error || "Bookmark failed.");
-    currentNotebookItems = result.items || [];
+    currentNotebookItems = wasSaved
+      ? mergeNotebookItems(result.items || []).filter((saved) => saved.id !== normalized.id)
+      : mergeNotebookItems(result.items || [], localNotebookItems(user));
   } catch {
     const existing = currentNotebookItems.findIndex((saved) => saved.id === normalized.id);
     if (existing >= 0) currentNotebookItems.splice(existing, 1);
     else currentNotebookItems.unshift(normalized);
-    localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(currentNotebookItems));
   }
+  saveNotebookLocal(user, currentNotebookItems);
   renderNotebook();
   renderGuidelines(currentGuidelines, guidelineStatus.textContent);
   renderLandmarkTrials();
@@ -839,7 +872,8 @@ function applyHomeSettings(settings = {}) {
     const index = order.indexOf(tile.dataset.tile);
     tile.style.order = index >= 0 ? String(index + 1) : "99";
   });
-  const height = Math.max(320, Math.min(500, savedHeight || Number(settings.tileHeight) || 500));
+  const heightSource = Number.isFinite(savedHeight) && savedHeight > 0 ? savedHeight : Number(settings.tileHeight) || 500;
+  const height = Math.max(320, Math.min(500, heightSource));
   document.documentElement.style.setProperty("--home-tile-height", `${height}px`);
 }
 
@@ -888,6 +922,7 @@ function setupTileResizing() {
     if (!resizeState) return;
     const current = Number(getComputedStyle(document.documentElement).getPropertyValue("--home-tile-height").replace("px", "")) || 500;
     localStorage.setItem("pulmcrit-iq-home-tile-height", String(Math.round(current / 10) * 10));
+    localStorage.setItem("pulmcrit-iq-home-tile-height-manual", "1");
     resizeState = null;
   });
 }

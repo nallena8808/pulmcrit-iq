@@ -1817,6 +1817,23 @@ async function handleNotebookBookmark(request, response) {
   sendJson(response, { ok: true, saved: existingIndex < 0, items: notebook.items });
 }
 
+async function handleNotebookDelete(request, response) {
+  if (!ensurePersistentAccountStorage(response)) return;
+  const body = await receiveBody(request);
+  const payload = JSON.parse(body.toString("utf8") || "{}");
+  const email = String(payload.email || "").trim().toLowerCase();
+  const id = String(payload.id || "").trim().toLowerCase();
+  if (!email || !id) {
+    sendJson(response, { ok: false, error: "Login and saved item are required.", items: [] });
+    return;
+  }
+  const library = await readContentLibraryAsync();
+  const notebook = userNotebook(library, email);
+  notebook.items = notebook.items.filter((candidate) => String(candidate.id || "").toLowerCase() !== id);
+  await writeContentLibraryAsync(library);
+  sendJson(response, { ok: true, items: notebook.items });
+}
+
 async function handleVisit(request, response) {
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
@@ -2168,6 +2185,15 @@ const server = http.createServer(async (request, response) => {
       await handleNotebookBookmark(request, response);
     } catch (error) {
       sendJson(response, { ok: false, error: error.message });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/users/bookmark-delete" && request.method === "POST") {
+    try {
+      await handleNotebookDelete(request, response);
+    } catch (error) {
+      sendJson(response, { ok: false, error: error.message, items: [] });
     }
     return;
   }

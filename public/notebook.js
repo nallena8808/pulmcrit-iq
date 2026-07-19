@@ -11,6 +11,7 @@ if (window.location.protocol === "file:") {
 const ACTIVE_USER_KEY = "pulmcrit-iq-active-user";
 const USER_STORE_KEY = "pulmcrit-iq-users";
 const USER_NOTEBOOK_API_URL = `${SERVER_ORIGIN}/api/users/notebook`;
+const USER_BOOKMARK_DELETE_API_URL = `${SERVER_ORIGIN}/api/users/bookmark-delete`;
 
 const notebookBuckets = [
   "Latest PCCM Articles",
@@ -76,6 +77,37 @@ function bucketFor(item) {
   return item.bucket || "Saved Items";
 }
 
+function bookmarkKey(item) {
+  return String(item.id || `${item.type}:${item.bucket}:${item.title}:${item.link}`).trim().toLowerCase();
+}
+
+function localNotebookItems(user) {
+  if (!user) return [];
+  try {
+    return JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function mergeNotebookItems(...groups) {
+  const merged = new Map();
+  groups.flat().filter(Boolean).forEach((item) => {
+    const normalized = {
+      ...item,
+      id: bookmarkKey(item),
+      bucket: item.bucket || bucketFor(item),
+    };
+    if (normalized.title && !merged.has(normalized.id)) merged.set(normalized.id, normalized);
+  });
+  return [...merged.values()];
+}
+
+function saveNotebookLocal(user, items) {
+  if (!user) return;
+  localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(items));
+}
+
 function itemMatches(item, query) {
   const tokens = String(query || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().split(/\s+/).filter(Boolean);
   if (!tokens.length) return true;
@@ -111,7 +143,10 @@ function renderNotebook() {
           <ul>
             ${items.map((item) => `
               <li>
-                <a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title || "Saved item")}</a>
+                <div class="notebook-item-row">
+                  <a href="${escapeHtml(item.link || "#")}" target="_blank" rel="noreferrer">${escapeHtml(item.title || "Saved item")}</a>
+                  <button class="notebook-delete-button" type="button" aria-label="Remove ${escapeHtml(item.title || "saved item")}" title="Remove from My Notebook" data-notebook-remove="${escapeHtml(bookmarkKey(item))}">×</button>
+                </div>
                 <small>${escapeHtml([item.mediaBucket, item.source, item.summary].filter(Boolean).join(" · "))}</small>
               </li>
             `).join("")}
@@ -131,13 +166,41 @@ async function loadNotebook() {
   try {
     const response = await fetch(`${USER_NOTEBOOK_API_URL}?email=${encodeURIComponent(user.email)}`, { cache: "no-store" });
     const result = await response.json();
-    notebookItems = result.items || [];
+    if (!response.ok || !result.ok) throw new Error(result.error || "Notebook unavailable.");
+    notebookItems = mergeNotebookItems(result.items || [], localNotebookItems(user));
   } catch {
-    notebookItems = JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+    notebookItems = mergeNotebookItems(localNotebookItems(user));
   }
+  saveNotebookLocal(user, notebookItems);
+  renderNotebook();
+}
+
+async function removeNotebookItem(id) {
+  const user = getActiveUser();
+  if (!user) return;
+  const normalizedId = String(id || "").trim().toLowerCase();
+  if (!normalizedId) return;
+  try {
+    const response = await fetch(USER_BOOKMARK_DELETE_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: user.email, id: normalizedId }),
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "Remove failed.");
+    notebookItems = mergeNotebookItems(result.items || []).filter((item) => item.id !== normalizedId);
+  } catch {
+    notebookItems = notebookItems.filter((item) => bookmarkKey(item) !== normalizedId);
+  }
+  saveNotebookLocal(user, notebookItems);
   renderNotebook();
 }
 
 searchForm.addEventListener("submit", (event) => event.preventDefault());
 searchInput.addEventListener("input", renderNotebook);
+contentEl.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-notebook-remove]");
+  if (!button) return;
+  removeNotebookItem(button.dataset.notebookRemove);
+});
 loadNotebook();

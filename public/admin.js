@@ -500,7 +500,7 @@ function mergeRememberedUploads(libraryData) {
 function renderAboutSettings(settings = {}) {
   if (!adminAboutText) return;
   adminHelpEmail.value = settings.helpEmail || defaultHelpEmail;
-  adminAboutText.value = settings.aboutText || defaultAboutText;
+  adminAboutText.value = Object.prototype.hasOwnProperty.call(settings, "aboutText") ? settings.aboutText : defaultAboutText;
 }
 
 function currentAboutImage(uploads = currentLibrary.uploads || []) {

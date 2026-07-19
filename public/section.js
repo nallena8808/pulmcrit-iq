@@ -31,6 +31,7 @@ const ACTIVE_USER_KEY = "pulmcrit-iq-active-user";
 const USER_STORE_KEY = "pulmcrit-iq-users";
 const USER_NOTEBOOK_API_URL = `${SERVER_ORIGIN}/api/users/notebook`;
 const USER_BOOKMARK_API_URL = `${SERVER_ORIGIN}/api/users/bookmark`;
+const USER_BOOKMARK_DELETE_API_URL = `${SERVER_ORIGIN}/api/users/bookmark-delete`;
 
 let library = { articles: [], uploads: [], subtopics: [] };
 let liveArticles = [];
@@ -169,6 +170,29 @@ function bookmarkKey(item) {
   return String(item.id || `${item.type}:${item.bucket}:${item.title}:${item.link}`).trim().toLowerCase();
 }
 
+function localNotebookItems(user) {
+  if (!user) return [];
+  try {
+    return JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function mergeNotebookItems(...groups) {
+  const merged = new Map();
+  groups.flat().filter(Boolean).forEach((item) => {
+    const normalized = { ...item, id: bookmarkKey(item) };
+    if (normalized.title && !merged.has(normalized.id)) merged.set(normalized.id, normalized);
+  });
+  return [...merged.values()];
+}
+
+function saveNotebookLocal(user, items) {
+  if (!user) return;
+  localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(items));
+}
+
 function notebookHas(item) {
   const key = bookmarkKey(item);
   return currentNotebookItems.some((saved) => saved.id === key);
@@ -189,10 +213,12 @@ async function loadNotebook() {
   try {
     const response = await fetch(`${USER_NOTEBOOK_API_URL}?email=${encodeURIComponent(user.email)}`, { cache: "no-store" });
     const result = await response.json();
-    currentNotebookItems = result.items || [];
+    if (!response.ok || !result.ok) throw new Error(result.error || "Notebook unavailable.");
+    currentNotebookItems = mergeNotebookItems(result.items || [], localNotebookItems(user));
   } catch {
-    currentNotebookItems = JSON.parse(localStorage.getItem(`pulmcrit-iq-notebook-${user.email}`) || "[]");
+    currentNotebookItems = mergeNotebookItems(localNotebookItems(user));
   }
+  saveNotebookLocal(user, currentNotebookItems);
 }
 
 async function toggleBookmark(item) {
@@ -203,21 +229,24 @@ async function toggleBookmark(item) {
     return;
   }
   const normalized = { ...item, id: bookmarkKey(item) };
+  const wasSaved = notebookHas(normalized);
   try {
-    const response = await fetch(USER_BOOKMARK_API_URL, {
+    const response = await fetch(wasSaved ? USER_BOOKMARK_DELETE_API_URL : USER_BOOKMARK_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: user.email, item: normalized }),
+      body: JSON.stringify(wasSaved ? { email: user.email, id: normalized.id } : { email: user.email, item: normalized }),
     });
     const result = await response.json();
     if (!result.ok) throw new Error(result.error || "Bookmark failed.");
-    currentNotebookItems = result.items || [];
+    currentNotebookItems = wasSaved
+      ? mergeNotebookItems(result.items || []).filter((saved) => saved.id !== normalized.id)
+      : mergeNotebookItems(result.items || [], localNotebookItems(user));
   } catch {
     const existing = currentNotebookItems.findIndex((saved) => saved.id === normalized.id);
     if (existing >= 0) currentNotebookItems.splice(existing, 1);
     else currentNotebookItems.unshift(normalized);
-    localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(currentNotebookItems));
   }
+  saveNotebookLocal(user, currentNotebookItems);
   renderSection();
 }
 
@@ -362,7 +391,8 @@ function renderSection() {
   const liveSectionMarkup = renderLiveSection(searchTerm, library.articles || []);
 
   sectionTitle.textContent = sectionLabels[section] || "PulmCrit IQ Section";
-  const imageAtlasBuckets = ["X-rays", "CT scans", "Ultrasound", "Echo", "PET scan", "PFTs"];
+  const imageAtlasBuckets = ["X-rays", "CT scans", "Ultrasound", "Echo", "PET scan", "PFTs", "Bronchoscopy"];
+  const atlasGroupTitle = (item) => String(item.title || item.note || item.filename || "Untitled image set").trim();
   const renderAtlasItem = (item) => {
     const url = escapeHtml(assetUrl(item.path));
     const title = escapeHtml(item.title || item.note || item.filename);
@@ -399,11 +429,31 @@ function renderSection() {
   const imageMarkup = section === "image-atlas"
     ? imageAtlasBuckets.map((bucket) => {
         const bucketItems = uploads.filter((item) => (item.mediaBucket || "X-rays") === bucket);
+        const groupedItems = bucketItems.reduce((groups, item) => {
+          const title = atlasGroupTitle(item);
+          groups[title] = groups[title] || [];
+          groups[title].push(item);
+          return groups;
+        }, {});
+        const groupMarkup = Object.entries(groupedItems).map(([title, items]) => {
+          const firstItems = items.slice(0, 3);
+          const hiddenItems = items.slice(3);
+          return `
+            <details class="section-subtopic atlas-title-tab">
+              <summary>${escapeHtml(title)} <small>${items.length} image${items.length === 1 ? "" : "s"}</small></summary>
+              <div class="section-image-grid section-atlas-grid">
+                ${firstItems.map(renderAtlasItem).join("")}
+                ${hiddenItems.map((item) => `<div class="atlas-extra-image" hidden>${renderAtlasItem(item)}</div>`).join("")}
+              </div>
+              ${hiddenItems.length ? `<button class="atlas-more-button" type="button" data-atlas-more>More Images</button>` : ""}
+            </details>
+          `;
+        }).join("");
         return `
           <details class="section-subtopic" open>
             <summary>${escapeHtml(bucket)}</summary>
-            <div class="section-image-grid section-atlas-grid">
-              ${bucketItems.length ? bucketItems.map(renderAtlasItem).join("") : '<div class="section-empty compact">No uploads in this bucket yet.</div>'}
+            <div class="atlas-title-tabs">
+              ${bucketItems.length ? groupMarkup : '<div class="section-empty compact">No uploads in this bucket yet.</div>'}
             </div>
           </details>
         `;
@@ -501,6 +551,19 @@ sectionSearchForm.addEventListener("submit", (event) => {
 sectionSearchInput.addEventListener("input", renderSection);
 
 document.addEventListener("click", (event) => {
+  const moreButton = event.target.closest("[data-atlas-more]");
+  if (moreButton) {
+    const tab = moreButton.closest(".atlas-title-tab");
+    const hiddenItems = tab ? [...tab.querySelectorAll(".atlas-extra-image[hidden]")] : [];
+    hiddenItems.slice(0, 3).forEach((item) => {
+      item.hidden = false;
+    });
+    if (!tab || !tab.querySelector(".atlas-extra-image[hidden]")) {
+      moreButton.remove();
+    }
+    return;
+  }
+
   const button = event.target.closest("[data-bookmark-type]");
   if (!button) return;
   event.preventDefault();
