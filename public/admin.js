@@ -162,6 +162,21 @@ function notifyContentUpdated() {
   localStorage.setItem("pulmcrit-iq-content-updated", String(payload.updatedAt));
 }
 
+function rememberUploadedItems(items = []) {
+  if (!items.length) return;
+  let uploads = [];
+  try {
+    uploads = JSON.parse(localStorage.getItem("pulmcrit-iq-upload-shadow") || "[]");
+  } catch {
+    uploads = [];
+  }
+  const merged = [...items, ...uploads].filter((item, index, all) => {
+    const key = item.path || item.blobUrl || item.filename;
+    return key && all.findIndex((candidate) => (candidate.path || candidate.blobUrl || candidate.filename) === key) === index;
+  });
+  localStorage.setItem("pulmcrit-iq-upload-shadow", JSON.stringify(merged.slice(0, 60)));
+}
+
 function trialAbstractKey(name, bucket) {
   return `${String(bucket || "").trim().toLowerCase()}::${String(name || "").trim().toLowerCase()}`;
 }
@@ -428,7 +443,7 @@ async function refreshStorageStatus() {
 
 async function refreshLibrary() {
   const response = await fetch(`${SERVER_ORIGIN}/api/admin/content`, { cache: "no-store" });
-  const library = await response.json();
+  const library = mergeRememberedUploads(await response.json());
   currentLibrary = library;
   const articles = library.articles || [];
   const uploads = library.uploads || [];
@@ -464,6 +479,22 @@ async function refreshLibrary() {
       ${!articles.length && !uploads.length ? '<div class="library-item">No admin content saved yet.</div>' : ""}
     </div>
   `;
+}
+
+function mergeRememberedUploads(libraryData) {
+  let remembered = [];
+  try {
+    remembered = JSON.parse(localStorage.getItem("pulmcrit-iq-upload-shadow") || "[]");
+  } catch {
+    remembered = [];
+  }
+  return {
+    ...libraryData,
+    uploads: [...remembered, ...(libraryData.uploads || [])].filter((item, index, all) => {
+      const key = item.path || item.blobUrl || item.filename;
+      return key && all.findIndex((candidate) => (candidate.path || candidate.blobUrl || candidate.filename) === key) === index;
+    }),
+  };
 }
 
 function renderAboutSettings(settings = {}) {
@@ -505,10 +536,20 @@ async function deleteContent(type, id) {
   if (!response.ok) throw new Error(result.error || "Delete failed");
   if (!result.ok) throw new Error(result.error || "Delete failed");
   if (!result.deleted) throw new Error("This item was not found in the content library.");
+  if (type === "upload") forgetUploadedItem(id);
   notifyContentUpdated();
   await refreshStorageStatus();
   await refreshLibrary();
   return result;
+}
+
+function forgetUploadedItem(id) {
+  try {
+    const uploads = JSON.parse(localStorage.getItem("pulmcrit-iq-upload-shadow") || "[]");
+    localStorage.setItem("pulmcrit-iq-upload-shadow", JSON.stringify(uploads.filter((item) => item.path !== id && item.blobUrl !== id && item.filename !== id)));
+  } catch {
+    localStorage.removeItem("pulmcrit-iq-upload-shadow");
+  }
 }
 
 function normalizeTileOrder(tileOrder) {
@@ -792,6 +833,7 @@ uploadForm.addEventListener("submit", async (event) => {
   }
   const storageLabel = result.storage === "blob" ? " to Vercel Blob" : "";
   adminUploadStatus.textContent = `${result.saved.length} file${result.saved.length === 1 ? "" : "s"} saved${storageLabel}.`;
+  rememberUploadedItems((result.saved || []).map((item) => ({ ...item, section: adminSection.value })));
   if (result.ok && link) {
     try {
       await saveArticleFromUpload({ link, note, title });
@@ -936,7 +978,10 @@ adminHeroForm.addEventListener("submit", async (event) => {
     adminHeroStatus.textContent = result.ok ? "Hero image updated." : (result.error || "Hero upload failed.");
     adminHeroFile.value = "";
     adminHeroNote.value = "";
-    if (result.ok) notifyContentUpdated();
+    if (result.ok) {
+      rememberUploadedItems((result.saved || []).map((item) => ({ ...item, section: "hero-image" })));
+      notifyContentUpdated();
+    }
     await refreshStorageStatus();
     await refreshLibrary();
   } catch (error) {
@@ -964,7 +1009,10 @@ adminAboutImageForm.addEventListener("submit", async (event) => {
     const result = await readAdminJson(response, "About image upload");
     adminAboutImageStatus.textContent = result.ok ? "About image updated." : (result.error || "About image upload failed.");
     adminAboutImageFile.value = "";
-    if (result.ok) notifyContentUpdated();
+    if (result.ok) {
+      rememberUploadedItems((result.saved || []).map((item) => ({ ...item, section: "about-image" })));
+      notifyContentUpdated();
+    }
     await refreshStorageStatus();
     await refreshLibrary();
   } catch (error) {

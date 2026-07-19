@@ -133,6 +133,25 @@ function assetUrl(path) {
   return `${SERVER_ORIGIN}${path}`;
 }
 
+function readShadowUploads() {
+  try {
+    return JSON.parse(localStorage.getItem("pulmcrit-iq-upload-shadow") || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function mergeShadowUploads(libraryData) {
+  const shadowUploads = readShadowUploads();
+  return {
+    ...libraryData,
+    uploads: [...shadowUploads, ...(libraryData.uploads || [])].filter((item, index, all) => {
+      const key = item.path || item.blobUrl || item.filename;
+      return key && all.findIndex((candidate) => (candidate.path || candidate.blobUrl || candidate.filename) === key) === index;
+    }),
+  };
+}
+
 function getUsers() {
   try {
     return JSON.parse(localStorage.getItem(USER_STORE_KEY)) || [];
@@ -508,7 +527,7 @@ async function loadSection() {
     section === "latest-articles" ? fetch(`${SERVER_ORIGIN}/api/articles`, { cache: "no-store" }) : Promise.resolve(null),
     section === "guidelines" ? fetch(`${SERVER_ORIGIN}/api/guidelines`, { cache: "no-store" }) : Promise.resolve(null),
   ]);
-  library = await libraryResponse.json();
+  library = mergeShadowUploads(await libraryResponse.json());
   if (articlesResponse?.ok) {
     const data = await articlesResponse.json();
     liveArticles = data.articles || [];

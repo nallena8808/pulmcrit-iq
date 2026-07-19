@@ -905,6 +905,14 @@ function readShadowSettings() {
   }
 }
 
+function readShadowUploads() {
+  try {
+    return JSON.parse(localStorage.getItem("pulmcrit-iq-upload-shadow") || "[]");
+  } catch {
+    return [];
+  }
+}
+
 async function loadContentLibrary() {
   try {
     const response = await fetch(CONTENT_API_URL, { cache: "no-store" });
@@ -912,6 +920,11 @@ async function loadContentLibrary() {
     const library = await response.json();
     const shadowSettings = readShadowSettings();
     library.settings = { ...(library.settings || {}), ...shadowSettings };
+    const shadowUploads = readShadowUploads();
+    library.uploads = [...shadowUploads, ...(library.uploads || [])].filter((item, index, all) => {
+      const key = item.path || item.blobUrl || item.filename;
+      return key && all.findIndex((candidate) => (candidate.path || candidate.blobUrl || candidate.filename) === key) === index;
+    });
     applyHomeSettings(library.settings);
     renderHeroImage(library);
     renderAbout(library);
