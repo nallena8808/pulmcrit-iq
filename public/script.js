@@ -5,7 +5,7 @@ const USER_STORE_KEY = "pulmcrit-iq-users";
 const ACTIVE_USER_KEY = "pulmcrit-iq-active-user";
 const SERVER_ORIGIN = window.location.protocol === "file:"
   ? "http://127.0.0.1:4177"
-  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176"].includes(window.location.port)
+  : window.location.hostname === "127.0.0.1" && ["4173", "4174", "4175", "4176", "4178"].includes(window.location.port)
     ? "http://127.0.0.1:4177"
     : "";
 if (window.location.protocol === "file:") {
@@ -153,10 +153,15 @@ const mainMenuClose = document.querySelector("#main-menu-close");
 const mainMenu = document.querySelector("#main-menu");
 const accountSettingsOpen = document.querySelector("#account-settings-open");
 const myNotebookOpen = document.querySelector("#my-notebook-open");
+const userSignout = document.querySelector("#user-signout");
+const aboutOpen = document.querySelector("#about-open");
 const helpOpen = document.querySelector("#help-open");
 const accountSettingsPanel = document.querySelector("#account-settings-panel");
 const helpPanel = document.querySelector("#help-panel");
-const myNotebookPanel = document.querySelector("#my-notebook-panel");
+const aboutModal = document.querySelector("#about-modal");
+const aboutClose = document.querySelector("#about-close");
+const aboutContent = document.querySelector("#about-content");
+const helpEmailLink = document.querySelector("#help-email-link");
 const notebookStatus = document.querySelector("#notebook-status");
 const notebookList = document.querySelector("#notebook-list");
 const changePasswordForm = document.querySelector("#change-password-form");
@@ -172,6 +177,16 @@ let currentNotebookItems = [];
 const trialDetailCache = new Map();
 const defaultTileOrder = ["1", "2", "6", "9", "10", "3", "4", "8", "5"];
 const contentChannel = "BroadcastChannel" in window ? new BroadcastChannel("pulmcrit-iq-content") : null;
+const defaultHelpEmail = "pulmcritIQ@gmail.org";
+const defaultAboutText = `I created this website to support residents, fellows, and practicing physicians as they navigate the ever-evolving field of pulmonary and critical care medicine.
+
+Throughout my training, I often found it difficult to locate practical clinical information, landmark trials, current guidelines, and the latest research in one reliable place. Important resources were scattered across journals, society websites, textbooks, and multiple online platforms. - Nishant Allena, MD.
+
+Alvin Toffler famously said, *"The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn."* Nowhere is that more relevant than in critical care, where new evidence continually challenges established practices and reshapes the way we care for patients.
+
+This website was built on that philosophy—to provide a single, organized, and continually updated resource where clinicians can learn, unlearn, and relearn. It brings together the knowledge, lessons, and clinical experiences I have gathered over the years, alongside the latest guidelines, landmark trials, emerging research, practical bedside tools, imaging, procedures, and case-based learning.
+
+My goal is simple: to create a true one-stop platform for pulmonary and critical care medicine, empowering clinicians at every stage of their careers to stay current, think critically, and deliver the highest quality evidence-based care to their patients.`;
 
 const tileContentMap = {
   "1": { sections: ["latest-articles"], labels: ["Latest PCCM Articles"] },
@@ -390,6 +405,18 @@ function setActiveUser(user) {
   loadNotebook();
 }
 
+function signOutUser() {
+  localStorage.removeItem(ACTIVE_USER_KEY);
+  currentNotebookItems = [];
+  userLoginOpen.querySelector(".login-avatar").textContent = "U";
+  userLoginOpen.querySelector("span:last-child").textContent = "Login";
+  renderNotebook();
+  renderGuidelines(currentGuidelines, guidelineStatus.textContent);
+  renderLandmarkTrials();
+  closeMainMenu();
+  setAuthStatus("Signed out.");
+}
+
 function restoreActiveUser() {
   const user = getActiveUser();
   if (user) setActiveUser(user);
@@ -415,8 +442,8 @@ function openMainMenu() {
   mainMenu.hidden = false;
   accountSettingsPanel.hidden = true;
   helpPanel.hidden = true;
-  myNotebookPanel.hidden = true;
   accountSettingsOpen.hidden = !getActiveUser();
+  userSignout.hidden = !getActiveUser();
 }
 
 function closeMainMenu() {
@@ -425,7 +452,6 @@ function closeMainMenu() {
 
 function showAccountSettings() {
   helpPanel.hidden = true;
-  myNotebookPanel.hidden = true;
   accountSettingsPanel.hidden = false;
   const user = getActiveUser();
   if (!user) {
@@ -438,8 +464,44 @@ function showAccountSettings() {
 
 function showHelp() {
   accountSettingsPanel.hidden = true;
-  myNotebookPanel.hidden = true;
   helpPanel.hidden = false;
+}
+
+function formatAboutParagraph(text) {
+  return escapeHtml(text).replace(/\*([^*]+)\*/g, "<em>$1</em>");
+}
+
+function renderAbout(library = currentContentLibrary) {
+  if (!aboutContent) return;
+  const aboutText = String(library.settings?.aboutText || defaultAboutText).trim();
+  const image = (library.uploads || [])
+    .filter((item) => item.section === "about-image" && (item.isImage || /\.(png|jpe?g|gif|webp|svg)$/i.test(item.filename || item.path || "")))
+    .sort((a, b) => new Date(b.uploadedAt || 0) - new Date(a.uploadedAt || 0))[0];
+  const imageMarkup = image
+    ? `<img class="about-image" src="${escapeHtml(image.path)}" alt="${escapeHtml(image.note || image.title || "PulmCrit IQ about image")}" />`
+    : "";
+  const textMarkup = aboutText
+    .split(/\n{2,}/)
+    .map((paragraph) => `<p>${formatAboutParagraph(paragraph.trim())}</p>`)
+    .join("");
+  aboutContent.innerHTML = `${imageMarkup}${textMarkup}`;
+}
+
+function showAbout() {
+  closeMainMenu();
+  aboutModal.hidden = false;
+  renderAbout();
+}
+
+function closeAbout() {
+  aboutModal.hidden = true;
+}
+
+function renderHelp(settings = {}) {
+  if (!helpEmailLink) return;
+  const email = String(settings.helpEmail || defaultHelpEmail).trim() || defaultHelpEmail;
+  helpEmailLink.href = `mailto:${email}`;
+  helpEmailLink.textContent = email;
 }
 
 function bookmarkKey(item) {
@@ -547,18 +609,6 @@ async function toggleBookmark(item) {
   renderNotebook();
   renderGuidelines(currentGuidelines, guidelineStatus.textContent);
   renderLandmarkTrials();
-}
-
-function showNotebook() {
-  accountSettingsPanel.hidden = true;
-  helpPanel.hidden = true;
-  myNotebookPanel.hidden = false;
-  if (!getActiveUser()) {
-    notebookStatus.textContent = "Login first to use My Notebook.";
-    openUserAuth("signin");
-    return;
-  }
-  loadNotebook();
 }
 
 function switchAuthView(view) {
@@ -847,13 +897,25 @@ function renderTileLibraries(library) {
   document.querySelectorAll(".tile-library").forEach((panel) => panel.remove());
 }
 
+function readShadowSettings() {
+  try {
+    return JSON.parse(localStorage.getItem("pulmcrit-iq-settings-shadow") || "{}");
+  } catch {
+    return {};
+  }
+}
+
 async function loadContentLibrary() {
   try {
     const response = await fetch(CONTENT_API_URL, { cache: "no-store" });
     if (!response.ok) return;
     const library = await response.json();
+    const shadowSettings = readShadowSettings();
+    library.settings = { ...(library.settings || {}), ...shadowSettings };
     applyHomeSettings(library.settings);
     renderHeroImage(library);
+    renderAbout(library);
+    renderHelp(library.settings);
     renderTileLibraries(library);
     renderLandmarkTrials();
   } catch {
@@ -1212,7 +1274,19 @@ mainMenu.addEventListener("click", (event) => {
   if (event.target === mainMenu) closeMainMenu();
 });
 accountSettingsOpen.addEventListener("click", showAccountSettings);
-myNotebookOpen.addEventListener("click", showNotebook);
+myNotebookOpen.addEventListener("click", (event) => {
+  if (getActiveUser()) return;
+  event.preventDefault();
+  closeMainMenu();
+  openUserAuth("signin");
+  setAuthStatus("Login first to open My Notebook.");
+});
+userSignout.addEventListener("click", signOutUser);
+aboutOpen.addEventListener("click", showAbout);
+aboutClose.addEventListener("click", closeAbout);
+aboutModal.addEventListener("click", (event) => {
+  if (event.target === aboutModal) closeAbout();
+});
 helpOpen.addEventListener("click", showHelp);
 changePasswordForm.addEventListener("submit", changeActiveUserPassword);
 document.querySelectorAll("[data-auth-view]").forEach((tab) => {
@@ -1245,6 +1319,7 @@ if (new URLSearchParams(window.location.search).get("login") === "1" && !getActi
 loadNotebook();
 trackVisit();
 applyHomeSettings();
+renderHelp();
 setupTileResizing();
 loadContentLibrary();
 loadArticles();
