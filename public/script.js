@@ -1,4 +1,5 @@
 const REFRESH_INTERVAL_MS = 3 * 60 * 60 * 1000;
+const CONTENT_SYNC_INTERVAL_MS = 5 * 1000;
 const CACHE_KEY = "pulmcrit-iq-latest-articles-v5-autofeed-only";
 const GUIDELINE_CACHE_KEY = "pulmcrit-iq-guidelines-v5-no-quality-chest-pain";
 const USER_STORE_KEY = "pulmcrit-iq-users";
@@ -950,7 +951,7 @@ function readShadowUploads() {
 
 async function loadContentLibrary() {
   try {
-    const response = await fetch(CONTENT_API_URL, { cache: "no-store" });
+    const response = await fetch(`${CONTENT_API_URL}?v=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) return;
     const library = await response.json();
     const shadowSettings = readShadowSettings();
@@ -984,6 +985,9 @@ document.addEventListener("visibilitychange", () => {
 });
 
 window.addEventListener("focus", loadContentLibrary);
+setInterval(() => {
+  if (!document.hidden) loadContentLibrary();
+}, CONTENT_SYNC_INTERVAL_MS);
 
 function formatRefreshStatus(data) {
   if (!data.updatedAt) return data.status || "Waiting for journal refresh";

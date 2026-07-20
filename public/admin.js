@@ -12,6 +12,7 @@ const ADMIN_SESSION_KEY = "pulmcrit-iq-admin-key";
 
 const adminKey = document.querySelector("#admin-key");
 const adminUnlock = document.querySelector("#admin-unlock");
+const adminSignout = document.querySelector("#admin-signout");
 const adminLockStatus = document.querySelector("#admin-lock-status");
 const uploadForm = document.querySelector("#admin-upload-form");
 const adminSection = document.querySelector("#admin-section");
@@ -136,9 +137,14 @@ function labelToSection(label) {
 function setAdminEnabled(enabled) {
   document.querySelectorAll("input, select, textarea, button").forEach((control) => {
     if (control.id === "admin-key" || control.id === "admin-unlock") return;
+    if (control.id === "admin-signout") return;
     if (control.matches("[data-toggle-password]")) return;
     control.disabled = !enabled;
   });
+  if (adminSignout) {
+    adminSignout.hidden = !enabled;
+    adminSignout.disabled = false;
+  }
   adminLockStatus.textContent = enabled ? "Unlocked" : "Locked";
   adminUploadStatus.textContent = enabled ? "Ready to upload." : "Unlock admin to upload.";
   if (!enabled && adminStorageStatus) {
@@ -442,7 +448,7 @@ async function refreshStorageStatus() {
 }
 
 async function refreshLibrary() {
-  const response = await fetch(`${SERVER_ORIGIN}/api/admin/content`, { cache: "no-store" });
+  const response = await fetch(`${SERVER_ORIGIN}/api/admin/content?v=${Date.now()}`, { cache: "no-store" });
   const library = mergeRememberedUploads(await response.json());
   currentLibrary = library;
   const articles = library.articles || [];
@@ -745,9 +751,20 @@ async function unlockAdmin(key) {
   }
 }
 
+function signOutAdmin() {
+  adminAccessKey = "";
+  sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  adminKey.value = "";
+  setAdminEnabled(false);
+  libraryList.innerHTML = "Unlock admin to view uploaded content.";
+  adminLockStatus.textContent = "Signed out";
+}
+
 adminUnlock.addEventListener("click", async () => {
   await unlockAdmin(adminKey.value);
 });
+
+adminSignout?.addEventListener("click", signOutAdmin);
 
 document.addEventListener("click", (event) => {
   const button = event.target.closest("[data-toggle-password]");

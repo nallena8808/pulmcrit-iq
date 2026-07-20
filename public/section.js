@@ -32,6 +32,7 @@ const USER_STORE_KEY = "pulmcrit-iq-users";
 const USER_NOTEBOOK_API_URL = `${SERVER_ORIGIN}/api/users/notebook`;
 const USER_BOOKMARK_API_URL = `${SERVER_ORIGIN}/api/users/bookmark`;
 const USER_BOOKMARK_DELETE_API_URL = `${SERVER_ORIGIN}/api/users/bookmark-delete`;
+const CONTENT_SYNC_INTERVAL_MS = 5 * 1000;
 
 let library = { articles: [], uploads: [], subtopics: [] };
 let liveArticles = [];
@@ -586,7 +587,7 @@ if (initialSectionQuery) {
 
 async function loadSection() {
   const [libraryResponse, articlesResponse, guidelinesResponse] = await Promise.all([
-    fetch(`${SERVER_ORIGIN}/api/admin/content`, { cache: "no-store" }),
+    fetch(`${SERVER_ORIGIN}/api/admin/content?v=${Date.now()}`, { cache: "no-store" }),
     section === "latest-articles" ? fetch(`${SERVER_ORIGIN}/api/articles`, { cache: "no-store" }) : Promise.resolve(null),
     section === "guidelines" ? fetch(`${SERVER_ORIGIN}/api/guidelines`, { cache: "no-store" }) : Promise.resolve(null),
   ]);
@@ -621,4 +622,6 @@ document.addEventListener("visibilitychange", () => {
 });
 
 window.addEventListener("focus", loadSection);
-setInterval(loadSection, 30 * 1000);
+setInterval(() => {
+  if (!document.hidden) loadSection();
+}, CONTENT_SYNC_INTERVAL_MS);
