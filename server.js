@@ -384,6 +384,18 @@ function ensurePersistentAccountStorage(response) {
   return true;
 }
 
+function ensurePersistentContentStorage(response) {
+  if (isVercel && !hasBlobStorage()) {
+    sendJson(response, {
+      ok: false,
+      error: "Persistent site storage is not active on Vercel. Add BLOB_READ_WRITE_TOKEN, redeploy, then save this admin change again.",
+      storage: uploadStorageMode(),
+    });
+    return false;
+  }
+  return true;
+}
+
 async function handleStorageStatus(response) {
   const status = {
     ok: true,
@@ -1257,6 +1269,7 @@ async function handleUpload(request, response, section) {
 }
 
 async function handleSubtopic(request, response) {
+  if (!ensurePersistentContentStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const now = new Date().toISOString();
@@ -1347,6 +1360,7 @@ function inferTrialBucket(title, link, fallback = "") {
 }
 
 async function handleManualArticle(request, response) {
+  if (!ensurePersistentContentStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const now = new Date().toISOString();
@@ -1396,6 +1410,7 @@ async function handleManualArticle(request, response) {
 }
 
 async function handleAdminSettings(request, response) {
+  if (!ensurePersistentContentStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const library = await readContentLibraryAsync();
@@ -1415,6 +1430,7 @@ async function handleAdminSettings(request, response) {
 }
 
 async function handleTrialAbstractSave(request, response) {
+  if (!ensurePersistentContentStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const name = String(payload.name || "").trim();
@@ -1449,6 +1465,7 @@ async function handleTrialAbstractSave(request, response) {
 }
 
 async function handleDeleteContent(request, response) {
+  if (!ensurePersistentContentStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const type = String(payload.type || "").trim();
@@ -1485,6 +1502,7 @@ async function handleDeleteContent(request, response) {
 }
 
 async function handleCleanupDelete(request, response) {
+  if (!ensurePersistentContentStorage(response)) return;
   const body = await receiveBody(request);
   const payload = JSON.parse(body.toString("utf8") || "{}");
   const type = String(payload.type || "").trim();

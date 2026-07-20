@@ -33,14 +33,34 @@
   ],
   "uploads": [
     {
-      "filename": "2026-07-11T20-38-48-397Z-ChatGPT-Image-Jul-11,-2026,-03_20_26-PM.png",
-      "path": "/uploads/hero-image/2026-07-11T20-38-48-397Z-ChatGPT-Image-Jul-11,-2026,-03_20_26-PM.png",
-      "bytes": 3376914,
-      "uploadedAt": "2026-07-11T20:38:48.398Z",
+      "filename": "2026-07-19T22-05-38-062Z-blue-protocol.png",
+      "title": "blue-protocol.png",
+      "path": "/uploads/about-image/2026-07-19T22-05-38-062Z-blue-protocol.png",
+      "bytes": 1469514,
+      "uploadedAt": "2026-07-19T22:05:38.065Z",
       "subtopicId": "",
       "subtopicTitle": "",
       "note": "",
+      "description": "",
+      "mediaBucket": "",
       "isImage": true,
+      "isVideo": false,
+      "featuredSlot": "1",
+      "section": "about-image"
+    },
+    {
+      "filename": "2026-07-19T22-04-04-045Z-final-hero-image.png",
+      "title": "final-hero-image.png",
+      "path": "/uploads/hero-image/2026-07-19T22-04-04-045Z-final-hero-image.png",
+      "bytes": 3144193,
+      "uploadedAt": "2026-07-19T22:04:04.050Z",
+      "subtopicId": "",
+      "subtopicTitle": "",
+      "note": "",
+      "description": "",
+      "mediaBucket": "",
+      "isImage": true,
+      "isVideo": false,
       "featuredSlot": "1",
       "section": "hero-image"
     }
@@ -58,8 +78,7 @@
       "8",
       "5"
     ],
-    "tileHeight": 500,
+    "tileHeight": 470,
     "imageAtlasStarterCleared": true
-  },
-  "notebooks": {}
+  }
 }
