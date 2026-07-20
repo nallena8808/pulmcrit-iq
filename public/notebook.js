@@ -108,6 +108,21 @@ function saveNotebookLocal(user, items) {
   localStorage.setItem(`pulmcrit-iq-notebook-${user.email}`, JSON.stringify(items));
 }
 
+function sameNotebookItem(item, id, reference = null) {
+  const normalizedId = String(id || "").trim().toLowerCase();
+  const itemKey = bookmarkKey(item);
+  if (normalizedId && (String(item.id || "").trim().toLowerCase() === normalizedId || itemKey === normalizedId)) return true;
+  if (!reference) return false;
+  const sameTitle = String(item.title || "").trim().toLowerCase() === String(reference.title || "").trim().toLowerCase();
+  const sameLink = String(item.link || "").trim().toLowerCase() === String(reference.link || "").trim().toLowerCase();
+  const sameType = String(item.type || "").trim().toLowerCase() === String(reference.type || "").trim().toLowerCase();
+  return sameTitle && sameLink && sameType;
+}
+
+function removeNotebookItems(items, id, reference = null) {
+  return mergeNotebookItems(items).filter((item) => !sameNotebookItem(item, id, reference));
+}
+
 function itemMatches(item, query) {
   const tokens = String(query || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().split(/\s+/).filter(Boolean);
   if (!tokens.length) return true;
@@ -180,17 +195,21 @@ async function removeNotebookItem(id) {
   if (!user) return;
   const normalizedId = String(id || "").trim().toLowerCase();
   if (!normalizedId) return;
+  const reference = notebookItems.find((item) => sameNotebookItem(item, normalizedId)) || null;
+  notebookItems = removeNotebookItems(notebookItems, normalizedId, reference);
+  saveNotebookLocal(user, notebookItems);
+  renderNotebook();
   try {
     const response = await fetch(USER_BOOKMARK_DELETE_API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: user.email, id: normalizedId }),
+      body: JSON.stringify({ email: user.email, id: normalizedId, item: reference }),
     });
     const result = await response.json();
     if (!response.ok || !result.ok) throw new Error(result.error || "Remove failed.");
-    notebookItems = mergeNotebookItems(result.items || []).filter((item) => item.id !== normalizedId);
+    notebookItems = removeNotebookItems(result.items || [], normalizedId, reference);
   } catch {
-    notebookItems = notebookItems.filter((item) => bookmarkKey(item) !== normalizedId);
+    notebookItems = removeNotebookItems(notebookItems, normalizedId, reference);
   }
   saveNotebookLocal(user, notebookItems);
   renderNotebook();

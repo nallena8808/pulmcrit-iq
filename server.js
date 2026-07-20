@@ -1847,7 +1847,17 @@ async function handleNotebookDelete(request, response) {
   }
   const library = await readContentLibraryAsync();
   const notebook = userNotebook(library, email);
-  notebook.items = notebook.items.filter((candidate) => String(candidate.id || "").toLowerCase() !== id);
+  const reference = payload.item ? normalizeBookmarkItem(payload.item) : null;
+  notebook.items = notebook.items.filter((candidate) => {
+    const candidateItem = normalizeBookmarkItem(candidate);
+    if (candidateItem.id === id || String(candidate.id || "").trim().toLowerCase() === id) return false;
+    if (!reference) return true;
+    return !(
+      candidateItem.type === reference.type &&
+      candidateItem.title.toLowerCase() === reference.title.toLowerCase() &&
+      candidateItem.link.toLowerCase() === reference.link.toLowerCase()
+    );
+  });
   await writeContentLibraryAsync(library);
   sendJson(response, { ok: true, items: notebook.items });
 }
